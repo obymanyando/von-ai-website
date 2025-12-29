@@ -1,7 +1,7 @@
 import { Layout } from "@/components/Layout";
 import { Section } from "@/components/Section";
-import { CTAButton } from "@/components/CTAButton";
 import { Card, IconListItem } from "@/components/Card";
+import { InlineWidget } from "react-calendly";
 import {
   Mail,
   Calendar,
@@ -34,18 +34,25 @@ export default function Contact() {
 
       <Section>
         <div className="grid gap-8 lg:grid-cols-2">
-          {/* Booking Card */}
-          <Card variant="elevated" className="h-fit">
-            <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-              <Calendar className="h-6 w-6 text-primary" />
+          {/* Calendly Embed */}
+          <Card variant="elevated" className="h-fit overflow-hidden p-0">
+            <div className="p-6 pb-0">
+              <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
+                <Calendar className="h-6 w-6 text-primary" />
+              </div>
+              <h2 className="mb-2 text-2xl font-bold text-foreground">
+                Book a call
+              </h2>
+              <p className="mb-4 text-muted-foreground">
+                Schedule a 30-minute call to discuss your situation.
+              </p>
             </div>
-            <h2 className="mb-4 text-2xl font-bold text-foreground">
-              Book a call
-            </h2>
-            <p className="mb-6 text-muted-foreground">
-              Schedule a 30-minute call to discuss your situation. We'll explore whether the Sprint is a fit and answer any questions.
-            </p>
-            <CTAButton variant="primary" size="lg" href={CALENDLY_URL} />
+            <div className="calendly-wrapper">
+              <InlineWidget
+                url={CALENDLY_URL}
+                styles={{ height: "580px", minWidth: "280px" }}
+              />
+            </div>
           </Card>
 
           {/* Email Card */}
@@ -110,11 +117,8 @@ export default function Contact() {
             Ready to turn AI into results?
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-lg text-muted-foreground">
-            Book the Sprint call and get clarity in 2 weeks.
+            Book the Sprint call above and get clarity in 2 weeks.
           </p>
-          <div className="mt-10">
-            <CTAButton variant="primary" size="xl" />
-          </div>
         </div>
       </Section>
     </Layout>
