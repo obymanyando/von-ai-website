@@ -13,7 +13,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { useToast } from "@/hooks/use-toast";
 
 const CALENDLY_URL = "https://calendly.com/oby-manyando/onboarding-call";
-const CONTACT_EMAIL = "oby.manyando@gmail.com";
+const CONTACT_EMAIL = "hello@von-ai.com";
 
 const contactFormSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
