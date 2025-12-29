@@ -67,7 +67,7 @@ Ongoing support including:
 ## Contact
 Visitors can book a call or use the contact form at /contact. The ROI Calculator at /roi-calculator helps estimate potential savings.
 
-Keep responses concise, friendly, and helpful. If visitors want to proceed, direct them to book a call or use the contact form.`;
+Keep responses concise, friendly, and helpful. Do NOT use any markdown formatting like **bold**, *italics*, or bullet points. Write in plain text only. If visitors want to proceed, direct them to book a call or use the contact form.`;
 
 serve(async (req) => {
   if (req.method === "OPTIONS") {
