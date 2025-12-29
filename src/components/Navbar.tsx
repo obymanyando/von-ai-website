@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 
-const CALENDLY_URL = "#book-sprint"; // Placeholder for Calendly
+const CALENDLY_URL = "https://calendly.com/oby-manyando/onboarding-call";
 
 const navLinks = [
   { href: "/", label: "Home" },

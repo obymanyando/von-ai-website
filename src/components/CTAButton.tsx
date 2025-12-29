@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const CALENDLY_URL = "#book-sprint"; // Placeholder for Calendly
+const CALENDLY_URL = "https://calendly.com/oby-manyando/onboarding-call";
 
 interface CTAButtonProps {
   variant?: "primary" | "secondary" | "outline" | "white";

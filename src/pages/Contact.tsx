@@ -12,8 +12,8 @@ import {
   Wrench,
 } from "lucide-react";
 
-const CALENDLY_URL = "#book-sprint"; // Placeholder
-const CONTACT_EMAIL = "hello@vonai.com"; // Placeholder
+const CALENDLY_URL = "https://calendly.com/oby-manyando/onboarding-call";
+const CONTACT_EMAIL = "hello@vonai.com";
 
 export default function Contact() {
   return (
