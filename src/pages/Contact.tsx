@@ -1,8 +1,9 @@
+import { useState } from "react";
 import { Layout } from "@/components/Layout";
 import { Section } from "@/components/Section";
 import { Card, IconListItem } from "@/components/Card";
 import { InlineWidget } from "react-calendly";
-import { Mail, Calendar, MessageSquare, Briefcase, AlertCircle, Target, Wrench, Send } from "lucide-react";
+import { Mail, Calendar, MessageSquare, Briefcase, AlertCircle, Target, Wrench, Send, Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -11,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const CALENDLY_URL = "https://calendly.com/oby-manyando/onboarding-call";
 const CONTACT_EMAIL = "hello@von-ai.com";
@@ -30,6 +32,7 @@ type ContactFormValues = z.infer<typeof contactFormSchema>;
 
 function ContactForm() {
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
     defaultValues: {
@@ -40,19 +43,35 @@ function ContactForm() {
     },
   });
 
-  const onSubmit = (data: ContactFormValues) => {
-    // Build mailto link with form data
-    const subject = encodeURIComponent(`Contact from ${data.name}${data.company ? ` at ${data.company}` : ""}`);
-    const body = encodeURIComponent(
-      `Name: ${data.name}\nEmail: ${data.email}${data.company ? `\nCompany: ${data.company}` : ""}\n\nMessage:\n${data.message}`,
-    );
+  const onSubmit = async (data: ContactFormValues) => {
+    setIsSubmitting(true);
+    try {
+      const { error } = await supabase.functions.invoke("send-contact-email", {
+        body: {
+          name: data.name,
+          email: data.email,
+          company: data.company || undefined,
+          message: data.message,
+        },
+      });
 
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+      if (error) throw error;
 
-    toast({
-      title: "Opening email client",
-      description: "Your email client should open with the message pre-filled.",
-    });
+      toast({
+        title: "Message sent!",
+        description: "We've received your message and will get back to you within 24 hours.",
+      });
+      form.reset();
+    } catch (error) {
+      console.error("Contact form error:", error);
+      toast({
+        title: "Something went wrong",
+        description: "Please try again or email us directly at hello@von-ai.com",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -125,9 +144,13 @@ function ContactForm() {
             )}
           />
 
-          <Button type="submit" className="w-full" size="lg">
-            <Send className="mr-2 h-4 w-4" />
-            Send Message
+          <Button type="submit" className="w-full" size="lg" disabled={isSubmitting}>
+            {isSubmitting ? (
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            ) : (
+              <Send className="mr-2 h-4 w-4" />
+            )}
+            {isSubmitting ? "Sending..." : "Send Message"}
           </Button>
         </form>
       </Form>
