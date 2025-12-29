@@ -91,6 +91,30 @@ export type Database = {
         }
         Relationships: []
       }
+      rate_limit_events: {
+        Row: {
+          client_ip: string
+          created_at: string
+          endpoint: string
+          event_type: string
+          id: string
+        }
+        Insert: {
+          client_ip: string
+          created_at?: string
+          endpoint: string
+          event_type: string
+          id?: string
+        }
+        Update: {
+          client_ip?: string
+          created_at?: string
+          endpoint?: string
+          event_type?: string
+          id?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string

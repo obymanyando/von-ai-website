@@ -14,9 +14,13 @@ const CONVERSATION_WINDOW_MS = 3600000; // 1 hour
 const MAX_MESSAGE_LENGTH = 2000; // characters
 const MAX_MESSAGES_IN_CONTEXT = 50;
 
+// Abuse detection thresholds
+const ABUSE_THRESHOLD_PER_HOUR = 5; // Number of rate limit hits before flagging as potential abuse
+
 // In-memory rate limiting stores (reset on function cold start)
 const messageRates = new Map<string, number[]>();
 const conversationRates = new Map<string, number[]>();
+const rateLimitHits = new Map<string, number[]>(); // Track rate limit violations per IP
 
 // Helper to clean old entries from rate limit maps
 function cleanOldEntries(entries: number[], windowMs: number): number[] {
@@ -29,6 +33,43 @@ function getClientIP(req: Request): string {
   return req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 
          req.headers.get('x-real-ip') || 
          'unknown';
+}
+
+// Track rate limit hit and check for abuse pattern
+function trackRateLimitHit(clientIP: string): { isAbuse: boolean; hitCount: number } {
+  const now = Date.now();
+  const hits = cleanOldEntries(rateLimitHits.get(clientIP) || [], CONVERSATION_WINDOW_MS);
+  hits.push(now);
+  rateLimitHits.set(clientIP, hits);
+  
+  return {
+    isAbuse: hits.length >= ABUSE_THRESHOLD_PER_HOUR,
+    hitCount: hits.length
+  };
+}
+
+// Log rate limit event to database
+async function logRateLimitEvent(
+  supabase: any,
+  clientIP: string,
+  eventType: 'message_limit' | 'conversation_limit',
+  endpoint: string
+): Promise<void> {
+  try {
+    const { error } = await supabase
+      .from('rate_limit_events')
+      .insert({
+        client_ip: clientIP,
+        event_type: eventType,
+        endpoint: endpoint
+      });
+    
+    if (error) {
+      console.error('Failed to log rate limit event:', error);
+    }
+  } catch (e) {
+    console.error('Error logging rate limit event:', e);
+  }
 }
 
 // Check message rate limit
@@ -189,11 +230,26 @@ serve(async (req) => {
   const clientIP = getClientIP(req);
   console.log(`Chat request from IP: ${clientIP}`);
 
+  // Initialize Supabase client early for logging
+  const SUPABASE_URL = Deno.env.get("SUPABASE_URL");
+  const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+  const supabase = createClient(SUPABASE_URL!, SUPABASE_SERVICE_ROLE_KEY!);
+
   try {
     // Check message rate limit first
     const messageRateCheck = checkMessageRateLimit(clientIP);
     if (!messageRateCheck.allowed) {
-      console.log(`Rate limit exceeded for IP: ${clientIP}`);
+      const abuseCheck = trackRateLimitHit(clientIP);
+      
+      // Log the rate limit event
+      await logRateLimitEvent(supabase, clientIP, 'message_limit', '/chat');
+      
+      if (abuseCheck.isAbuse) {
+        console.warn(`🚨 ABUSE ALERT: IP ${clientIP} has hit rate limits ${abuseCheck.hitCount} times in the last hour`);
+      } else {
+        console.log(`Rate limit exceeded for IP: ${clientIP} (${abuseCheck.hitCount} violations this hour)`);
+      }
+      
       return new Response(
         JSON.stringify({ error: "Too many messages. Please wait a moment before sending more." }),
         {
@@ -226,14 +282,10 @@ serve(async (req) => {
     const sanitizedMessages = messagesValidation.sanitized!;
     
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
-    const SUPABASE_URL = Deno.env.get("SUPABASE_URL");
-    const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
     
     if (!LOVABLE_API_KEY) {
       throw new Error("LOVABLE_API_KEY is not configured");
     }
-
-    const supabase = createClient(SUPABASE_URL!, SUPABASE_SERVICE_ROLE_KEY!);
 
     // Create or get conversation
     let convId = conversationId;
@@ -241,7 +293,17 @@ serve(async (req) => {
       // Check conversation creation rate limit
       const convRateCheck = checkConversationRateLimit(clientIP);
       if (!convRateCheck.allowed) {
-        console.log(`Conversation rate limit exceeded for IP: ${clientIP}`);
+        const abuseCheck = trackRateLimitHit(clientIP);
+        
+        // Log the rate limit event
+        await logRateLimitEvent(supabase, clientIP, 'conversation_limit', '/chat');
+        
+        if (abuseCheck.isAbuse) {
+          console.warn(`🚨 ABUSE ALERT: IP ${clientIP} has hit rate limits ${abuseCheck.hitCount} times in the last hour`);
+        } else {
+          console.log(`Conversation rate limit exceeded for IP: ${clientIP} (${abuseCheck.hitCount} violations this hour)`);
+        }
+        
         return new Response(
           JSON.stringify({ error: "Too many conversations created. Please try again later." }),
           {

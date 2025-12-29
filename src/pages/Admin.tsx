@@ -34,7 +34,8 @@ import {
   User as UserIcon,
   Users,
   Shield,
-  ShieldCheck
+  ShieldCheck,
+  AlertTriangle
 } from "lucide-react";
 import { format } from "date-fns";
 import { User } from "@supabase/supabase-js";
@@ -70,6 +71,20 @@ interface UserWithRole {
   created_at: string | null;
 }
 
+interface RateLimitEvent {
+  id: string;
+  client_ip: string;
+  event_type: string;
+  endpoint: string;
+  created_at: string;
+}
+
+interface AbuseStats {
+  ip: string;
+  count: number;
+  lastSeen: string;
+}
+
 export default function Admin() {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
@@ -77,6 +92,8 @@ export default function Admin() {
   const [conversations, setConversations] = useState<ChatConversation[]>([]);
   const [selectedConversation, setSelectedConversation] = useState<ChatConversation | null>(null);
   const [users, setUsers] = useState<UserWithRole[]>([]);
+  const [rateLimitEvents, setRateLimitEvents] = useState<RateLimitEvent[]>([]);
+  const [abuseStats, setAbuseStats] = useState<AbuseStats[]>([]);
   const [fetching, setFetching] = useState(false);
   const [updatingRole, setUpdatingRole] = useState<string | null>(null);
   const navigate = useNavigate();
@@ -109,6 +126,7 @@ export default function Admin() {
       fetchSubmissions();
       fetchConversations();
       fetchUsers();
+      fetchRateLimitEvents();
     }
   }, [user]);
 
@@ -174,6 +192,63 @@ export default function Admin() {
       setUsers((data as UserWithRole[]) || []);
     } catch (error: any) {
       console.error("Error fetching users:", error.message);
+    }
+  };
+
+  const fetchRateLimitEvents = async () => {
+    try {
+      const { data, error } = await supabase
+        .from("rate_limit_events")
+        .select("*")
+        .order("created_at", { ascending: false })
+        .limit(100);
+
+      if (error) throw error;
+      
+      const events = (data || []) as RateLimitEvent[];
+      setRateLimitEvents(events);
+
+      // Calculate abuse stats (IPs with 5+ violations)
+      const ipCounts = events.reduce((acc: Record<string, { count: number; lastSeen: string }>, event) => {
+        if (!acc[event.client_ip]) {
+          acc[event.client_ip] = { count: 0, lastSeen: event.created_at };
+        }
+        acc[event.client_ip].count++;
+        if (new Date(event.created_at) > new Date(acc[event.client_ip].lastSeen)) {
+          acc[event.client_ip].lastSeen = event.created_at;
+        }
+        return acc;
+      }, {});
+
+      const stats: AbuseStats[] = Object.entries(ipCounts)
+        .map(([ip, { count, lastSeen }]) => ({ ip, count, lastSeen }))
+        .filter(s => s.count >= 3)
+        .sort((a, b) => b.count - a.count);
+
+      setAbuseStats(stats);
+    } catch (error: any) {
+      console.error("Error fetching rate limit events:", error.message);
+    }
+  };
+
+  const handleClearRateLimitEvents = async () => {
+    try {
+      const { error } = await supabase
+        .from("rate_limit_events")
+        .delete()
+        .neq("id", "00000000-0000-0000-0000-000000000000"); // Delete all
+
+      if (error) throw error;
+      
+      setRateLimitEvents([]);
+      setAbuseStats([]);
+      toast({ title: "Rate limit events cleared" });
+    } catch (error: any) {
+      toast({
+        title: "Error clearing events",
+        description: error.message,
+        variant: "destructive",
+      });
     }
   };
 
@@ -303,6 +378,15 @@ return (
           <TabsTrigger value="users" className="gap-2">
             <Users className="h-4 w-4" />
             User Management
+          </TabsTrigger>
+          <TabsTrigger value="monitoring" className="gap-2">
+            <AlertTriangle className="h-4 w-4" />
+            Rate Limit Monitoring
+            {abuseStats.length > 0 && (
+              <Badge variant="destructive" className="ml-1 h-5 w-5 p-0 flex items-center justify-center text-xs">
+                {abuseStats.length}
+              </Badge>
+            )}
           </TabsTrigger>
         </TabsList>
 
@@ -596,6 +680,92 @@ return (
                           </SelectContent>
                         </Select>
                       </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
+          )}
+        </TabsContent>
+
+        <TabsContent value="monitoring" className="space-y-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <h2 className="text-2xl font-bold text-foreground">Rate Limit Monitoring</h2>
+              <p className="text-sm text-muted-foreground">
+                Track potential abuse patterns from rate limit violations
+              </p>
+            </div>
+            <div className="flex gap-2">
+              <Button variant="outline" onClick={fetchRateLimitEvents} disabled={fetching}>
+                <RefreshCw className={`mr-2 h-4 w-4 ${fetching ? "animate-spin" : ""}`} />
+                Refresh
+              </Button>
+              {rateLimitEvents.length > 0 && (
+                <Button variant="destructive" onClick={handleClearRateLimitEvents}>
+                  <Trash2 className="mr-2 h-4 w-4" />
+                  Clear All
+                </Button>
+              )}
+            </div>
+          </div>
+
+          {/* Abuse Alerts */}
+          {abuseStats.length > 0 && (
+            <div className="rounded-lg border border-destructive/50 bg-destructive/10 p-4">
+              <div className="flex items-center gap-2 mb-3">
+                <AlertTriangle className="h-5 w-5 text-destructive" />
+                <h3 className="font-semibold text-destructive">Potential Abuse Detected</h3>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                {abuseStats.map((stat) => (
+                  <div key={stat.ip} className="rounded bg-background p-3 border border-border">
+                    <p className="font-mono text-sm">{stat.ip}</p>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      {stat.count} violations • Last seen: {format(new Date(stat.lastSeen), "MMM d, h:mm a")}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {rateLimitEvents.length === 0 ? (
+            <div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-border py-16">
+              <Shield className="h-12 w-12 text-muted-foreground" />
+              <h3 className="mt-4 text-lg font-medium text-foreground">No rate limit events</h3>
+              <p className="mt-1 text-sm text-muted-foreground">
+                Rate limit violations will appear here when they occur.
+              </p>
+            </div>
+          ) : (
+            <div className="rounded-lg border border-border bg-card overflow-hidden">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Time</TableHead>
+                    <TableHead>Client IP</TableHead>
+                    <TableHead>Event Type</TableHead>
+                    <TableHead>Endpoint</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {rateLimitEvents.map((event) => (
+                    <TableRow key={event.id}>
+                      <TableCell className="whitespace-nowrap text-sm text-muted-foreground">
+                        {format(new Date(event.created_at), "MMM d, yyyy")}
+                        <br />
+                        <span className="text-xs">
+                          {format(new Date(event.created_at), "h:mm:ss a")}
+                        </span>
+                      </TableCell>
+                      <TableCell className="font-mono text-sm">{event.client_ip}</TableCell>
+                      <TableCell>
+                        <Badge variant={event.event_type === "message_limit" ? "secondary" : "outline"}>
+                          {event.event_type === "message_limit" ? "Message Limit" : "Conversation Limit"}
+                        </Badge>
+                      </TableCell>
+                      <TableCell className="text-sm text-muted-foreground">{event.endpoint}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
