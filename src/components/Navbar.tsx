@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import logoLight from "@/assets/logo-light.png";
 import logoDark from "@/assets/logo-dark.png";
 
@@ -46,25 +47,28 @@ export function Navbar() {
           ))}
         </div>
 
-        {/* CTA Button - Desktop */}
-        <div className="hidden md:block">
+        {/* CTA Button & Theme Toggle - Desktop */}
+        <div className="hidden items-center gap-2 md:flex">
+          <ThemeToggle />
           <Button variant="cta" size="default" asChild>
             <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">Book an AI ROI Sprint</a>
           </Button>
         </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          className="md:hidden"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label="Toggle menu"
-        >
-          {mobileMenuOpen ? (
-            <X className="h-6 w-6 text-foreground" />
-          ) : (
-            <Menu className="h-6 w-6 text-foreground" />
-          )}
-        </button>
+        {/* Mobile Menu Button & Theme Toggle */}
+        <div className="flex items-center gap-2 md:hidden">
+          <ThemeToggle />
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? (
+              <X className="h-6 w-6 text-foreground" />
+            ) : (
+              <Menu className="h-6 w-6 text-foreground" />
+            )}
+          </button>
+        </div>
       </nav>
 
       {/* Mobile Menu */}
