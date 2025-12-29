@@ -15,7 +15,7 @@ import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 
 const CALENDLY_URL = "https://calendly.com/oby-manyando/onboarding-call";
-const CONTACT_EMAIL = "hello@von-ai.com";
+const CONTACT_EMAIL = "hello@comms.von-ai.com";
 
 const contactFormSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
@@ -66,7 +66,7 @@ function ContactForm() {
       console.error("Contact form error:", error);
       toast({
         title: "Something went wrong",
-        description: "Please try again or email us directly at hello@von-ai.com",
+        description: "Please try again or email us directly at hello@comms.von-ai.com",
         variant: "destructive",
       });
     } finally {
