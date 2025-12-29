@@ -83,6 +83,13 @@ async function streamChat({
   onDone(newConvId);
 }
 
+const QUICK_REPLIES = [
+  "What is the AI ROI Sprint?",
+  "How do I get started?",
+  "What does it cost?",
+  "How long does it take?",
+];
+
 export default function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
@@ -97,10 +104,11 @@ export default function ChatWidget() {
     }
   }, [messages]);
 
-  const sendMessage = async () => {
-    if (!input.trim() || isLoading) return;
+  const sendMessage = async (messageText?: string) => {
+    const text = messageText || input.trim();
+    if (!text || isLoading) return;
 
-    const userMsg: Message = { role: "user", content: input.trim() };
+    const userMsg: Message = { role: "user", content: text };
     setMessages((prev) => [...prev, userMsg]);
     setInput("");
     setIsLoading(true);
@@ -146,6 +154,10 @@ export default function ChatWidget() {
     }
   };
 
+  const handleQuickReply = (question: string) => {
+    sendMessage(question);
+  };
+
   return (
     <>
       {/* Chat toggle button */}
@@ -179,9 +191,23 @@ export default function ChatWidget() {
             {messages.length === 0 ? (
               <div className="flex h-full flex-col items-center justify-center text-center">
                 <Bot className="mb-4 h-12 w-12 text-muted-foreground/50" />
-                <p className="text-sm text-muted-foreground">
-                  Hi! I can answer questions about VON AI's services, the AI ROI Sprint, and how we help businesses implement AI with measurable ROI.
+                <p className="mb-4 text-sm text-muted-foreground">
+                  Hi! I can answer questions about VON AI's services. Try one of these:
                 </p>
+                <div className="flex flex-wrap justify-center gap-2">
+                  {QUICK_REPLIES.map((question) => (
+                    <Button
+                      key={question}
+                      variant="outline"
+                      size="sm"
+                      className="text-xs"
+                      onClick={() => handleQuickReply(question)}
+                      disabled={isLoading}
+                    >
+                      {question}
+                    </Button>
+                  ))}
+                </div>
               </div>
             ) : (
               <div className="space-y-4">
@@ -245,7 +271,7 @@ export default function ChatWidget() {
                 className="flex-1"
               />
               <Button
-                onClick={sendMessage}
+                onClick={() => sendMessage()}
                 disabled={!input.trim() || isLoading}
                 size="icon"
               >
