@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import logo from "@/assets/logo.png";
 
 const CONTACT_EMAIL = "hello@vonai.com";
 
@@ -25,9 +26,7 @@ export function Footer() {
           {/* Brand */}
           <div className="md:col-span-2">
             <Link to="/" className="inline-block">
-              <span className="text-xl font-bold tracking-tight text-foreground">
-                Von<span className="text-primary">AI</span>
-              </span>
+              <img src={logo} alt="VonAI" className="h-8 w-auto" />
             </Link>
             <p className="mt-4 max-w-md text-sm text-muted-foreground">
               From AI experiments to ROI. We turn AI experimentation into measurable outcomes with a 2-week Sprint and a 90-day execution plan.

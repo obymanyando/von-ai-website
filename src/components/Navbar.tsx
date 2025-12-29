@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import logo from "@/assets/logo.png";
 
 const CALENDLY_URL = "https://calendly.com/oby-manyando/onboarding-call";
 
@@ -22,10 +23,8 @@ export function Navbar() {
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <nav className="container-padding mx-auto flex h-16 max-w-7xl items-center justify-between">
         {/* Logo */}
-        <Link to="/" className="flex items-center space-x-2">
-          <span className="text-xl font-bold tracking-tight text-foreground">
-            Von<span className="text-primary">AI</span>
-          </span>
+        <Link to="/" className="flex items-center">
+          <img src={logo} alt="VonAI" className="h-8 w-auto" />
         </Link>
 
         {/* Desktop Navigation */}
