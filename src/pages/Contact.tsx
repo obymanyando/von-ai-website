@@ -1,42 +1,27 @@
-import { useState } from "react";
 import { Layout } from "@/components/Layout";
 import { Section } from "@/components/Section";
 import { Card, IconListItem } from "@/components/Card";
 import { InlineWidget } from "react-calendly";
-import {
-  Mail,
-  Calendar,
-  MessageSquare,
-  Briefcase,
-  AlertCircle,
-  Target,
-  Wrench,
-  Send,
-  Loader2,
-} from "lucide-react";
+import { Mail, Calendar, MessageSquare, Briefcase, AlertCircle, Target, Wrench, Send } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
 
 const CALENDLY_URL = "https://calendly.com/oby-manyando/onboarding-call";
 const CONTACT_EMAIL = "oby.manyando@gmail.com";
 
 const contactFormSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
-  email: z.string().trim().email("Please enter a valid email address").max(255, "Email must be less than 255 characters"),
+  email: z
+    .string()
+    .trim()
+    .email("Please enter a valid email address")
+    .max(255, "Email must be less than 255 characters"),
   company: z.string().trim().max(100, "Company name must be less than 100 characters").optional(),
   message: z.string().trim().min(1, "Message is required").max(2000, "Message must be less than 2000 characters"),
 });
@@ -45,7 +30,6 @@ type ContactFormValues = z.infer<typeof contactFormSchema>;
 
 function ContactForm() {
   const { toast } = useToast();
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
     defaultValues: {
@@ -56,30 +40,19 @@ function ContactForm() {
     },
   });
 
-  const onSubmit = async (data: ContactFormValues) => {
-    setIsSubmitting(true);
-    try {
-      const { error } = await supabase.functions.invoke("send-contact-email", {
-        body: data,
-      });
+  const onSubmit = (data: ContactFormValues) => {
+    // Build mailto link with form data
+    const subject = encodeURIComponent(`Contact from ${data.name}${data.company ? ` at ${data.company}` : ""}`);
+    const body = encodeURIComponent(
+      `Name: ${data.name}\nEmail: ${data.email}${data.company ? `\nCompany: ${data.company}` : ""}\n\nMessage:\n${data.message}`,
+    );
 
-      if (error) throw error;
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
 
-      toast({
-        title: "Message sent!",
-        description: "We'll get back to you within 24 hours.",
-      });
-      form.reset();
-    } catch (error: any) {
-      console.error("Error sending message:", error);
-      toast({
-        title: "Failed to send message",
-        description: "Please try again or email us directly.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
+    toast({
+      title: "Opening email client",
+      description: "Your email client should open with the message pre-filled.",
+    });
   };
 
   return (
@@ -87,12 +60,8 @@ function ContactForm() {
       <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
         <Mail className="h-6 w-6 text-primary" />
       </div>
-      <h2 className="mb-2 text-2xl font-bold text-foreground">
-        Send a message
-      </h2>
-      <p className="mb-6 text-muted-foreground">
-        Fill out the form and we'll get back to you within 24 hours.
-      </p>
+      <h2 className="mb-2 text-2xl font-bold text-foreground">Send a message</h2>
+      <p className="mb-6 text-muted-foreground">Fill out the form and we'll get back to you within 24 hours.</p>
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
@@ -156,13 +125,9 @@ function ContactForm() {
             )}
           />
 
-          <Button type="submit" className="w-full" size="lg" disabled={isSubmitting}>
-            {isSubmitting ? (
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-            ) : (
-              <Send className="mr-2 h-4 w-4" />
-            )}
-            {isSubmitting ? "Sending..." : "Send Message"}
+          <Button type="submit" className="w-full" size="lg">
+            <Send className="mr-2 h-4 w-4" />
+            Send Message
           </Button>
         </form>
       </Form>
@@ -202,18 +167,11 @@ export default function Contact() {
               <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
                 <Calendar className="h-6 w-6 text-primary" />
               </div>
-              <h2 className="mb-2 text-2xl font-bold text-foreground">
-                Book a call
-              </h2>
-              <p className="mb-4 text-muted-foreground">
-                Schedule a 30-minute call to discuss your situation.
-              </p>
+              <h2 className="mb-2 text-2xl font-bold text-foreground">Book a call</h2>
+              <p className="mb-4 text-muted-foreground">Schedule a 30-45 minutes call to discuss your situation.</p>
             </div>
             <div className="calendly-wrapper">
-              <InlineWidget
-                url={CALENDLY_URL}
-                styles={{ height: "580px", minWidth: "280px" }}
-              />
+              <InlineWidget url={CALENDLY_URL} styles={{ height: "580px", minWidth: "280px" }} />
             </div>
           </Card>
 
@@ -227,9 +185,7 @@ export default function Contact() {
         <div className="mx-auto max-w-3xl">
           <div className="mb-8 flex items-center gap-3">
             <MessageSquare className="h-8 w-8 text-primary" />
-            <h2 className="text-2xl font-bold text-foreground">
-              What to include in your message
-            </h2>
+            <h2 className="text-2xl font-bold text-foreground">What to include in your message</h2>
           </div>
 
           <Card variant="bordered">
@@ -241,7 +197,8 @@ export default function Contact() {
                 <span className="font-medium">What's breaking today</span> — where do you see the most friction?
               </IconListItem>
               <IconListItem icon={Target}>
-                <span className="font-medium">What outcome matters most</span> — time saved, cost reduced, or revenue increased?
+                <span className="font-medium">What outcome matters most</span> — time saved, cost reduced, or revenue
+                increased?
               </IconListItem>
               <IconListItem icon={Wrench}>
                 <span className="font-medium">Your current tools</span> (optional) — CRM, ticketing, ERP, etc.
