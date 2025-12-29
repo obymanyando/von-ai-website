@@ -6,6 +6,118 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
+// Rate limiting configuration
+const RATE_LIMIT_WINDOW_MS = 60000; // 1 minute
+const MAX_MESSAGES_PER_WINDOW = 10;
+const MAX_CONVERSATIONS_PER_HOUR = 20;
+const CONVERSATION_WINDOW_MS = 3600000; // 1 hour
+const MAX_MESSAGE_LENGTH = 2000; // characters
+const MAX_MESSAGES_IN_CONTEXT = 50;
+
+// In-memory rate limiting stores (reset on function cold start)
+const messageRates = new Map<string, number[]>();
+const conversationRates = new Map<string, number[]>();
+
+// Helper to clean old entries from rate limit maps
+function cleanOldEntries(entries: number[], windowMs: number): number[] {
+  const now = Date.now();
+  return entries.filter(time => now - time < windowMs);
+}
+
+// Get client IP from request headers
+function getClientIP(req: Request): string {
+  return req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 
+         req.headers.get('x-real-ip') || 
+         'unknown';
+}
+
+// Check message rate limit
+function checkMessageRateLimit(clientIP: string): { allowed: boolean; remaining: number } {
+  const now = Date.now();
+  const entries = cleanOldEntries(messageRates.get(clientIP) || [], RATE_LIMIT_WINDOW_MS);
+  
+  if (entries.length >= MAX_MESSAGES_PER_WINDOW) {
+    messageRates.set(clientIP, entries);
+    return { allowed: false, remaining: 0 };
+  }
+  
+  entries.push(now);
+  messageRates.set(clientIP, entries);
+  return { allowed: true, remaining: MAX_MESSAGES_PER_WINDOW - entries.length };
+}
+
+// Check conversation creation rate limit
+function checkConversationRateLimit(clientIP: string): { allowed: boolean; remaining: number } {
+  const now = Date.now();
+  const entries = cleanOldEntries(conversationRates.get(clientIP) || [], CONVERSATION_WINDOW_MS);
+  
+  if (entries.length >= MAX_CONVERSATIONS_PER_HOUR) {
+    conversationRates.set(clientIP, entries);
+    return { allowed: false, remaining: 0 };
+  }
+  
+  entries.push(now);
+  conversationRates.set(clientIP, entries);
+  return { allowed: true, remaining: MAX_CONVERSATIONS_PER_HOUR - entries.length };
+}
+
+// Validate and sanitize message content
+function validateMessage(content: string): { valid: boolean; error?: string; sanitized?: string } {
+  if (!content || typeof content !== 'string') {
+    return { valid: false, error: 'Message content is required' };
+  }
+  
+  const trimmed = content.trim();
+  
+  if (trimmed.length === 0) {
+    return { valid: false, error: 'Message cannot be empty' };
+  }
+  
+  if (trimmed.length > MAX_MESSAGE_LENGTH) {
+    return { valid: false, error: `Message exceeds maximum length of ${MAX_MESSAGE_LENGTH} characters` };
+  }
+  
+  return { valid: true, sanitized: trimmed };
+}
+
+// Validate messages array
+function validateMessages(messages: unknown): { valid: boolean; error?: string; sanitized?: Array<{role: string; content: string}> } {
+  if (!Array.isArray(messages)) {
+    return { valid: false, error: 'Messages must be an array' };
+  }
+  
+  if (messages.length === 0) {
+    return { valid: false, error: 'At least one message is required' };
+  }
+  
+  if (messages.length > MAX_MESSAGES_IN_CONTEXT) {
+    return { valid: false, error: `Too many messages in context (max: ${MAX_MESSAGES_IN_CONTEXT})` };
+  }
+  
+  const sanitized: Array<{role: string; content: string}> = [];
+  
+  for (const msg of messages) {
+    if (!msg || typeof msg !== 'object') {
+      return { valid: false, error: 'Invalid message format' };
+    }
+    
+    const { role, content } = msg as { role?: string; content?: string };
+    
+    if (!role || !['user', 'assistant', 'system'].includes(role)) {
+      return { valid: false, error: 'Invalid message role' };
+    }
+    
+    const contentValidation = validateMessage(content || '');
+    if (!contentValidation.valid) {
+      return { valid: false, error: contentValidation.error };
+    }
+    
+    sanitized.push({ role, content: contentValidation.sanitized! });
+  }
+  
+  return { valid: true, sanitized };
+}
+
 const VONAI_CONTEXT = `You are the VON AI assistant, a helpful chatbot for VON AI's website. You help visitors understand VON AI's services and answer their questions.
 
 ## About VON AI
@@ -74,8 +186,45 @@ serve(async (req) => {
     return new Response(null, { headers: corsHeaders });
   }
 
+  const clientIP = getClientIP(req);
+  console.log(`Chat request from IP: ${clientIP}`);
+
   try {
-    const { messages, conversationId } = await req.json();
+    // Check message rate limit first
+    const messageRateCheck = checkMessageRateLimit(clientIP);
+    if (!messageRateCheck.allowed) {
+      console.log(`Rate limit exceeded for IP: ${clientIP}`);
+      return new Response(
+        JSON.stringify({ error: "Too many messages. Please wait a moment before sending more." }),
+        {
+          status: 429,
+          headers: { 
+            ...corsHeaders, 
+            "Content-Type": "application/json",
+            "Retry-After": "60"
+          },
+        }
+      );
+    }
+
+    const body = await req.json();
+    const { messages, conversationId } = body;
+
+    // Validate messages
+    const messagesValidation = validateMessages(messages);
+    if (!messagesValidation.valid) {
+      console.log(`Invalid messages from IP ${clientIP}: ${messagesValidation.error}`);
+      return new Response(
+        JSON.stringify({ error: messagesValidation.error }),
+        {
+          status: 400,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        }
+      );
+    }
+
+    const sanitizedMessages = messagesValidation.sanitized!;
+    
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     const SUPABASE_URL = Deno.env.get("SUPABASE_URL");
     const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
@@ -89,6 +238,23 @@ serve(async (req) => {
     // Create or get conversation
     let convId = conversationId;
     if (!convId) {
+      // Check conversation creation rate limit
+      const convRateCheck = checkConversationRateLimit(clientIP);
+      if (!convRateCheck.allowed) {
+        console.log(`Conversation rate limit exceeded for IP: ${clientIP}`);
+        return new Response(
+          JSON.stringify({ error: "Too many conversations created. Please try again later." }),
+          {
+            status: 429,
+            headers: { 
+              ...corsHeaders, 
+              "Content-Type": "application/json",
+              "Retry-After": "3600"
+            },
+          }
+        );
+      }
+
       const { data: newConv, error: convError } = await supabase
         .from("chat_conversations")
         .insert({})
@@ -99,11 +265,12 @@ serve(async (req) => {
         console.error("Error creating conversation:", convError);
       } else {
         convId = newConv.id;
+        console.log(`New conversation created: ${convId} for IP: ${clientIP}`);
       }
     }
 
     // Save user message
-    const lastUserMessage = messages[messages.length - 1];
+    const lastUserMessage = sanitizedMessages[sanitizedMessages.length - 1];
     if (convId && lastUserMessage?.role === "user") {
       const { error: msgError } = await supabase
         .from("chat_messages")
@@ -118,7 +285,7 @@ serve(async (req) => {
       }
     }
 
-    console.log("Processing chat request with", messages.length, "messages, conversation:", convId);
+    console.log(`Processing chat request with ${sanitizedMessages.length} messages, conversation: ${convId}, remaining rate limit: ${messageRateCheck.remaining}`);
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
@@ -130,7 +297,7 @@ serve(async (req) => {
         model: "google/gemini-2.5-flash",
         messages: [
           { role: "system", content: VONAI_CONTEXT },
-          ...messages,
+          ...sanitizedMessages,
         ],
         stream: true,
       }),
@@ -156,7 +323,6 @@ serve(async (req) => {
 
     // We need to collect the full response to save it
     const reader = response.body?.getReader();
-    const encoder = new TextEncoder();
     let fullAssistantResponse = "";
 
     const stream = new ReadableStream({
