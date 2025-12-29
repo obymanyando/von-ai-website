@@ -38,7 +38,7 @@ export function CTAButton({
   if (external) {
     return (
       <Button variant={variantMap[variant]} size={size} className={className} asChild>
-        <a href={href}>{buttonContent}</a>
+        <a href={href} target="_blank" rel="noopener noreferrer">{buttonContent}</a>
       </Button>
     );
   }
