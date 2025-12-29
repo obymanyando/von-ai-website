@@ -14,6 +14,13 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { 
   Loader2, 
   LogOut, 
@@ -24,7 +31,10 @@ import {
   ArrowLeft,
   MessageCircle,
   Bot,
-  User as UserIcon
+  User as UserIcon,
+  Users,
+  Shield,
+  ShieldCheck
 } from "lucide-react";
 import { format } from "date-fns";
 import { User } from "@supabase/supabase-js";
@@ -52,13 +62,23 @@ interface ChatMessage {
   created_at: string;
 }
 
+interface UserWithRole {
+  user_id: string;
+  email: string;
+  role: "admin" | "user" | null;
+  role_id: string | null;
+  created_at: string | null;
+}
+
 export default function Admin() {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [submissions, setSubmissions] = useState<ContactSubmission[]>([]);
   const [conversations, setConversations] = useState<ChatConversation[]>([]);
   const [selectedConversation, setSelectedConversation] = useState<ChatConversation | null>(null);
+  const [users, setUsers] = useState<UserWithRole[]>([]);
   const [fetching, setFetching] = useState(false);
+  const [updatingRole, setUpdatingRole] = useState<string | null>(null);
   const navigate = useNavigate();
   const { toast } = useToast();
 
@@ -88,6 +108,7 @@ export default function Admin() {
     if (user) {
       fetchSubmissions();
       fetchConversations();
+      fetchUsers();
     }
   }, [user]);
 
@@ -142,11 +163,53 @@ export default function Admin() {
 
       setConversations(conversationsWithMessages);
     } catch (error: any) {
+      console.error("Error fetching conversations:", error.message);
+    }
+  };
+
+  const fetchUsers = async () => {
+    try {
+      const { data, error } = await supabase.rpc("get_users_with_roles");
+      if (error) throw error;
+      setUsers((data as UserWithRole[]) || []);
+    } catch (error: any) {
+      console.error("Error fetching users:", error.message);
+    }
+  };
+
+  const handleRoleChange = async (userId: string, newRole: "admin" | "user" | "none") => {
+    setUpdatingRole(userId);
+    try {
+      // Find existing role for this user
+      const existingUser = users.find(u => u.user_id === userId);
+      
+      // If they have an existing role, remove it first
+      if (existingUser?.role_id) {
+        const { error: deleteError } = await supabase
+          .from("user_roles")
+          .delete()
+          .eq("id", existingUser.role_id);
+        if (deleteError) throw deleteError;
+      }
+      
+      // If new role is not "none", add the new role
+      if (newRole !== "none") {
+        const { error: insertError } = await supabase
+          .from("user_roles")
+          .insert({ user_id: userId, role: newRole });
+        if (insertError) throw insertError;
+      }
+      
+      toast({ title: "Role updated successfully" });
+      fetchUsers();
+    } catch (error: any) {
       toast({
-        title: "Error fetching conversations",
+        title: "Error updating role",
         description: error.message,
         variant: "destructive",
       });
+    } finally {
+      setUpdatingRole(null);
     }
   };
 
@@ -236,6 +299,10 @@ return (
           <TabsTrigger value="chats" className="gap-2">
             <MessageCircle className="h-4 w-4" />
             Chat Conversations
+          </TabsTrigger>
+          <TabsTrigger value="users" className="gap-2">
+            <Users className="h-4 w-4" />
+            User Management
           </TabsTrigger>
         </TabsList>
 
@@ -444,6 +511,95 @@ return (
                   </div>
                 )}
               </div>
+            </div>
+          )}
+        </TabsContent>
+
+        <TabsContent value="users" className="space-y-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <h2 className="text-2xl font-bold text-foreground">User Management</h2>
+              <p className="text-sm text-muted-foreground">
+                Assign roles to control admin access
+              </p>
+            </div>
+            <Button variant="outline" onClick={fetchUsers} disabled={fetching}>
+              <RefreshCw className={`mr-2 h-4 w-4 ${fetching ? "animate-spin" : ""}`} />
+              Refresh
+            </Button>
+          </div>
+
+          {users.length === 0 ? (
+            <div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-border py-16">
+              <Users className="h-12 w-12 text-muted-foreground" />
+              <h3 className="mt-4 text-lg font-medium text-foreground">No users found</h3>
+              <p className="mt-1 text-sm text-muted-foreground">
+                Users will appear here after they sign up.
+              </p>
+            </div>
+          ) : (
+            <div className="rounded-lg border border-border bg-card overflow-hidden">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Email</TableHead>
+                    <TableHead>Current Role</TableHead>
+                    <TableHead>Role Assigned</TableHead>
+                    <TableHead className="w-[200px]">Change Role</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {users.map((u) => (
+                    <TableRow key={u.user_id}>
+                      <TableCell className="font-medium">{u.email}</TableCell>
+                      <TableCell>
+                        {u.role === "admin" ? (
+                          <Badge className="bg-primary/20 text-primary border-primary/30">
+                            <ShieldCheck className="mr-1 h-3 w-3" />
+                            Admin
+                          </Badge>
+                        ) : u.role === "user" ? (
+                          <Badge variant="secondary">
+                            <UserIcon className="mr-1 h-3 w-3" />
+                            User
+                          </Badge>
+                        ) : (
+                          <Badge variant="outline" className="text-muted-foreground">
+                            No Role
+                          </Badge>
+                        )}
+                      </TableCell>
+                      <TableCell className="text-sm text-muted-foreground">
+                        {u.created_at
+                          ? format(new Date(u.created_at), "MMM d, yyyy")
+                          : "—"}
+                      </TableCell>
+                      <TableCell>
+                        <Select
+                          value={u.role || "none"}
+                          onValueChange={(value) =>
+                            handleRoleChange(u.user_id, value as "admin" | "user" | "none")
+                          }
+                          disabled={updatingRole === u.user_id}
+                        >
+                          <SelectTrigger className="w-[140px]">
+                            {updatingRole === u.user_id ? (
+                              <Loader2 className="h-4 w-4 animate-spin" />
+                            ) : (
+                              <SelectValue />
+                            )}
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="none">No Role</SelectItem>
+                            <SelectItem value="user">User</SelectItem>
+                            <SelectItem value="admin">Admin</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
             </div>
           )}
         </TabsContent>
