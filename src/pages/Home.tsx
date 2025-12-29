@@ -2,6 +2,12 @@ import { Layout } from "@/components/Layout";
 import { Section, SectionHeader } from "@/components/Section";
 import { CTAButton, SecondaryCTA } from "@/components/CTAButton";
 import { Card, FeatureCard, NumberedCard, IconListItem } from "@/components/Card";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import {
@@ -212,6 +218,67 @@ export default function Home() {
               <p className="font-medium text-foreground">{item.text}</p>
             </Card>
           ))}
+        </div>
+      </Section>
+
+      {/* FAQ */}
+      <Section>
+        <SectionHeader
+          title="FAQ"
+          subtitle="Quick answers to the questions people ask before they book."
+        />
+
+        <div className="mx-auto max-w-3xl">
+          <Accordion type="single" collapsible className="w-full">
+            <AccordionItem value="item-1" className="border-border">
+              <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:no-underline">
+                Is the AI ROI Sprint just a workshop?
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground">
+                No. You leave with real outputs: an opportunity matrix, a simple ROI model, and a 90-day plan—plus a build-ready spec for Pilot #1.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-2" className="border-border">
+              <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:no-underline">
+                Do you build anything during the Sprint?
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground">
+                Usually no. The Sprint is for clarity + prioritization + ROI validation. If you want implementation, that's the AI ROI Pilot (4–6 weeks).
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-3" className="border-border">
+              <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:no-underline">
+                How do you calculate ROI?
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground">
+                We start with time savings (the most defensible). If relevant, we also model revenue uplift (conversion, cycle time) conservatively and validate assumptions with your team.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-4" className="border-border">
+              <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:no-underline">
+                What do you need from us?
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground">
+                A point of contact, access to 3–5 people for interviews (leadership + users), and agreement on 1–2 outcomes you care about (time, cost, revenue).
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+
+          <p className="mt-8 text-center text-muted-foreground">
+            Still unsure?{" "}
+            <a 
+              href="https://calendly.com/vonai/ai-roi-sprint" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="font-medium text-primary hover:underline"
+            >
+              Book the Sprint call
+            </a>{" "}
+            and we'll confirm fit in 15 minutes.
+          </p>
         </div>
       </Section>
 
