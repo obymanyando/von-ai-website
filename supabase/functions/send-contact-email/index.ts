@@ -39,8 +39,8 @@ const handler = async (req: Request): Promise<Response> => {
       console.log("Submission saved to database");
     }
 
-    // Send email
-    const res = await fetch("https://api.resend.com/emails", {
+    // Send notification email to VonAI
+    const notificationRes = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -62,13 +62,51 @@ const handler = async (req: Request): Promise<Response> => {
       }),
     });
 
-    if (!res.ok) {
-      const error = await res.text();
-      console.error("Resend API error:", error);
-      throw new Error(`Failed to send email: ${error}`);
+    if (!notificationRes.ok) {
+      const error = await notificationRes.text();
+      console.error("Resend API error (notification):", error);
+      throw new Error(`Failed to send notification email: ${error}`);
     }
 
-    console.log("Email sent successfully");
+    console.log("Notification email sent successfully");
+
+    // Send confirmation email to the user
+    const confirmationRes = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${RESEND_API_KEY}`,
+      },
+      body: JSON.stringify({
+        from: "VON AI <onboarding@resend.dev>",
+        to: [email],
+        subject: "We received your message - VON AI",
+        html: `
+          <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+            <h1 style="color: #1a1a1a; font-size: 24px; margin-bottom: 20px;">Thank you for reaching out, ${name}!</h1>
+            <p style="color: #4a4a4a; font-size: 16px; line-height: 1.6;">
+              We've received your message and will get back to you within 24 hours.
+            </p>
+            <p style="color: #4a4a4a; font-size: 16px; line-height: 1.6;">
+              In the meantime, feel free to book a call directly on our <a href="https://von-ai.com/contact" style="color: #2563eb;">contact page</a>.
+            </p>
+            <hr style="border: none; border-top: 1px solid #e5e5e5; margin: 30px 0;" />
+            <p style="color: #888; font-size: 14px;">
+              Best regards,<br/>
+              The VON AI Team
+            </p>
+          </div>
+        `,
+      }),
+    });
+
+    if (!confirmationRes.ok) {
+      const error = await confirmationRes.text();
+      console.error("Resend API error (confirmation):", error);
+      // Don't throw here - notification was sent, just log the error
+    } else {
+      console.log("Confirmation email sent successfully");
+    }
 
     return new Response(JSON.stringify({ success: true }), {
       status: 200,
