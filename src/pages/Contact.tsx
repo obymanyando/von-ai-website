@@ -10,10 +10,151 @@ import {
   AlertCircle,
   Target,
   Wrench,
+  Send,
 } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { useToast } from "@/hooks/use-toast";
 
 const CALENDLY_URL = "https://calendly.com/oby-manyando/onboarding-call";
 const CONTACT_EMAIL = "hello@vonai.com";
+
+const contactFormSchema = z.object({
+  name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
+  email: z.string().trim().email("Please enter a valid email address").max(255, "Email must be less than 255 characters"),
+  company: z.string().trim().max(100, "Company name must be less than 100 characters").optional(),
+  message: z.string().trim().min(1, "Message is required").max(2000, "Message must be less than 2000 characters"),
+});
+
+type ContactFormValues = z.infer<typeof contactFormSchema>;
+
+function ContactForm() {
+  const { toast } = useToast();
+  const form = useForm<ContactFormValues>({
+    resolver: zodResolver(contactFormSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      company: "",
+      message: "",
+    },
+  });
+
+  const onSubmit = (data: ContactFormValues) => {
+    // Build mailto link with form data
+    const subject = encodeURIComponent(`Contact from ${data.name}${data.company ? ` at ${data.company}` : ""}`);
+    const body = encodeURIComponent(`Name: ${data.name}\nEmail: ${data.email}${data.company ? `\nCompany: ${data.company}` : ""}\n\nMessage:\n${data.message}`);
+    
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+    
+    toast({
+      title: "Opening email client",
+      description: "Your email client should open with the message pre-filled.",
+    });
+  };
+
+  return (
+    <Card variant="bordered" className="h-fit">
+      <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
+        <Mail className="h-6 w-6 text-primary" />
+      </div>
+      <h2 className="mb-2 text-2xl font-bold text-foreground">
+        Send a message
+      </h2>
+      <p className="mb-6 text-muted-foreground">
+        Fill out the form and we'll get back to you within 24 hours.
+      </p>
+
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+          <FormField
+            control={form.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Name *</FormLabel>
+                <FormControl>
+                  <Input placeholder="Your name" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Email *</FormLabel>
+                <FormControl>
+                  <Input type="email" placeholder="you@company.com" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="company"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Company</FormLabel>
+                <FormControl>
+                  <Input placeholder="Your company (optional)" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="message"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Message *</FormLabel>
+                <FormControl>
+                  <Textarea
+                    placeholder="Tell us about your workflow challenges..."
+                    className="min-h-[120px] resize-none"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <Button type="submit" className="w-full" size="lg">
+            <Send className="mr-2 h-4 w-4" />
+            Send Message
+          </Button>
+        </form>
+      </Form>
+
+      <p className="mt-4 text-center text-sm text-muted-foreground">
+        Or email us directly at{" "}
+        <a href={`mailto:${CONTACT_EMAIL}`} className="text-primary hover:underline">
+          {CONTACT_EMAIL}
+        </a>
+      </p>
+    </Card>
+  );
+}
 
 export default function Contact() {
   return (
@@ -55,25 +196,8 @@ export default function Contact() {
             </div>
           </Card>
 
-          {/* Email Card */}
-          <Card variant="bordered" className="h-fit">
-            <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-              <Mail className="h-6 w-6 text-primary" />
-            </div>
-            <h2 className="mb-4 text-2xl font-bold text-foreground">
-              Send an email
-            </h2>
-            <p className="mb-6 text-muted-foreground">
-              Prefer email? Send us a short description of your workflow problem and we'll get back to you within 24 hours.
-            </p>
-            <a
-              href={`mailto:${CONTACT_EMAIL}`}
-              className="inline-flex items-center gap-2 text-lg font-semibold text-primary hover:underline"
-            >
-              <Mail className="h-5 w-5" />
-              {CONTACT_EMAIL}
-            </a>
-          </Card>
+          {/* Contact Form */}
+          <ContactForm />
         </div>
       </Section>
 
