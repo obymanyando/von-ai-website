@@ -11,13 +11,15 @@ const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/chat`;
 
 async function streamChat({
   messages,
+  conversationId,
   onDelta,
   onDone,
   onError,
 }: {
   messages: Message[];
+  conversationId: string | null;
   onDelta: (deltaText: string) => void;
-  onDone: () => void;
+  onDone: (newConversationId: string | null) => void;
   onError: (error: string) => void;
 }) {
   const resp = await fetch(CHAT_URL, {
@@ -26,7 +28,7 @@ async function streamChat({
       "Content-Type": "application/json",
       Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
     },
-    body: JSON.stringify({ messages }),
+    body: JSON.stringify({ messages, conversationId }),
   });
 
   if (!resp.ok) {
@@ -39,6 +41,8 @@ async function streamChat({
     onError("No response body");
     return;
   }
+
+  const newConvId = resp.headers.get("X-Conversation-Id");
 
   const reader = resp.body.getReader();
   const decoder = new TextDecoder();
@@ -76,7 +80,7 @@ async function streamChat({
     }
   }
 
-  onDone();
+  onDone(newConvId);
 }
 
 export default function ChatWidget() {
@@ -84,6 +88,7 @@ export default function ChatWidget() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [conversationId, setConversationId] = useState<string | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -116,8 +121,14 @@ export default function ChatWidget() {
 
     await streamChat({
       messages: [...messages, userMsg],
+      conversationId,
       onDelta: (chunk) => upsertAssistant(chunk),
-      onDone: () => setIsLoading(false),
+      onDone: (newConvId) => {
+        if (newConvId && !conversationId) {
+          setConversationId(newConvId);
+        }
+        setIsLoading(false);
+      },
       onError: (error) => {
         setMessages((prev) => [
           ...prev,

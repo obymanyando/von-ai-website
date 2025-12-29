@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -74,14 +75,50 @@ serve(async (req) => {
   }
 
   try {
-    const { messages } = await req.json();
+    const { messages, conversationId } = await req.json();
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
+    const SUPABASE_URL = Deno.env.get("SUPABASE_URL");
+    const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
     
     if (!LOVABLE_API_KEY) {
       throw new Error("LOVABLE_API_KEY is not configured");
     }
 
-    console.log("Processing chat request with", messages.length, "messages");
+    const supabase = createClient(SUPABASE_URL!, SUPABASE_SERVICE_ROLE_KEY!);
+
+    // Create or get conversation
+    let convId = conversationId;
+    if (!convId) {
+      const { data: newConv, error: convError } = await supabase
+        .from("chat_conversations")
+        .insert({})
+        .select("id")
+        .single();
+      
+      if (convError) {
+        console.error("Error creating conversation:", convError);
+      } else {
+        convId = newConv.id;
+      }
+    }
+
+    // Save user message
+    const lastUserMessage = messages[messages.length - 1];
+    if (convId && lastUserMessage?.role === "user") {
+      const { error: msgError } = await supabase
+        .from("chat_messages")
+        .insert({
+          conversation_id: convId,
+          role: "user",
+          content: lastUserMessage.content,
+        });
+      
+      if (msgError) {
+        console.error("Error saving user message:", msgError);
+      }
+    }
+
+    console.log("Processing chat request with", messages.length, "messages, conversation:", convId);
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
@@ -117,8 +154,85 @@ serve(async (req) => {
       throw new Error("AI gateway error");
     }
 
-    return new Response(response.body, {
-      headers: { ...corsHeaders, "Content-Type": "text/event-stream" },
+    // We need to collect the full response to save it
+    const reader = response.body?.getReader();
+    const encoder = new TextEncoder();
+    let fullAssistantResponse = "";
+
+    const stream = new ReadableStream({
+      async start(controller) {
+        if (!reader) {
+          controller.close();
+          return;
+        }
+
+        const decoder = new TextDecoder();
+        let buffer = "";
+
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+
+          buffer += decoder.decode(value, { stream: true });
+          
+          // Forward the chunk to the client
+          controller.enqueue(value);
+
+          // Parse SSE to extract content
+          let newlineIndex: number;
+          while ((newlineIndex = buffer.indexOf("\n")) !== -1) {
+            let line = buffer.slice(0, newlineIndex);
+            buffer = buffer.slice(newlineIndex + 1);
+
+            if (line.endsWith("\r")) line = line.slice(0, -1);
+            if (!line.startsWith("data: ")) continue;
+
+            const jsonStr = line.slice(6).trim();
+            if (jsonStr === "[DONE]") continue;
+
+            try {
+              const parsed = JSON.parse(jsonStr);
+              const content = parsed.choices?.[0]?.delta?.content;
+              if (content) {
+                fullAssistantResponse += content;
+              }
+            } catch {
+              // Incomplete JSON, will be parsed in next iteration
+            }
+          }
+        }
+
+        // Save assistant response after stream completes
+        if (convId && fullAssistantResponse) {
+          const { error: assistantError } = await supabase
+            .from("chat_messages")
+            .insert({
+              conversation_id: convId,
+              role: "assistant",
+              content: fullAssistantResponse,
+            });
+          
+          if (assistantError) {
+            console.error("Error saving assistant message:", assistantError);
+          }
+
+          // Update conversation timestamp
+          await supabase
+            .from("chat_conversations")
+            .update({ updated_at: new Date().toISOString() })
+            .eq("id", convId);
+        }
+
+        controller.close();
+      },
+    });
+
+    return new Response(stream, {
+      headers: { 
+        ...corsHeaders, 
+        "Content-Type": "text/event-stream",
+        "X-Conversation-Id": convId || "",
+      },
     });
   } catch (error) {
     console.error("Chat error:", error);
