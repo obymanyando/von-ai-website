@@ -116,8 +116,8 @@ export default function AIROISprint() {
       {/* FAQ */}
       <Section variant="muted">
         <SectionHeader
-          title="FAQ"
-          subtitle="Quick answers to the questions people ask before they book."
+          title="FAQ (Before you book)"
+          subtitle="These are the questions that decide whether a Sprint is worth it. Here are direct answers."
         />
 
         <div className="mx-auto max-w-3xl">
@@ -127,37 +127,95 @@ export default function AIROISprint() {
                 Is the AI ROI Sprint just a workshop?
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground">
-                No. You leave with real outputs: an opportunity matrix, a simple ROI model, and a 90-day plan—plus a build-ready spec for Pilot #1.
+                No. It's a fixed-scope engagement with deliverables: workflow reality map, ranked opportunity matrix, ROI model, and a 90-day execution plan.
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="item-2" className="border-border">
               <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:no-underline">
-                Do you build anything during the Sprint?
+                What's the biggest outcome of the Sprint?
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground">
-                Usually no. The Sprint is for clarity + prioritization + ROI validation. If you want implementation, that's the AI ROI Pilot (4–6 weeks).
+                You stop guessing. You leave knowing what to build first, why it matters, and how you'll measure success in the next 90 days.
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="item-3" className="border-border">
               <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:no-underline">
-                How do you calculate ROI?
+                Do you build anything during the Sprint?
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground">
-                We start with time savings (the most defensible). If relevant, we also model revenue uplift (conversion, cycle time) conservatively and validate assumptions with your team.
+                Not typically. The Sprint is designed to choose the right first win and define it properly. Building happens in the AI ROI Pilot (4–6 weeks).
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="item-4" className="border-border">
               <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:no-underline">
-                What do you need from us?
+                What if we already tried AI and it didn't work?
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground">
-                A point of contact, access to 3–5 people for interviews (leadership + users), and agreement on 1–2 outcomes you care about (time, cost, revenue).
+                That's common. Usually the missing piece is prioritization, workflow integration, adoption, or guardrails. The Sprint finds what blocked ROI and fixes the approach.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-5" className="border-border">
+              <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:no-underline">
+                Do we need perfect data before we start?
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground">
+                No. We start workflow-first and identify the minimum viable data needed. If data quality is the blocker, the Sprint makes that visible early so you don't waste time building the wrong thing.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-6" className="border-border">
+              <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:no-underline">
+                Will AI replace our people?
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground">
+                That's not the goal. For high-trust work, we design human-in-the-loop by default. AI supports the team; it doesn't undermine the relationship.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-7" className="border-border">
+              <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:no-underline">
+                Which tools do you use?
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground">
+                Tool-agnostic. We work with your current stack and recommend the simplest approach that gets a measurable result. No forced platform decisions.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-8" className="border-border">
+              <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:no-underline">
+                How do you measure ROI?
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground">
+                We model ROI in two layers: (1) Time saved → cost savings (most defensible), and (2) Revenue uplift (optional, conservative, validated—e.g., improved follow-up, conversion, cycle time).
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-9" className="border-border">
+              <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:no-underline">
+                How fast can we see results?
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground">
+                Clarity in 2 weeks (Sprint). A first production pilot can usually ship in 4–6 weeks after that. Measurement starts from day one.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-10" className="border-border">
+              <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:no-underline">
+                What do you need from us to make this work?
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground">
+                One point of contact, 3–5 interviews (leadership + users), and agreement on 1–2 business outcomes to optimize. If you can't allocate this, the Sprint won't be worth it—and we'll tell you upfront.
               </AccordionContent>
             </AccordionItem>
           </Accordion>
+
+          <p className="mt-8 text-center text-lg text-muted-foreground">
+            If you want a 90-day plan you can actually execute, start with the Sprint.
+          </p>
         </div>
       </Section>
 
