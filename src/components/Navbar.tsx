@@ -48,7 +48,7 @@ export function Navbar() {
         {/* CTA Button - Desktop */}
         <div className="hidden md:block">
           <Button variant="cta" size="default" asChild>
-            <a href={CALENDLY_URL}>Book an AI ROI Sprint</a>
+            <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">Book an AI ROI Sprint</a>
           </Button>
         </div>
 
@@ -86,7 +86,7 @@ export function Navbar() {
             ))}
             <div className="pt-4">
               <Button variant="cta" size="default" className="w-full" asChild>
-                <a href={CALENDLY_URL}>Book an AI ROI Sprint</a>
+                <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">Book an AI ROI Sprint</a>
               </Button>
             </div>
           </div>
