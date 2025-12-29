@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const CONTACT_EMAIL = "hello@vonai.com"; // Placeholder
+const CONTACT_EMAIL = "hello@vonai.com";
 
 const footerLinks = {
   navigation: [
