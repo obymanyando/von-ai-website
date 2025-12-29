@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import logoLight from "@/assets/logo-light.png";
 import logoDark from "@/assets/logo-dark.png";
 
-const CONTACT_EMAIL = "hello@von-ai.com";
+const CONTACT_EMAIL = "hello@comms.von-ai.com";
 
 const footerLinks = {
   navigation: [
