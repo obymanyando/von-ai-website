@@ -130,21 +130,21 @@ export default function ROICalculator() {
   };
 
   const startingPoints = [
-    { value: "sales", label: t('roiCalculator.step1.options.sales'), desc: t('roiCalculator.step1.options.salesDesc') },
-    { value: "service", label: t('roiCalculator.step1.options.service'), desc: t('roiCalculator.step1.options.serviceDesc') },
-    { value: "operations", label: t('roiCalculator.step1.options.operations'), desc: t('roiCalculator.step1.options.operationsDesc') },
+    { value: "sales", label: t('roiCalculator.step1.sales'), desc: t('roiCalculator.step1.salesDesc') },
+    { value: "service", label: t('roiCalculator.step1.service'), desc: t('roiCalculator.step1.serviceDesc') },
+    { value: "operations", label: t('roiCalculator.step1.operations'), desc: t('roiCalculator.step1.operationsDesc') },
   ];
 
   const timeSavingsOptions = [
-    { value: "conservative", label: t('roiCalculator.step2.levels.conservative'), desc: "10%" },
-    { value: "likely", label: t('roiCalculator.step2.levels.likely'), desc: "25%" },
-    { value: "aggressive", label: t('roiCalculator.step2.levels.aggressive'), desc: "40%" },
+    { value: "conservative", label: t('roiCalculator.step2.conservative'), desc: "10%" },
+    { value: "likely", label: t('roiCalculator.step2.likely'), desc: "25%" },
+    { value: "aggressive", label: t('roiCalculator.step2.aggressive'), desc: "40%" },
   ];
 
   const conversionOptions = [
-    { value: "conservative", label: t('roiCalculator.step3.levels.conservative'), desc: "+0.5%" },
-    { value: "likely", label: t('roiCalculator.step3.levels.likely'), desc: "+1.0%" },
-    { value: "aggressive", label: t('roiCalculator.step3.levels.aggressive'), desc: "+2.0%" },
+    { value: "conservative", label: t('roiCalculator.step3.conservative'), desc: "+0.5%" },
+    { value: "likely", label: t('roiCalculator.step3.likely'), desc: "+1.0%" },
+    { value: "aggressive", label: t('roiCalculator.step3.aggressive'), desc: "+2.0%" },
   ];
 
   return (
@@ -210,7 +210,7 @@ export default function ROICalculator() {
               <div className="space-y-6">
                 <div className="grid gap-6 sm:grid-cols-2">
                   <div>
-                    <Label htmlFor="items">{t('roiCalculator.step2.itemsLabel')}</Label>
+                    <Label htmlFor="items">{t('roiCalculator.step2.itemsPerMonth')}</Label>
                     <p className="mb-2 text-xs text-muted-foreground">
                       {t('roiCalculator.step2.itemsHint')}
                     </p>
@@ -223,7 +223,7 @@ export default function ROICalculator() {
                     />
                   </div>
                   <div>
-                    <Label htmlFor="minutes">{t('roiCalculator.step2.minutesLabel')}</Label>
+                    <Label htmlFor="minutes">{t('roiCalculator.step2.minutesPerItem')}</Label>
                     <p className="mb-2 text-xs text-muted-foreground">
                       {t('roiCalculator.step2.minutesHint')}
                     </p>
@@ -238,7 +238,7 @@ export default function ROICalculator() {
                 </div>
 
                 <div>
-                  <Label>{t('roiCalculator.step2.timeSavedLabel')}</Label>
+                  <Label>{t('roiCalculator.step2.timeSaved')}</Label>
                   <div className="mt-3 grid grid-cols-3 gap-3">
                     {timeSavingsOptions.map((option) => (
                       <button
@@ -258,7 +258,7 @@ export default function ROICalculator() {
                 </div>
 
                 <div>
-                  <Label htmlFor="hourly">{t('roiCalculator.step2.hourlyLabel')}</Label>
+                  <Label htmlFor="hourly">{t('roiCalculator.step2.hourlyRate')}</Label>
                   <p className="mb-2 text-xs text-muted-foreground">
                     {t('roiCalculator.step2.hourlyHint')}
                   </p>
@@ -291,7 +291,7 @@ export default function ROICalculator() {
               {includeRevenue && (
                 <div className="space-y-6">
                   <div>
-                    <Label htmlFor="leads">{t('roiCalculator.step3.leadsLabel')}</Label>
+                    <Label htmlFor="leads">{t('roiCalculator.step3.leadsPerMonth')}</Label>
                     <Input
                       id="leads"
                       type="number"
@@ -302,7 +302,7 @@ export default function ROICalculator() {
                   </div>
 
                   <div>
-                    <Label>{t('roiCalculator.step3.conversionLabel')}</Label>
+                    <Label>{t('roiCalculator.step3.conversionImprovement')}</Label>
                     <div className="mt-3 grid grid-cols-3 gap-3">
                       {conversionOptions.map((option) => (
                         <button
@@ -322,9 +322,9 @@ export default function ROICalculator() {
                   </div>
 
                   <div>
-                    <Label htmlFor="profit">{t('roiCalculator.step3.profitLabel')}</Label>
+                    <Label htmlFor="profit">{t('roiCalculator.step3.grossProfit')}</Label>
                     <p className="mb-2 text-xs text-muted-foreground">
-                      {t('roiCalculator.step3.profitHint')}
+                      {t('roiCalculator.step3.grossProfitHint')}
                     </p>
                     <Input
                       id="profit"
@@ -356,7 +356,7 @@ export default function ROICalculator() {
               {includeCosts && (
                 <div className="grid gap-6 sm:grid-cols-2">
                   <div>
-                    <Label htmlFor="setup">{t('roiCalculator.step4.setupLabel')}</Label>
+                    <Label htmlFor="setup">{t('roiCalculator.step4.setupCost')}</Label>
                     <Input
                       id="setup"
                       type="number"
@@ -366,7 +366,7 @@ export default function ROICalculator() {
                     />
                   </div>
                   <div>
-                    <Label htmlFor="monthly">{t('roiCalculator.step4.monthlyLabel')}</Label>
+                    <Label htmlFor="monthly">{t('roiCalculator.step4.monthlyCost')}</Label>
                     <Input
                       id="monthly"
                       type="number"
@@ -401,7 +401,7 @@ export default function ROICalculator() {
                 <div className="flex items-center justify-between border-b border-border pb-4">
                   <div className="flex items-center gap-2 text-muted-foreground">
                     <Euro className="h-4 w-4" />
-                    <span>{t('roiCalculator.results.valueSaved')}</span>
+                    <span>{t('roiCalculator.results.valueTimeSaved')}</span>
                   </div>
                   <div className="text-right">
                     <div className="text-xl font-bold text-foreground">{formatCurrency(results.valueSaved)}{t('roiCalculator.results.perMonth')}</div>
@@ -412,7 +412,7 @@ export default function ROICalculator() {
                   <div className="flex items-center justify-between border-b border-border pb-4">
                     <div className="flex items-center gap-2 text-muted-foreground">
                       <TrendingUp className="h-4 w-4" />
-                      <span>{t('roiCalculator.results.profitUplift')}</span>
+                      <span>{t('roiCalculator.results.grossProfitUplift')}</span>
                     </div>
                     <div className="text-right">
                       <div className="text-xl font-bold text-foreground">{formatCurrency(results.revenueUplift)}{t('roiCalculator.results.perMonth')}</div>
@@ -461,7 +461,7 @@ export default function ROICalculator() {
                 <CTAButton variant="primary" size="lg" className="w-full" />
                 <Button variant="ghost" size="sm" className="w-full" asChild>
                   <Link to="/ai-roi-sprint">
-                    {t('roiCalculator.results.seeSprintLink')}
+                    {t('aiRoiSprint.cta.estimateRoi')}
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
@@ -469,7 +469,7 @@ export default function ROICalculator() {
             </Card>
 
             <p className="mt-4 text-center text-xs text-muted-foreground">
-              {t('roiCalculator.results.footer')}
+              {t('roiCalculator.hero.disclaimer')}
             </p>
           </div>
         </div>
