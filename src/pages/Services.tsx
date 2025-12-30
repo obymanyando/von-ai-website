@@ -1,6 +1,7 @@
+import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/Layout";
 import { Section, SectionHeader } from "@/components/Section";
-import { CTAButton, SecondaryCTA } from "@/components/CTAButton";
+import { CTAButton } from "@/components/CTAButton";
 import { Card, IconListItem } from "@/components/Card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -14,6 +15,8 @@ import {
 } from "lucide-react";
 
 export default function Services() {
+  const { t } = useTranslation();
+
   return (
     <Layout>
       {/* Hero */}
@@ -21,10 +24,10 @@ export default function Services() {
         <div className="container-padding mx-auto max-w-7xl py-16 md:py-24">
           <div className="mx-auto max-w-3xl text-center">
             <h1 className="text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl">
-              Plan → Ship → Scale
+              {t("services.hero.title")}
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground md:text-xl">
-              From clarity to production to compounding returns. Each step builds on the last.
+              {t("services.hero.subtitle")}
             </p>
           </div>
         </div>
@@ -36,41 +39,41 @@ export default function Services() {
           <div>
             <div className="mb-4 inline-flex items-center rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
               <Target className="mr-2 h-4 w-4" />
-              Step 1: Plan
+              {t("services.sprint.step")}
             </div>
             <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-              AI ROI Sprint
+              {t("services.sprint.title")}
             </h2>
-            <p className="mt-2 text-xl text-muted-foreground">2 weeks</p>
+            <p className="mt-2 text-xl text-muted-foreground">{t("services.sprint.duration")}</p>
             <p className="mt-6 text-lg text-foreground">
-              <span className="font-semibold">Outcome:</span> 90-day roadmap + ROI model + Pilot #1 spec
+              <span className="font-semibold">{t("services.sprint.outcome")}</span> {t("services.sprint.outcomeDesc")}
             </p>
 
             <div className="mt-8">
-              <h3 className="mb-4 font-semibold text-foreground">Good fit if:</h3>
+              <h3 className="mb-4 font-semibold text-foreground">{t("services.sprint.goodFit")}</h3>
               <ul className="space-y-3">
                 <IconListItem icon={Check}>
-                  You want measurable outcomes in 90 days
+                  {t("services.sprint.goodFit1")}
                 </IconListItem>
                 <IconListItem icon={Check}>
-                  You can give access to 3–5 interviewees
+                  {t("services.sprint.goodFit2")}
                 </IconListItem>
                 <IconListItem icon={Check}>
-                  You're ready to change a workflow, not just buy a tool
+                  {t("services.sprint.goodFit3")}
                 </IconListItem>
               </ul>
             </div>
 
             <div className="mt-8">
-              <h3 className="mb-4 font-semibold text-foreground">Not a fit if:</h3>
+              <h3 className="mb-4 font-semibold text-foreground">{t("services.sprint.notFit")}</h3>
               <ul className="space-y-3 text-muted-foreground">
                 <li className="flex items-start gap-3">
                   <X className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
-                  <span>You want "AI strategy" without implementation</span>
+                  <span>{t("services.sprint.notFit1")}</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <X className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
-                  <span>You want a huge platform build as step one</span>
+                  <span>{t("services.sprint.notFit2")}</span>
                 </li>
               </ul>
             </div>
@@ -79,7 +82,7 @@ export default function Services() {
               <CTAButton variant="primary" size="lg" />
               <Button variant="cta-outline" size="lg" asChild>
                 <Link to="/roi-calculator">
-                  Try the ROI Calculator
+                  {t("services.sprint.tryCalculator")}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
@@ -88,34 +91,34 @@ export default function Services() {
 
           <Card variant="elevated" className="lg:sticky lg:top-24">
             <h3 className="mb-6 text-lg font-semibold text-foreground">
-              Sprint Deliverables
+              {t("services.sprint.deliverables")}
             </h3>
             <ul className="space-y-4 text-muted-foreground">
               <li className="flex gap-3">
                 <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">1</span>
-                <span>Workflow Reality Map</span>
+                <span>{t("services.sprint.deliverable1")}</span>
               </li>
               <li className="flex gap-3">
                 <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">2</span>
-                <span>Opportunity Matrix (Impact vs Effort)</span>
+                <span>{t("services.sprint.deliverable2")}</span>
               </li>
               <li className="flex gap-3">
                 <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">3</span>
-                <span>ROI Model (the money slide)</span>
+                <span>{t("services.sprint.deliverable3")}</span>
               </li>
               <li className="flex gap-3">
                 <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">4</span>
-                <span>90-day Execution Plan (owners + metrics)</span>
+                <span>{t("services.sprint.deliverable4")}</span>
               </li>
               <li className="flex gap-3">
                 <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">5</span>
-                <span>Pilot #1 Specification (build-ready)</span>
+                <span>{t("services.sprint.deliverable5")}</span>
               </li>
             </ul>
             <div className="mt-6 border-t border-border pt-6">
               <Button variant="ghost" size="sm" asChild>
                 <Link to="/ai-roi-sprint">
-                  See full Sprint details
+                  {t("services.sprint.seeDetails")}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
@@ -130,34 +133,34 @@ export default function Services() {
           <Card variant="bordered">
             <div className="mb-4 inline-flex items-center rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
               <Rocket className="mr-2 h-4 w-4" />
-              Step 2: Ship
+              {t("services.pilot.step")}
             </div>
             <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-              AI ROI Pilot
+              {t("services.pilot.title")}
             </h2>
-            <p className="mt-2 text-xl text-muted-foreground">4–6 weeks</p>
+            <p className="mt-2 text-xl text-muted-foreground">{t("services.pilot.duration")}</p>
             <p className="mt-6 text-lg text-foreground">
-              <span className="font-semibold">Outcome:</span> Pilot #1 shipped into production with measured results.
+              <span className="font-semibold">{t("services.pilot.outcome")}</span> {t("services.pilot.outcomeDesc")}
             </p>
             <p className="mt-4 text-muted-foreground">
-              Production means: scope, guardrails, escalation, monitoring, measurement.
+              {t("services.pilot.production")}
             </p>
           </Card>
 
           <Card variant="bordered">
             <div className="mb-4 inline-flex items-center rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
               <RefreshCw className="mr-2 h-4 w-4" />
-              Step 3: Scale
+              {t("services.optimization.step")}
             </div>
             <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-              Optimization & Adoption
+              {t("services.optimization.title")}
             </h2>
-            <p className="mt-2 text-xl text-muted-foreground">Monthly</p>
+            <p className="mt-2 text-xl text-muted-foreground">{t("services.optimization.duration")}</p>
             <p className="mt-6 text-lg text-foreground">
-              <span className="font-semibold">Outcome:</span> ROI compounds; AI stays useful and aligned.
+              <span className="font-semibold">{t("services.optimization.outcome")}</span> {t("services.optimization.outcomeDesc")}
             </p>
             <p className="mt-4 text-muted-foreground">
-              Includes tuning, updates, ROI reporting, enablement.
+              {t("services.optimization.includes")}
             </p>
           </Card>
         </div>
@@ -165,22 +168,20 @@ export default function Services() {
 
       {/* What we don't do */}
       <Section>
-        <SectionHeader
-          title="What we don't do"
-        />
+        <SectionHeader title={t("services.whatWeDont.title")} />
         <div className="mx-auto max-w-2xl">
           <ul className="space-y-4 text-lg text-muted-foreground">
             <li className="flex items-start gap-3">
               <X className="mt-1 h-5 w-5 flex-shrink-0 text-destructive" />
-              <span>No vague strategy with no execution.</span>
+              <span>{t("services.whatWeDont.item1")}</span>
             </li>
             <li className="flex items-start gap-3">
               <X className="mt-1 h-5 w-5 flex-shrink-0 text-destructive" />
-              <span>No massive platforms as step one.</span>
+              <span>{t("services.whatWeDont.item2")}</span>
             </li>
             <li className="flex items-start gap-3">
               <X className="mt-1 h-5 w-5 flex-shrink-0 text-destructive" />
-              <span>No tool forcing.</span>
+              <span>{t("services.whatWeDont.item3")}</span>
             </li>
           </ul>
         </div>
@@ -190,10 +191,10 @@ export default function Services() {
       <Section variant="muted">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-            Ready to start with clarity?
+            {t("services.cta.title")}
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-lg text-muted-foreground">
-            The Sprint is where every engagement begins. Two weeks to a 90-day plan you can execute.
+            {t("services.cta.subtitle")}
           </p>
           <div className="mt-10">
             <CTAButton variant="primary" size="xl" />

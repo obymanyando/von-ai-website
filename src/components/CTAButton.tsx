@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -21,6 +22,8 @@ export function CTAButton({
   href = CALENDLY_URL,
   external = true,
 }: CTAButtonProps) {
+  const { t } = useTranslation();
+  
   const variantMap = {
     primary: "cta",
     secondary: "cta-outline",
@@ -30,7 +33,7 @@ export function CTAButton({
 
   const buttonContent = (
     <>
-      Book an AI ROI Sprint
+      {t("nav.bookSprint")}
       {showArrow && <ArrowRight className="ml-1 h-4 w-4" />}
     </>
   );

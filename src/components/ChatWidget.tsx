@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -83,20 +84,21 @@ async function streamChat({
   onDone(newConvId);
 }
 
-const QUICK_REPLIES = [
-  "What is the AI ROI Sprint?",
-  "How do I get started?",
-  "What does it cost?",
-  "How long does it take?",
-];
-
 export default function ChatWidget() {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [conversationId, setConversationId] = useState<string | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  const QUICK_REPLIES = [
+    t("chatWidget.quickReplies.whatIsSprint"),
+    t("chatWidget.quickReplies.howToStart"),
+    t("chatWidget.quickReplies.whatCost"),
+    t("chatWidget.quickReplies.howLong"),
+  ];
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -140,7 +142,7 @@ export default function ChatWidget() {
       onError: (error) => {
         setMessages((prev) => [
           ...prev,
-          { role: "assistant", content: `Sorry, something went wrong: ${error}` },
+          { role: "assistant", content: `${t("chatWidget.error")} ${error}` },
         ]);
         setIsLoading(false);
       },
@@ -181,8 +183,8 @@ export default function ChatWidget() {
               <Bot className="h-5 w-5 text-primary" />
             </div>
             <div>
-              <h3 className="font-semibold text-foreground">VON AI Assistant</h3>
-              <p className="text-xs text-muted-foreground">Ask about our services</p>
+              <h3 className="font-semibold text-foreground">{t("chatWidget.title")}</h3>
+              <p className="text-xs text-muted-foreground">{t("chatWidget.subtitle")}</p>
             </div>
           </div>
 
@@ -192,7 +194,7 @@ export default function ChatWidget() {
               <div className="flex h-full flex-col items-center justify-center text-center">
                 <Bot className="mb-4 h-12 w-12 text-muted-foreground/50" />
                 <p className="mb-4 text-sm text-muted-foreground">
-                  Hi! I can answer questions about VON AI's services. Try one of these:
+                  {t("chatWidget.greeting")}
                 </p>
                 <div className="flex flex-wrap justify-center gap-2">
                   {QUICK_REPLIES.map((question) => (
@@ -256,7 +258,7 @@ export default function ChatWidget() {
                         <span className="h-2 w-2 animate-bounce rounded-full bg-primary/60 [animation-delay:150ms]" />
                         <span className="h-2 w-2 animate-bounce rounded-full bg-primary/60 [animation-delay:300ms]" />
                       </div>
-                      <span className="text-xs text-muted-foreground">Checking knowledge...</span>
+                      <span className="text-xs text-muted-foreground">{t("chatWidget.thinking")}</span>
                     </div>
                   </div>
                 )}
@@ -271,7 +273,7 @@ export default function ChatWidget() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
-                placeholder="Ask a question..."
+                placeholder={t("chatWidget.placeholder")}
                 disabled={isLoading}
                 className="flex-1"
               />

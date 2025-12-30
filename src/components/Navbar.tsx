@@ -10,18 +10,19 @@ import logoDark from "@/assets/logo-dark.png";
 
 const CALENDLY_URL = "https://calendly.com/oby-manyando/onboarding-call";
 
-const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/services", label: "Services" },
-  { href: "/ai-roi-sprint", label: "AI ROI Sprint" },
-  { href: "/roi-calculator", label: "ROI Calculator" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
+const navLinkKeys = [
+  { href: "/", key: "home" },
+  { href: "/services", key: "services" },
+  { href: "/ai-roi-sprint", key: "aiRoiSprint" },
+  { href: "/roi-calculator", key: "roiCalculator" },
+  { href: "/about", key: "about" },
+  { href: "/contact", key: "contact" },
 ];
 
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const { t } = useTranslation();
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -34,7 +35,7 @@ export function Navbar() {
 
         {/* Desktop Navigation */}
         <div className="hidden items-center space-x-1 md:flex">
-          {navLinks.map((link) => (
+          {navLinkKeys.map((link) => (
             <Link
               key={link.href}
               to={link.href}
@@ -44,21 +45,23 @@ export function Navbar() {
                   : "text-muted-foreground"
               }`}
             >
-              {link.label}
+              {t(`nav.${link.key}`)}
             </Link>
           ))}
         </div>
 
-        {/* CTA Button & Theme Toggle - Desktop */}
+        {/* CTA Button & Theme Toggle & Language Switcher - Desktop */}
         <div className="hidden items-center gap-2 md:flex">
+          <LanguageSwitcher />
           <ThemeToggle />
           <Button variant="cta" size="default" asChild>
-            <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">Book an AI ROI Sprint</a>
+            <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">{t("nav.bookSprint")}</a>
           </Button>
         </div>
 
-        {/* Mobile Menu Button & Theme Toggle */}
+        {/* Mobile Menu Button & Theme Toggle & Language Switcher */}
         <div className="flex items-center gap-2 md:hidden">
+          <LanguageSwitcher />
           <ThemeToggle />
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -77,7 +80,7 @@ export function Navbar() {
       {mobileMenuOpen && (
         <div className="border-b border-border bg-background md:hidden">
           <div className="container-padding space-y-1 pb-4">
-            {navLinks.map((link) => (
+            {navLinkKeys.map((link) => (
               <Link
                 key={link.href}
                 to={link.href}
@@ -88,12 +91,12 @@ export function Navbar() {
                     : "text-muted-foreground"
                 }`}
               >
-                {link.label}
+                {t(`nav.${link.key}`)}
               </Link>
             ))}
             <div className="pt-4">
               <Button variant="cta" size="default" className="w-full" asChild>
-                <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">Book an AI ROI Sprint</a>
+                <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">{t("nav.bookSprint")}</a>
               </Button>
             </div>
           </div>

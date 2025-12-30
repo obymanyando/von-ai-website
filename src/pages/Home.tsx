@@ -1,3 +1,4 @@
+import { useTranslation, Trans } from "react-i18next";
 import { Layout } from "@/components/Layout";
 import { Section, SectionHeader } from "@/components/Section";
 import { CTAButton, SecondaryCTA } from "@/components/CTAButton";
@@ -24,6 +25,8 @@ import {
 } from "lucide-react";
 
 export default function Home() {
+  const { t } = useTranslation();
+
   return (
     <Layout>
       {/* Hero Section */}
@@ -37,25 +40,27 @@ export default function Home() {
         <div className="container-padding mx-auto max-w-7xl py-20 md:py-28 lg:py-36">
           <div className="mx-auto max-w-4xl text-center">
             <h1 className="animate-fade-in-up text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl">
-              From AI experiments{" "}
-              <span className="text-gradient">to ROI.</span>
+              {t("home.hero.title1")}{" "}
+              <span className="text-gradient">{t("home.hero.title2")}</span>
             </h1>
 
             <p className="animate-fade-in-up animation-delay-100 mx-auto mt-6 max-w-2xl text-lg text-muted-foreground md:text-xl">
-              You don't need more AI tools. You need AI that moves the numbers.
+              {t("home.hero.subtitle")}
             </p>
 
             <p className="animate-fade-in-up animation-delay-200 mx-auto mt-4 max-w-2xl text-base text-muted-foreground md:text-lg">
-              You'll leave with a <span className="font-semibold text-foreground">90-day plan</span> that tells you what to do first, why it matters, and how you'll measure success.
+              <Trans i18nKey="home.hero.description">
+                You'll leave with a <span className="font-semibold text-foreground">90-day plan</span> that tells you what to do first, why it matters, and how you'll measure success.
+              </Trans>
             </p>
 
             <p className="animate-fade-in-up animation-delay-300 mt-6 text-sm font-medium text-muted-foreground">
-              No fluff. No "innovation theatre." One clear plan. One real win.
+              {t("home.hero.tagline")}
             </p>
 
             <div className="animate-fade-in-up animation-delay-400 mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <CTAButton variant="primary" size="xl" />
-              <SecondaryCTA text="See how it works" href="/ai-roi-sprint" />
+              <SecondaryCTA text={t("home.hero.seeHow")} href="/ai-roi-sprint" />
             </div>
           </div>
         </div>
@@ -65,13 +70,13 @@ export default function Home() {
       <Section variant="muted">
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-            AI is easy to demo. Hard to make pay back.
+            {t("home.problem.title")}
           </h2>
           <p className="mx-auto mt-6 max-w-3xl text-lg text-muted-foreground">
-            Most initiatives stall because: no ranked priorities, pilots don't reach production, teams don't trust outputs, adoption is random, ROI isn't measured.
+            {t("home.problem.description")}
           </p>
           <p className="mt-8 text-xl font-semibold text-foreground">
-            We fix the part between "cool demo" and "business impact."
+            {t("home.problem.solution")}
           </p>
         </div>
       </Section>
@@ -79,48 +84,48 @@ export default function Home() {
       {/* AI ROI Sprint Section */}
       <Section>
         <SectionHeader
-          title="AI ROI Sprint (2 weeks)"
-          subtitle="Everything you need to stop experimenting and start executing."
+          title={t("home.sprint.title")}
+          subtitle={t("home.sprint.subtitle")}
         />
 
         <div className="grid gap-8 lg:grid-cols-2">
           {/* You get */}
           <Card variant="elevated" className="h-full">
-            <h3 className="mb-6 text-xl font-bold text-foreground">You get:</h3>
+            <h3 className="mb-6 text-xl font-bold text-foreground">{t("home.sprint.youGet")}</h3>
             <ul className="space-y-4">
               <IconListItem icon={Workflow}>
-                <span className="font-medium">Workflow map:</span> where time, money, and quality leak
+                <span className="font-medium">{t("home.sprint.workflowMap")}</span> {t("home.sprint.workflowMapDesc")}
               </IconListItem>
               <IconListItem icon={Target}>
-                <span className="font-medium">Opportunity shortlist</span> ranked by Impact vs Effort
+                <span className="font-medium">{t("home.sprint.opportunityShortlist")}</span> {t("home.sprint.opportunityShortlistDesc")}
               </IconListItem>
               <IconListItem icon={BarChart3}>
-                <span className="font-medium">ROI model:</span> cost saved + revenue uplift
+                <span className="font-medium">{t("home.sprint.roiModel")}</span> {t("home.sprint.roiModelDesc")}
               </IconListItem>
               <IconListItem icon={Clock}>
-                <span className="font-medium">90-day roadmap</span> with owners, steps, and metrics
+                <span className="font-medium">{t("home.sprint.roadmap")}</span> {t("home.sprint.roadmapDesc")}
               </IconListItem>
               <IconListItem icon={Zap}>
-                <span className="font-medium">Pilot #1 spec</span> (build-ready)
+                <span className="font-medium">{t("home.sprint.pilotSpec")}</span> {t("home.sprint.pilotSpecDesc")}
               </IconListItem>
             </ul>
           </Card>
 
           {/* We do it by */}
           <Card variant="bordered" className="h-full">
-            <h3 className="mb-6 text-xl font-bold text-foreground">We do it by:</h3>
+            <h3 className="mb-6 text-xl font-bold text-foreground">{t("home.sprint.weDoItBy")}</h3>
             <ul className="space-y-4 text-muted-foreground">
               <li className="flex items-start gap-3">
                 <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-                <span>Mapping your real workflows (leadership + users)</span>
+                <span>{t("home.sprint.mapping")}</span>
               </li>
               <li className="flex items-start gap-3">
                 <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-                <span>Prioritizing the fastest wins</span>
+                <span>{t("home.sprint.prioritizing")}</span>
               </li>
               <li className="flex items-start gap-3">
                 <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-                <span>Pressure-testing with your team</span>
+                <span>{t("home.sprint.pressureTesting")}</span>
               </li>
             </ul>
             <div className="mt-8">
@@ -133,32 +138,32 @@ export default function Home() {
       {/* Starting Points Section */}
       <Section variant="muted">
         <SectionHeader
-          title="Starting points"
-          subtitle="If one area is already strong, the Sprint surfaces the next best ROI lever."
+          title={t("home.startingPoints.title")}
+          subtitle={t("home.startingPoints.subtitle")}
         />
 
         <div className="grid gap-6 md:grid-cols-3">
           <FeatureCard
             icon={TrendingUp}
-            title="Sales — more customers, faster"
-            description="Faster follow-up, less pipeline leakage. Cleaner CRM, better visibility."
+            title={t("home.startingPoints.sales")}
+            description={t("home.startingPoints.salesDesc")}
           />
           <FeatureCard
             icon={Users}
-            title="Service — deflect, retain, upsell"
-            description="Faster answers, better triage, better experience."
+            title={t("home.startingPoints.service")}
+            description={t("home.startingPoints.serviceDesc")}
           />
           <FeatureCard
             icon={Workflow}
-            title="Operations — less manual work"
-            description="Fewer handoffs, fewer errors, more flow."
+            title={t("home.startingPoints.operations")}
+            description={t("home.startingPoints.operationsDesc")}
           />
         </div>
 
         <div className="mt-12 text-center">
           <Button variant="cta-outline" size="lg" asChild>
             <Link to="/roi-calculator">
-              Try the ROI Calculator
+              {t("home.startingPoints.tryCalculator")}
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
@@ -167,32 +172,30 @@ export default function Home() {
 
       {/* Offers Preview Section */}
       <Section>
-        <SectionHeader
-          title="Your path from AI idea to ROI"
-        />
+        <SectionHeader title={t("home.path.title")} />
 
         <div className="grid gap-6 md:grid-cols-3">
           <NumberedCard
             number="1"
-            title="AI ROI Sprint"
-            description="2 weeks — 90-day roadmap + ROI model + Pilot #1 spec"
+            title={t("home.path.step1Title")}
+            description={t("home.path.step1Desc")}
           />
           <NumberedCard
             number="2"
-            title="AI ROI Pilot"
-            description="4–6 weeks — Pilot #1 shipped into production with measured results"
+            title={t("home.path.step2Title")}
+            description={t("home.path.step2Desc")}
           />
           <NumberedCard
             number="3"
-            title="Optimization & Adoption"
-            description="Monthly — ROI compounds; AI stays useful and aligned"
+            title={t("home.path.step3Title")}
+            description={t("home.path.step3Desc")}
           />
         </div>
 
         <div className="mt-12 text-center">
           <Button variant="ghost" size="lg" asChild>
             <Link to="/services">
-              Learn more about our services
+              {t("home.path.learnMore")}
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
@@ -201,17 +204,15 @@ export default function Home() {
 
       {/* Why VonAI Section */}
       <Section variant="muted">
-        <SectionHeader
-          title="Why VonAI"
-        />
+        <SectionHeader title={t("home.whyVonai.title")} />
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
           {[
-            { icon: Zap, text: "We ship. Not just advise." },
-            { icon: Workflow, text: "Workflow-first. Tools come after clarity." },
-            { icon: BarChart3, text: "ROI or it doesn't count." },
-            { icon: Users, text: "Human-first adoption." },
-            { icon: Shield, text: "Tool-agnostic." },
+            { icon: Zap, text: t("home.whyVonai.ship") },
+            { icon: Workflow, text: t("home.whyVonai.workflow") },
+            { icon: BarChart3, text: t("home.whyVonai.roi") },
+            { icon: Users, text: t("home.whyVonai.human") },
+            { icon: Shield, text: t("home.whyVonai.agnostic") },
           ].map((item, index) => (
             <Card key={index} variant="bordered" className="text-center">
               <item.icon className="mx-auto mb-3 h-8 w-8 text-primary" />
@@ -224,60 +225,60 @@ export default function Home() {
       {/* FAQ */}
       <Section>
         <SectionHeader
-          title="FAQ"
-          subtitle="Quick answers to the questions people ask before they book."
+          title={t("home.faq.title")}
+          subtitle={t("home.faq.subtitle")}
         />
 
         <div className="mx-auto max-w-3xl">
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="item-1" className="border-border">
               <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:no-underline">
-                Is the AI ROI Sprint just a workshop?
+                {t("home.faq.q1")}
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground">
-                No. You leave with real outputs: an opportunity matrix, a simple ROI model, and a 90-day plan—plus a build-ready spec for Pilot #1.
+                {t("home.faq.a1")}
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="item-2" className="border-border">
               <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:no-underline">
-                Do you build anything during the Sprint?
+                {t("home.faq.q2")}
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground">
-                Usually no. The Sprint is for clarity + prioritization + ROI validation. If you want implementation, that's the AI ROI Pilot (4–6 weeks).
+                {t("home.faq.a2")}
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="item-3" className="border-border">
               <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:no-underline">
-                How do you calculate ROI?
+                {t("home.faq.q3")}
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground">
-                We start with time savings (the most defensible). If relevant, we also model revenue uplift (conversion, cycle time) conservatively and validate assumptions with your team.
+                {t("home.faq.a3")}
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="item-4" className="border-border">
               <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:no-underline">
-                What do you need from us?
+                {t("home.faq.q4")}
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground">
-                A point of contact, access to 3–5 people for interviews (leadership + users), and agreement on 1–2 outcomes you care about (time, cost, revenue).
+                {t("home.faq.a4")}
               </AccordionContent>
             </AccordionItem>
           </Accordion>
 
           <p className="mt-8 text-center text-muted-foreground">
-            Still unsure?{" "}
+            {t("home.faq.stillUnsure")}{" "}
             <a 
               href="https://calendly.com/vonai/ai-roi-sprint" 
               target="_blank" 
               rel="noopener noreferrer"
               className="font-medium text-primary hover:underline"
             >
-              Book the Sprint call
+              {t("home.faq.bookCall")}
             </a>{" "}
-            and we'll confirm fit in 15 minutes.
+            {t("home.faq.confirmFit")}
           </p>
         </div>
       </Section>
@@ -286,13 +287,13 @@ export default function Home() {
       <Section>
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-            Ready to turn AI into a 90-day plan you can actually execute?
+            {t("home.finalCta.title")}
           </h2>
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <CTAButton variant="primary" size="xl" />
             <Button variant="cta-outline" size="lg" asChild>
               <Link to="/roi-calculator">
-                Try the ROI Calculator
+                {t("home.finalCta.tryCalculator")}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>

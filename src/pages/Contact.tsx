@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/Layout";
 import { Section } from "@/components/Section";
 import { Card, IconListItem } from "@/components/Card";
@@ -31,6 +32,7 @@ const contactFormSchema = z.object({
 type ContactFormValues = z.infer<typeof contactFormSchema>;
 
 function ContactForm() {
+  const { t } = useTranslation();
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const form = useForm<ContactFormValues>({
@@ -58,15 +60,15 @@ function ContactForm() {
       if (error) throw error;
 
       toast({
-        title: "Message sent!",
-        description: "We've received your message and will get back to you within 24 hours.",
+        title: t("contact.form.successTitle"),
+        description: t("contact.form.successDesc"),
       });
       form.reset();
     } catch (error) {
       console.error("Contact form error:", error);
       toast({
-        title: "Something went wrong",
-        description: "Please try again or email us directly at hello@von-ai.com",
+        title: t("contact.form.errorTitle"),
+        description: t("contact.form.errorDesc"),
         variant: "destructive",
       });
     } finally {
@@ -79,8 +81,8 @@ function ContactForm() {
       <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
         <Mail className="h-6 w-6 text-primary" />
       </div>
-      <h2 className="mb-2 text-2xl font-bold text-foreground">Send a message</h2>
-      <p className="mb-6 text-muted-foreground">Fill out the form and we'll get back to you within 24 hours.</p>
+      <h2 className="mb-2 text-2xl font-bold text-foreground">{t("contact.form.title")}</h2>
+      <p className="mb-6 text-muted-foreground">{t("contact.form.subtitle")}</p>
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
@@ -89,9 +91,9 @@ function ContactForm() {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Name *</FormLabel>
+                <FormLabel>{t("contact.form.name")}</FormLabel>
                 <FormControl>
-                  <Input placeholder="Your name" {...field} />
+                  <Input placeholder={t("contact.form.namePlaceholder")} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -103,9 +105,9 @@ function ContactForm() {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email *</FormLabel>
+                <FormLabel>{t("contact.form.email")}</FormLabel>
                 <FormControl>
-                  <Input type="email" placeholder="you@company.com" {...field} />
+                  <Input type="email" placeholder={t("contact.form.emailPlaceholder")} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -117,9 +119,9 @@ function ContactForm() {
             name="company"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Company</FormLabel>
+                <FormLabel>{t("contact.form.company")}</FormLabel>
                 <FormControl>
-                  <Input placeholder="Your company (optional)" {...field} />
+                  <Input placeholder={t("contact.form.companyPlaceholder")} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -131,10 +133,10 @@ function ContactForm() {
             name="message"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Message *</FormLabel>
+                <FormLabel>{t("contact.form.message")}</FormLabel>
                 <FormControl>
                   <Textarea
-                    placeholder="Tell us about your workflow challenges..."
+                    placeholder={t("contact.form.messagePlaceholder")}
                     className="min-h-[120px] resize-none"
                     {...field}
                   />
@@ -150,13 +152,13 @@ function ContactForm() {
             ) : (
               <Send className="mr-2 h-4 w-4" />
             )}
-            {isSubmitting ? "Sending..." : "Send Message"}
+            {isSubmitting ? t("contact.form.sending") : t("contact.form.submit")}
           </Button>
         </form>
       </Form>
 
       <p className="mt-4 text-center text-sm text-muted-foreground">
-        Or email us directly at{" "}
+        {t("contact.form.emailDirect")}{" "}
         <a href={`mailto:${CONTACT_EMAIL}`} className="text-primary hover:underline">
           {CONTACT_EMAIL}
         </a>
@@ -166,6 +168,8 @@ function ContactForm() {
 }
 
 export default function Contact() {
+  const { t } = useTranslation();
+
   return (
     <Layout>
       {/* Hero */}
@@ -173,10 +177,10 @@ export default function Contact() {
         <div className="container-padding mx-auto max-w-7xl py-16 md:py-24">
           <div className="mx-auto max-w-3xl text-center">
             <h1 className="text-4xl font-bold tracking-tight text-foreground md:text-5xl">
-              Book an AI ROI Sprint or ask a question.
+              {t("contact.hero.title")}
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
-              If you want clarity in 2 weeks and a 90-day plan you can execute, start with the Sprint.
+              {t("contact.hero.subtitle")}
             </p>
           </div>
         </div>
@@ -190,8 +194,8 @@ export default function Contact() {
               <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
                 <Calendar className="h-6 w-6 text-primary" />
               </div>
-              <h2 className="mb-2 text-2xl font-bold text-foreground">Book a call</h2>
-              <p className="mb-4 text-muted-foreground">Schedule a 30-45 minutes call to discuss your situation.</p>
+              <h2 className="mb-2 text-2xl font-bold text-foreground">{t("contact.bookCall.title")}</h2>
+              <p className="mb-4 text-muted-foreground">{t("contact.bookCall.subtitle")}</p>
             </div>
             <div className="calendly-wrapper">
               <InlineWidget url={CALENDLY_URL} styles={{ height: "580px", minWidth: "280px" }} />
@@ -208,29 +212,28 @@ export default function Contact() {
         <div className="mx-auto max-w-3xl">
           <div className="mb-8 flex items-center gap-3">
             <MessageSquare className="h-8 w-8 text-primary" />
-            <h2 className="text-2xl font-bold text-foreground">What to include in your message</h2>
+            <h2 className="text-2xl font-bold text-foreground">{t("contact.whatToInclude.title")}</h2>
           </div>
 
           <Card variant="bordered">
             <ul className="space-y-4">
               <IconListItem icon={Briefcase}>
-                <span className="font-medium">What team/process</span> — sales, service, ops, or other?
+                <span className="font-medium">{t("contact.whatToInclude.item1")}</span> {t("contact.whatToInclude.item1Desc")}
               </IconListItem>
               <IconListItem icon={AlertCircle}>
-                <span className="font-medium">What's breaking today</span> — where do you see the most friction?
+                <span className="font-medium">{t("contact.whatToInclude.item2")}</span> {t("contact.whatToInclude.item2Desc")}
               </IconListItem>
               <IconListItem icon={Target}>
-                <span className="font-medium">What outcome matters most</span> — time saved, cost reduced, or revenue
-                increased?
+                <span className="font-medium">{t("contact.whatToInclude.item3")}</span> {t("contact.whatToInclude.item3Desc")}
               </IconListItem>
               <IconListItem icon={Wrench}>
-                <span className="font-medium">Your current tools</span> (optional) — CRM, ticketing, ERP, etc.
+                <span className="font-medium">{t("contact.whatToInclude.item4")}</span> {t("contact.whatToInclude.item4Desc")}
               </IconListItem>
             </ul>
           </Card>
 
           <p className="mt-6 text-center text-muted-foreground">
-            Don't worry if you're not sure about all the details — that's what the Sprint is for.
+            {t("contact.whatToInclude.bottomText")}
           </p>
         </div>
       </Section>
@@ -239,10 +242,10 @@ export default function Contact() {
       <Section>
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-            Ready to turn AI into results?
+            {t("contact.finalCta.title")}
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-lg text-muted-foreground">
-            Book the Sprint call above and get clarity in 2 weeks.
+            {t("contact.finalCta.subtitle")}
           </p>
         </div>
       </Section>
