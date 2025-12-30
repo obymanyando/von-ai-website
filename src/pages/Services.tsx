@@ -3,6 +3,7 @@ import { Layout } from "@/components/Layout";
 import { Section, SectionHeader } from "@/components/Section";
 import { CTAButton } from "@/components/CTAButton";
 import { Card, IconListItem } from "@/components/Card";
+import { SEO } from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import {
@@ -19,6 +20,11 @@ export default function Services() {
 
   return (
     <Layout>
+      <SEO
+        title="AI Consulting Services"
+        description="From clarity to production to growing returns. AI ROI Sprint, Pilot, and Optimization services designed for measurable business impact."
+        canonical="/services"
+      />
       {/* Hero */}
       <section className="border-b border-border bg-background">
         <div className="container-padding mx-auto max-w-7xl py-16 md:py-24">

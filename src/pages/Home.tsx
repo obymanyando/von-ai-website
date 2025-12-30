@@ -3,6 +3,7 @@ import { Layout } from "@/components/Layout";
 import { Section, SectionHeader } from "@/components/Section";
 import { CTAButton, SecondaryCTA } from "@/components/CTAButton";
 import { Card, FeatureCard, NumberedCard, IconListItem } from "@/components/Card";
+import { SEO } from "@/components/SEO";
 import {
   Accordion,
   AccordionContent,
@@ -29,6 +30,11 @@ export default function Home() {
 
   return (
     <Layout>
+      <SEO
+        title="VonAI — From AI experiments to ROI"
+        description="You don't need more AI tools. You need AI that moves the numbers. Get a 90-day plan with the AI ROI Sprint."
+        canonical="/"
+      />
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-background">
         {/* Subtle background pattern */}
