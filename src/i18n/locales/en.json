@@ -266,6 +266,9 @@
       "subtitle": "(optional)",
       "leadsPerMonth": "Leads per month",
       "conversionImprovement": "Conversion improvement",
+      "conservative": "Conservative",
+      "likely": "Likely",
+      "aggressive": "Aggressive",
       "grossProfit": "Gross profit per sale (€)",
       "grossProfitHint": "Profit, not revenue. If unsure: avg deal value × gross margin"
     },

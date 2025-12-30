@@ -266,6 +266,9 @@
       "subtitle": "(valinnainen)",
       "leadsPerMonth": "Liidit kuukaudessa",
       "conversionImprovement": "Konversion parannus",
+      "conservative": "Konservatiivinen",
+      "likely": "Todennäköinen",
+      "aggressive": "Aggressiivinen",
       "grossProfit": "Bruttokate per myynti (€)",
       "grossProfitHint": "Kate, ei liikevaihto. Jos epävarma: keskim. kauppa × bruttokate"
     },
