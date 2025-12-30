@@ -1,24 +1,25 @@
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import logoLight from "@/assets/logo-light.png";
 import logoDark from "@/assets/logo-dark.png";
 
-const CONTACT_EMAIL = "hello@comms.von-ai.com";
+const CONTACT_EMAIL = "hello@von-ai.com";
 
-const footerLinks = {
-  navigation: [
-    { href: "/", label: "Home" },
-    { href: "/services", label: "Services" },
-    { href: "/ai-roi-sprint", label: "AI ROI Sprint" },
-    { href: "/roi-calculator", label: "ROI Calculator" },
-  ],
-  company: [
-    { href: "/about", label: "About" },
-    { href: "/contact", label: "Contact" },
-  ],
-};
+const navigationKeys = [
+  { href: "/", key: "home" },
+  { href: "/services", key: "services" },
+  { href: "/ai-roi-sprint", key: "aiRoiSprint" },
+  { href: "/roi-calculator", key: "roiCalculator" },
+];
+
+const companyKeys = [
+  { href: "/about", key: "about" },
+  { href: "/contact", key: "contact" },
+];
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
+  const { t } = useTranslation();
 
   return (
     <footer className="border-t border-border bg-muted/30">
@@ -31,7 +32,7 @@ export function Footer() {
               <img src={logoLight} alt="VonAI" className="hidden h-8 w-auto dark:block" />
             </Link>
             <p className="mt-4 max-w-md text-sm text-muted-foreground">
-              From AI experiments to ROI. We turn AI experimentation into measurable outcomes with a 2-week Sprint and a 90-day execution plan.
+              {t("footer.description")}
             </p>
             <a
               href={`mailto:${CONTACT_EMAIL}`}
@@ -43,15 +44,15 @@ export function Footer() {
 
           {/* Navigation Links */}
           <div>
-            <h4 className="text-sm font-semibold text-foreground">Navigation</h4>
+            <h4 className="text-sm font-semibold text-foreground">{t("footer.navigation")}</h4>
             <ul className="mt-4 space-y-2">
-              {footerLinks.navigation.map((link) => (
+              {navigationKeys.map((link) => (
                 <li key={link.href}>
                   <Link
                     to={link.href}
                     className="text-sm text-muted-foreground transition-colors hover:text-primary"
                   >
-                    {link.label}
+                    {t(`nav.${link.key}`)}
                   </Link>
                 </li>
               ))}
@@ -60,15 +61,15 @@ export function Footer() {
 
           {/* Company Links */}
           <div>
-            <h4 className="text-sm font-semibold text-foreground">Company</h4>
+            <h4 className="text-sm font-semibold text-foreground">{t("footer.company")}</h4>
             <ul className="mt-4 space-y-2">
-              {footerLinks.company.map((link) => (
+              {companyKeys.map((link) => (
                 <li key={link.href}>
                   <Link
                     to={link.href}
                     className="text-sm text-muted-foreground transition-colors hover:text-primary"
                   >
-                    {link.label}
+                    {t(`nav.${link.key}`)}
                   </Link>
                 </li>
               ))}
@@ -79,7 +80,7 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="mt-12 border-t border-border pt-8">
           <p className="text-center text-sm text-muted-foreground">
-            © {currentYear} VonAI. All rights reserved.
+            {t("footer.rights", { year: currentYear })}
           </p>
         </div>
       </div>

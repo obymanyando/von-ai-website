@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -14,6 +15,7 @@ const authSchema = z.object({
 });
 
 export default function Auth() {
+  const { t } = useTranslation();
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -48,7 +50,7 @@ export default function Auth() {
     const validation = authSchema.safeParse({ email, password });
     if (!validation.success) {
       toast({
-        title: "Validation error",
+        title: t("auth.validationError"),
         description: validation.error.errors[0].message,
         variant: "destructive",
       });
@@ -74,14 +76,14 @@ export default function Auth() {
         });
         if (error) throw error;
         toast({
-          title: "Account created",
-          description: "You can now sign in.",
+          title: t("auth.accountCreated"),
+          description: t("auth.accountCreatedDesc"),
         });
         setIsLogin(true);
       }
     } catch (error: any) {
       toast({
-        title: "Authentication error",
+        title: t("auth.authError"),
         description: error.message,
         variant: "destructive",
       });
@@ -105,15 +107,15 @@ export default function Auth() {
           <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
             <Lock className="h-6 w-6 text-primary" />
           </div>
-          <h1 className="text-2xl font-bold text-foreground">Admin Access</h1>
+          <h1 className="text-2xl font-bold text-foreground">{t("auth.title")}</h1>
           <p className="mt-2 text-sm text-muted-foreground">
-            {isLogin ? "Sign in to access the admin dashboard" : "Create an admin account"}
+            {isLogin ? t("auth.signInSubtitle") : t("auth.signUpSubtitle")}
           </p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
+            <Label htmlFor="email">{t("auth.email")}</Label>
             <Input
               id="email"
               type="email"
@@ -124,7 +126,7 @@ export default function Auth() {
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="password">Password</Label>
+            <Label htmlFor="password">{t("auth.password")}</Label>
             <Input
               id="password"
               type="password"
@@ -136,7 +138,7 @@ export default function Auth() {
           </div>
           <Button type="submit" className="w-full" disabled={loading}>
             {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-            {isLogin ? "Sign In" : "Create Account"}
+            {isLogin ? t("auth.signIn") : t("auth.createAccount")}
           </Button>
         </form>
 
@@ -146,7 +148,7 @@ export default function Auth() {
             onClick={() => setIsLogin(!isLogin)}
             className="text-primary hover:underline"
           >
-            {isLogin ? "Need an account? Sign up" : "Already have an account? Sign in"}
+            {isLogin ? t("auth.needAccount") : t("auth.haveAccount")}
           </button>
         </div>
       </div>
