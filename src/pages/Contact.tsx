@@ -5,6 +5,7 @@ import { Section } from "@/components/Section";
 import { Card, IconListItem } from "@/components/Card";
 import { InlineWidget } from "react-calendly";
 import { Mail, Calendar, MessageSquare, Briefcase, AlertCircle, Target, Wrench, Send, Loader2 } from "lucide-react";
+import { SEO } from "@/components/SEO";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -172,6 +173,11 @@ export default function Contact() {
 
   return (
     <Layout>
+      <SEO
+        title="Contact VonAI — Book an AI ROI Sprint"
+        description="Book a call to discuss your AI implementation needs or send us a message. Get clarity in 2 weeks with a 90-day plan you can execute."
+        canonical="/contact"
+      />
       {/* Hero */}
       <section className="border-b border-border bg-background">
         <div className="container-padding mx-auto max-w-7xl py-16 md:py-24">

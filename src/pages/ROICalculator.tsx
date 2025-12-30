@@ -4,6 +4,7 @@ import { Layout } from "@/components/Layout";
 import { Section } from "@/components/Section";
 import { CTAButton } from "@/components/CTAButton";
 import { Card } from "@/components/Card";
+import { SEO } from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -149,6 +150,11 @@ export default function ROICalculator() {
 
   return (
     <Layout>
+      <SEO
+        title="AI ROI Calculator — Estimate Your AI Savings"
+        description="Calculate the potential ROI of AI implementation for your business. Get a conservative estimate of time and cost savings in 90 days."
+        canonical="/roi-calculator"
+      />
       {/* Hero */}
       <section className="border-b border-border bg-background">
         <div className="container-padding mx-auto max-w-7xl py-16 md:py-20">

@@ -3,6 +3,7 @@ import { Layout } from "@/components/Layout";
 import { Section, SectionHeader } from "@/components/Section";
 import { CTAButton } from "@/components/CTAButton";
 import { Card } from "@/components/Card";
+import { SEO } from "@/components/SEO";
 import {
   Workflow,
   BarChart3,
@@ -15,6 +16,11 @@ export default function About() {
 
   return (
     <Layout>
+      <SEO
+        title="About VonAI — Operator-Led AI Transformation"
+        description="VonAI exists to end AI theater and start measurable results. We map workflows, pick the right first win, and help teams ship AI that pays for itself."
+        canonical="/about"
+      />
       {/* Hero */}
       <section className="border-b border-border bg-background">
         <div className="container-padding mx-auto max-w-7xl py-16 md:py-24">

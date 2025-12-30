@@ -3,6 +3,7 @@ import { Layout } from "@/components/Layout";
 import { Section, SectionHeader } from "@/components/Section";
 import { CTAButton } from "@/components/CTAButton";
 import { Card, NumberedCard, IconListItem } from "@/components/Card";
+import { SEO } from "@/components/SEO";
 import {
   Accordion,
   AccordionContent,
@@ -30,6 +31,11 @@ export default function AIROISprint() {
 
   return (
     <Layout>
+      <SEO
+        title="AI ROI Sprint — 90-Day AI Implementation Plan"
+        description="Get a 90-day roadmap, ROI model, and Pilot #1 spec in just 2 weeks. Stop experimenting, start executing with measurable AI results."
+        canonical="/ai-roi-sprint"
+      />
       {/* Hero */}
       <section className="border-b border-border bg-background">
         <div className="container-padding mx-auto max-w-7xl py-16 md:py-24">
