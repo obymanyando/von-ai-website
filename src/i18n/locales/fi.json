@@ -381,7 +381,20 @@
     "validationError": "Validointivirhe",
     "authError": "Todennusvirhe",
     "accountCreated": "Tili luotu",
-    "accountCreatedDesc": "Voit nyt kirjautua sisään."
+    "accountCreatedDesc": "Voit nyt kirjautua sisään.",
+    "forgotPassword": "Unohditko salasanan?",
+    "forgotPasswordTitle": "Nollaa salasana",
+    "forgotPasswordSubtitle": "Syötä sähköpostiosoitteesi ja lähetämme nollauslinkin",
+    "sendResetLink": "Lähetä nollauslinkki",
+    "resetLinkSent": "Nollauslinkki lähetetty",
+    "resetLinkSentDesc": "Tarkista sähköpostisi salasanan nollauslinkin varalta",
+    "newPassword": "Uusi salasana",
+    "confirmNewPassword": "Vahvista uusi salasana",
+    "updatePassword": "Päivitä salasana",
+    "passwordUpdated": "Salasana päivitetty",
+    "passwordUpdatedDesc": "Voit nyt kirjautua sisään uudella salasanallasi",
+    "passwordMismatch": "Salasanat eivät täsmää",
+    "backToLogin": "Takaisin kirjautumiseen"
   },
   "notFound": {
     "title": "404",
