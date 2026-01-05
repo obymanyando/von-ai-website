@@ -381,7 +381,20 @@
     "validationError": "Validation error",
     "authError": "Authentication error",
     "accountCreated": "Account created",
-    "accountCreatedDesc": "You can now sign in."
+    "accountCreatedDesc": "You can now sign in.",
+    "forgotPassword": "Forgot password?",
+    "forgotPasswordTitle": "Reset Password",
+    "forgotPasswordSubtitle": "Enter your email and we'll send you a reset link",
+    "sendResetLink": "Send Reset Link",
+    "resetLinkSent": "Reset link sent",
+    "resetLinkSentDesc": "Check your email for the password reset link",
+    "newPassword": "New Password",
+    "confirmNewPassword": "Confirm New Password",
+    "updatePassword": "Update Password",
+    "passwordUpdated": "Password updated",
+    "passwordUpdatedDesc": "You can now sign in with your new password",
+    "passwordMismatch": "Passwords do not match",
+    "backToLogin": "Back to login"
   },
   "notFound": {
     "title": "404",
