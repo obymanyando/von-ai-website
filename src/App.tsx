@@ -6,10 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "next-themes";
 import { HelmetProvider } from "react-helmet-async";
 import Home from "./pages/Home";
-import Services from "./pages/Services";
 import AIROISprint from "./pages/AIROISprint";
-import ROICalculator from "./pages/ROICalculator";
-import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Auth from "./pages/Auth";
 import Admin from "./pages/Admin";
@@ -31,10 +28,7 @@ const App = () => (
             <ScrollToTop />
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/services" element={<Services />} />
               <Route path="/ai-roi-sprint" element={<AIROISprint />} />
-              <Route path="/roi-calculator" element={<ROICalculator />} />
-              <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/auth" element={<Auth />} />
               <Route path="/admin" element={<Admin />} />

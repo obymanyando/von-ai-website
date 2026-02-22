@@ -1,418 +1,257 @@
 {
   "nav": {
-    "home": "Etusivu",
-    "services": "Palvelut",
-    "aiRoiSprint": "AI ROI -sprintti",
-    "roiCalculator": "ROI-laskuri",
-    "about": "Tietoa meistä",
-    "contact": "Yhteystiedot",
-    "bookSprint": "Varaa AI ROI -sprintti"
+    "home": "Home",
+    "aiRoiSprint": "AI ROI Sprint",
+    "contact": "Contact",
+    "bookCall": "Book a Free Call"
   },
   "footer": {
-    "description": "AI-kokeiluista tuloksiin. Muutamme AI-kokeilut mitattaviksi tuloksiksi 2 viikon sprintillä ja 90 päivän toteutussuunnitelmalla.",
-    "navigation": "Navigointi",
-    "company": "Yritys",
-    "rights": "© {{year}} VonAI. Kaikki oikeudet pidätetään."
+    "description": "VonAI helps B2B services firms stop experimenting with AI and start measuring results. Based in Helsinki. Working globally.",
+    "navigation": "Navigation",
+    "company": "Company",
+    "rights": "© {{year}} VonAI. All rights reserved."
   },
   "home": {
     "hero": {
-      "title1": "AI-kokeiluista",
-      "title2": "tuloksiin.",
-      "subtitle": "Et tarvitse lisää AI-työkaluja. Tarvitset AI:n, joka tuottaa tulosta.",
-      "description": "Saat <strong>90 päivän suunnitelman</strong>, joka kertoo mitä tehdä ensin, miksi se on tärkeää ja miten onnistumista mitataan.",
-      "tagline": "Ei höpinää. Ei \"innovaatioteatteria\". Yksi selkeä suunnitelma. Yksi todellinen voitto.",
-      "seeHow": "Katso miten se toimii"
+      "title1": "Your AI budget is growing.",
+      "title2": "Your results aren't.",
+      "subtitle": "Most B2B services firms have tried AI. Few can point to a number that changed. We fix that.",
+      "cta": "See how it works",
+      "secondaryCta": "Book a free call"
     },
     "problem": {
-      "title": "AI on helppo demota. Vaikea saada tuottamaan.",
-      "description": "Useimmat hankkeet pysähtyvät, koska: ei priorisoituja tavoitteita, pilotit eivät päädy tuotantoon, tiimit eivät luota tuloksiin, käyttöönotto on satunnaista, ROI:ta ei mitata.",
-      "solution": "Me korjaamme osan \"siistin demon\" ja \"liiketoimintavaikutuksen\" välillä."
+      "title": "Sound familiar?",
+      "pain1": "You've demoed tools but nothing reached production.",
+      "pain2": "Your team doesn't trust AI outputs, so adoption is low.",
+      "pain3": "Leadership wants an AI strategy. You don't know where to start that won't waste six figures.",
+      "pain4": "You tried a pilot. It worked in the demo. Then nothing happened.",
+      "punchline": "The gap between \"cool demo\" and business impact is where most AI money dies. That's the only part we work on."
+    },
+    "proof": {
+      "title": "Results from real engagements",
+      "case1Label": "Leadership coaching firm (9 people)",
+      "case1Problem": "Leads flooding in via WhatsApp, email, and DMs. Too few people to respond. Deals were slipping.",
+      "case1Solution": "We built an AI lead management system across WhatsApp, website, and email: automatic responses, contact capture, CRM updates, and calendar booking.",
+      "case1Result": "40% increase in lead conversion rate",
+      "case2Label": "Fitness center",
+      "case2Problem": "Customers kept asking questions already answered on the website. Staff spent 15 hours/week on repetitive replies.",
+      "case2Solution": "We deployed a customer-ready FAQ assistant grounded on real company data, with escalation to humans, unknown-question logging, and a weekly improvement loop.",
+      "case2Result": "From 15 hrs/week to 1.5 hrs/week on repetitive questions"
     },
     "sprint": {
-      "title": "AI ROI -sprintti (2 viikkoa)",
-      "subtitle": "Kaikki mitä tarvitset kokeilujen lopettamiseen ja toteutuksen aloittamiseen.",
-      "youGet": "Saat:",
-      "workflowMap": "Työnkulkukartta:",
-      "workflowMapDesc": "missä aikaa, rahaa ja laatua vuotaa",
-      "opportunityShortlist": "Mahdollisuuslista",
-      "opportunityShortlistDesc": "priorisoituna vaikutuksen ja työmäärän mukaan",
-      "roiModel": "ROI-malli:",
-      "roiModelDesc": "säästöt + liikevaihdon kasvu",
-      "roadmap": "90 päivän tiekartta",
-      "roadmapDesc": "vastuuhenkilöt, vaiheet ja mittarit",
-      "pilotSpec": "Pilotti #1 -spesifikaatio",
-      "pilotSpecDesc": "(toteutusvalmis)",
-      "weDoItBy": "Teemme sen näin:",
-      "mapping": "Kartoitamme todelliset työnkulkusi (johto + käyttäjät)",
-      "prioritizing": "Priorisoimme nopeimmat voitot",
-      "pressureTesting": "Testaamme tiimisi kanssa"
-    },
-    "startingPoints": {
-      "title": "Aloituspisteet",
-      "subtitle": "Jos yksi alue on jo vahva, sprintti löytää seuraavan parhaan ROI-vivun.",
-      "sales": "Myynti — enemmän asiakkaita, nopeammin",
-      "salesDesc": "Nopeampi seuranta, vähemmän liidien hukkaamista. Puhtaampi CRM, parempi näkyvyys.",
-      "service": "Asiakaspalvelu — ohjaa, säilytä, lisämyy",
-      "serviceDesc": "Nopeammat vastaukset, parempi luokittelu, parempi kokemus.",
-      "operations": "Toiminnot — vähemmän manuaalista työtä",
-      "operationsDesc": "Vähemmän siirtoja, vähemmän virheitä, enemmän sujuvuutta.",
-      "tryCalculator": "Kokeile ROI-laskuria"
+      "title": "How we work: the AI ROI Sprint",
+      "subtitle": "A 2-week engagement that replaces months of guessing with a clear, executable plan.",
+      "youLeaveWith": "You leave with:",
+      "deliverable1": "A map of where your workflows leak time and money",
+      "deliverable2": "Your highest-impact AI opportunities, ranked",
+      "deliverable3": "A conservative ROI model your CFO can believe",
+      "deliverable4": "A 90-day execution plan with owners and metrics",
+      "deliverable5": "A build-ready spec for your first AI implementation",
+      "learnMore": "See full Sprint details"
     },
     "path": {
-      "title": "Polkusi AI-ideasta tuloksiin",
-      "step1Title": "AI ROI -sprintti",
-      "step1Desc": "2 viikkoa — 90 päivän tiekartta + ROI-malli + Pilotti #1 -spesifikaatio",
-      "step2Title": "AI ROI -pilotti",
-      "step2Desc": "4–6 viikkoa — Pilotti #1 tuotannossa mitattavin tuloksin",
-      "step3Title": "Optimointi ja käyttöönotto",
-      "step3Desc": "Kuukausittain — ROI kasvaa; AI pysyy hyödyllisenä ja linjassa",
-      "learnMore": "Lue lisää palveluistamme"
+      "title": "What happens after the Sprint",
+      "step1Title": "Sprint",
+      "step1Duration": "2 weeks",
+      "step1Desc": "Clarity, priorities, and a plan you can execute.",
+      "step2Title": "Pilot",
+      "step2Duration": "4-6 weeks",
+      "step2Desc": "Your first AI use case shipped into production with measured results.",
+      "step3Title": "Scale",
+      "step3Duration": "Monthly",
+      "step3Desc": "Ongoing optimization, adoption support, and ROI reporting."
     },
     "whyVonai": {
-      "title": "Miksi VonAI",
-      "ship": "Me toimitamme. Emme vain neuvo.",
-      "workflow": "Työnkulku ensin. Työkalut tulevat selkeyden jälkeen.",
-      "roi": "ROI tai ei lasketa.",
-      "human": "Ihminen ensin -käyttöönotto.",
-      "agnostic": "Työkaluriippumaton."
+      "title": "Why teams pick VonAI",
+      "reason1Title": "We ship, not just advise.",
+      "reason1Desc": "Every engagement ends with something in production, not a slide deck.",
+      "reason2Title": "Workflow-first, not tool-first.",
+      "reason2Desc": "We understand your process before recommending any technology.",
+      "reason3Title": "ROI or it doesn't count.",
+      "reason3Desc": "Every project has a number attached. If we can't measure it, we don't recommend it.",
+      "reason4Title": "Human-first adoption.",
+      "reason4Desc": "AI that your team doesn't trust is AI that doesn't get used. We design for real humans.",
+      "reason5Title": "Tool-agnostic.",
+      "reason5Desc": "We work with your current stack. No forced platform decisions."
     },
     "faq": {
-      "title": "UKK",
-      "subtitle": "Nopeat vastaukset kysymyksiin, joita ihmiset kysyvät ennen varausta.",
-      "q1": "Onko AI ROI -sprintti vain työpaja?",
-      "a1": "Ei. Saat konkreettisia tuotoksia: mahdollisuusmatriisin, yksinkertaisen ROI-mallin ja 90 päivän suunnitelman — sekä toteutusvalmiin spesifikaation Pilotti #1:lle.",
-      "q2": "Rakennatteko jotain sprintin aikana?",
-      "a2": "Yleensä ei. Sprintti on selkeyden, priorisoinnin ja ROI-validoinnin vaihe. Jos haluat toteutusta, se on AI ROI -pilotti (4–6 viikkoa).",
-      "q3": "Miten laskette ROI:n?",
-      "a3": "Aloitamme ajansäästöistä (helpoin puolustaa). Tarvittaessa mallinnammme myös liikevaihdon kasvua (konversio, läpimenoaika) konservatiivisesti ja validoimme oletukset tiimisi kanssa.",
-      "q4": "Mitä tarvitsette meiltä?",
-      "a4": "Yhteyshenkilön, pääsyn 3–5 haastateltavaan (johto + käyttäjät) ja sopimuksen 1–2 tavoitteesta (aika, kustannukset, liikevaihto).",
-      "stillUnsure": "Vielä epävarma?",
-      "bookCall": "Varaa sprintti-puhelu",
-      "confirmFit": "ja varmistamme sopivuuden 15 minuutissa."
+      "title": "Questions before you reach out",
+      "q1": "Who is this for?",
+      "a1": "B2B services firms (typically 10-200 people) who've tried AI or are under pressure to start, and want measurable results instead of more experiments.",
+      "q2": "What does it cost?",
+      "a2": "It depends on scope. Book a free call and we'll tell you within 15 minutes whether the Sprint is a fit and what it would cost for your situation.",
+      "q3": "What if we already tried AI and it didn't work?",
+      "a3": "That's most of our clients. Usually the missing piece is prioritization, workflow fit, adoption, or guardrails. The Sprint finds what blocked ROI and fixes the approach.",
+      "q4": "Which tools do you use?",
+      "a4": "Whatever fits your situation. We're tool-agnostic by design. No vendor lock-in, no forced platform changes.",
+      "q5": "How fast can we see results?",
+      "a5": "Clarity in 2 weeks. A production pilot in 4-6 weeks after that. Measurement starts from day one."
     },
     "finalCta": {
-      "title": "Valmis muuttamaan AI:n 90 päivän suunnitelmaksi, jonka voit toteuttaa?",
-      "tryCalculator": "Kokeile ROI-laskuria"
-    }
-  },
-  "services": {
-    "hero": {
-      "title": "Suunnittele → Toimita → Skaalaa",
-      "subtitle": "Selkeydestä tuotantoon ja kasvaviin tuottoihin. Jokainen vaihe rakentuu edelliselle."
-    },
-    "sprint": {
-      "step": "Vaihe 1: Suunnittele",
-      "title": "AI ROI -sprintti",
-      "duration": "2 viikkoa",
-      "outcome": "Tulos:",
-      "outcomeDesc": "90 päivän tiekartta + ROI-malli + Pilotti #1 -spesifikaatio",
-      "goodFit": "Sopii jos:",
-      "goodFit1": "Haluat mitattavia tuloksia 90 päivässä",
-      "goodFit2": "Voit antaa pääsyn 3–5 haastateltavaan",
-      "goodFit3": "Olet valmis muuttamaan työnkulkua, et vain ostamaan työkalua",
-      "notFit": "Ei sovi jos:",
-      "notFit1": "Haluat \"AI-strategiaa\" ilman toteutusta",
-      "notFit2": "Haluat valtavan alustan rakentamisen ensimmäiseksi askeleeksi",
-      "tryCalculator": "Kokeile ROI-laskuria",
-      "deliverables": "Sprintin tuotokset",
-      "deliverable1": "Työnkulkukartta",
-      "deliverable2": "Mahdollisuusmatriisi (vaikutus vs työmäärä)",
-      "deliverable3": "ROI-malli (rahadiat)",
-      "deliverable4": "90 päivän toteutussuunnitelma (vastuut + mittarit)",
-      "deliverable5": "Pilotti #1 -spesifikaatio (toteutusvalmis)",
-      "seeDetails": "Katso sprintin yksityiskohdat"
-    },
-    "pilot": {
-      "step": "Vaihe 2: Toimita",
-      "title": "AI ROI -pilotti",
-      "duration": "4–6 viikkoa",
-      "outcome": "Tulos:",
-      "outcomeDesc": "Pilotti #1 tuotannossa mitattavin tuloksin.",
-      "production": "Tuotanto tarkoittaa: laajuus, suojakaiteet, eskalointi, seuranta, mittaus."
-    },
-    "optimization": {
-      "step": "Vaihe 3: Skaalaa",
-      "title": "Optimointi ja käyttöönotto",
-      "duration": "Kuukausittain",
-      "outcome": "Tulos:",
-      "outcomeDesc": "ROI kasvaa; AI pysyy hyödyllisenä ja linjassa.",
-      "includes": "Sisältää hienosäätöä, päivityksiä, ROI-raportointia ja koulutusta."
-    },
-    "whatWeDont": {
-      "title": "Mitä emme tee",
-      "item1": "Ei epämääräistä strategiaa ilman toteutusta.",
-      "item2": "Ei massiivisia alustoja ensimmäisenä askeleena.",
-      "item3": "Ei työkalupakkoa."
-    },
-    "cta": {
-      "title": "Valmis aloittamaan selkeydellä?",
-      "subtitle": "Sprintti on jokaisen yhteistyön lähtöpiste. Kaksi viikkoa 90 päivän suunnitelmaan, jonka voit toteuttaa."
+      "title": "Stop guessing. Start measuring.",
+      "subtitle": "Book a free 15-minute call. We'll tell you if the Sprint is a fit for your situation.",
+      "cta": "Book a free call"
     }
   },
   "aiRoiSprint": {
     "hero": {
-      "badge": "2 viikon projekti",
-      "title": "AI ROI -sprintti",
-      "subtitle": "Lähde mukaan 90 päivän suunnitelmalla, jonka voit toteuttaa."
+      "badge": "2-week engagement",
+      "title": "AI ROI Sprint",
+      "subtitle": "Stop experimenting. Leave with a 90-day plan your team can actually execute."
+    },
+    "problem": {
+      "title": "Why most AI initiatives stall",
+      "reason1": "No ranked priorities. Everything feels equally urgent.",
+      "reason2": "Pilots never reach production. The demo works, then sits.",
+      "reason3": "Teams don't trust the outputs. Adoption stays low.",
+      "reason4": "Nobody is measuring ROI. So nobody knows what's working.",
+      "bridgeLine": "The Sprint solves all four in two weeks."
     },
     "deliverables": {
-      "title": "5 tuotosta",
-      "subtitle": "Kaikki mitä tarvitset siirtyäksesi kokeilusta toteutukseen.",
-      "item1Title": "1. Työnkulkukartta",
-      "item1Desc": "Missä aikaa, rahaa ja laatua vuotaa nykyisissä prosesseissasi.",
-      "item2Title": "2. Mahdollisuusmatriisi",
-      "item2Desc": "Vaikutus vs työmäärä -priorisointi nopeimpien voittojen löytämiseksi.",
-      "item3Title": "3. ROI-malli",
-      "item3Desc": "Rahadiat — säästöt + liikevaihdon kasvu selkeästi kvantifioituna.",
-      "item4Title": "4. 90 päivän toteutussuunnitelma",
-      "item4Desc": "Vastuuhenkilöt, vaiheet ja mittarit. Ei epäselvyyttä.",
-      "item5Title": "5. Pilotti #1 -spesifikaatio",
-      "item5Desc": "Toteutusvalmis spesifikaatio ensimmäiselle AI-toteutuksellesi.",
-      "allIn2Weeks": "Kaikki 2 viikossa"
-    },
-    "faq": {
-      "title": "UKK (Ennen varausta)",
-      "subtitle": "Nämä ovat kysymyksiä, jotka ratkaisevat onko sprintti sen arvoinen. Tässä suorat vastaukset.",
-      "q1": "Onko AI ROI -sprintti vain työpaja?",
-      "a1": "Ei. Se on rajattu projekti konkreettisine tuotoksineen: työnkulkukartta, priorisoitu mahdollisuusmatriisi, ROI-malli ja 90 päivän toteutussuunnitelma.",
-      "q2": "Mikä on sprintin suurin tulos?",
-      "a2": "Lopetat arvailun. Lähdet tietäen mitä rakentaa ensin, miksi se on tärkeää ja miten onnistumista mitataan seuraavan 90 päivän aikana.",
-      "q3": "Rakennatteko jotain sprintin aikana?",
-      "a3": "Yleensä ei. Sprintti on suunniteltu valitsemaan oikea ensimmäinen voitto ja määrittelemään se kunnolla. Rakentaminen tapahtuu AI ROI -pilotissa (4–6 viikkoa).",
-      "q4": "Entä jos olemme jo kokeilleet AI:ta ja se ei toiminut?",
-      "a4": "Se on yleistä. Yleensä puuttuva palanen on priorisointi, työnkulkuintegraatio, käyttöönotto tai suojakaiteet. Sprintti löytää mikä esti ROI:n ja korjaa lähestymistavan.",
-      "q5": "Tarvitsemmeko täydelliset tiedot ennen aloitusta?",
-      "a5": "Ei. Aloitamme työnkulusta ja tunnistamme minimivaatimukset datalle. Jos datan laatu on este, sprintti tekee sen näkyväksi aikaisin, jotta et tuhlaa aikaa väärän asian rakentamiseen.",
-      "q6": "Korvaako AI ihmisemme?",
-      "a6": "Se ei ole tavoite. Luottamusta vaativassa työssä suunnittelemme ihmisen mukana oletuksena. AI tukee tiimiä; se ei heikennä suhdetta.",
-      "q7": "Mitä työkaluja käytätte?",
-      "a7": "Olemme työkaluriippumattomia. Työskentelemme nykyisen teknologiapinosi kanssa ja suosittelemme yksinkertaisinta lähestymistapaa, joka tuottaa mitattavan tuloksen. Ei pakotettuja alustapäätöksiä.",
-      "q8": "Miten mittaatte ROI:n?",
-      "a8": "Mallinnamma ROI:n kahdessa kerroksessa: (1) Säästetty aika → kustannussäästöt (helpoin puolustaa), ja (2) Liikevaihdon kasvu (valinnainen, konservatiivinen, validoitu — esim. parantunut seuranta, konversio, läpimenoaika).",
-      "q9": "Kuinka nopeasti näemme tuloksia?",
-      "a9": "Selkeys 2 viikossa (sprintti). Ensimmäinen tuotantopilotti voidaan yleensä toimittaa 4–6 viikossa sen jälkeen. Mittaus alkaa ensimmäisestä päivästä.",
-      "q10": "Mitä tarvitsette meiltä tämän onnistumiseen?",
-      "a10": "Yhden yhteyshenkilön, 3–5 haastattelua (johto + käyttäjät) ja sopimuksen 1–2 liiketoimintatavoitteesta optimoitavaksi. Jos et voi varata tätä, sprintti ei ole sen arvoinen — ja kerromme sen etukäteen.",
-      "bottomText": "Jos haluat 90 päivän suunnitelman, jonka voit oikeasti toteuttaa, aloita sprintillä."
+      "title": "What you walk away with",
+      "subtitle": "Five deliverables. Two weeks. No ambiguity.",
+      "item1Title": "1. Workflow map",
+      "item1Desc": "A clear picture of where your processes leak time, money, and quality today.",
+      "item2Title": "2. Opportunity shortlist",
+      "item2Desc": "Your AI opportunities ranked by impact vs. effort, so you know what to build first.",
+      "item3Title": "3. ROI model",
+      "item3Desc": "A conservative, defensible projection of what your first AI use case is worth. The slide your CFO needs.",
+      "item4Title": "4. 90-day execution plan",
+      "item4Desc": "Owners, steps, and success metrics. No vague timelines.",
+      "item5Title": "5. Pilot spec",
+      "item5Desc": "A build-ready specification for your first AI implementation. Scope, guardrails, escalation, and measurement defined."
     },
     "timeline": {
-      "title": "Aikataulu",
-      "week1": "VK1",
-      "week1Title": "Kartoita ja tutki",
-      "week1Desc": "Haastattelemme johtoa ja käyttäjiä, kartoitamme työnkulut, tunnistamme kipupisteet ja selvitämme missä AI voi tuoda todellista arvoa.",
-      "week2": "VK2",
-      "week2Title": "Priorisoi ja suunnittele",
-      "week2Desc": "Priorisoimme mahdollisuudet, rakennamme ROI-mallin, luomme 90 päivän toteutussuunnitelman ja spesifioimme Pilotti #1:n."
+      "title": "How the two weeks work",
+      "week1": "Week 1",
+      "week1Title": "Discover and map",
+      "week1Desc": "We interview leadership and frontline users, map your real workflows, and identify where AI can create measurable value.",
+      "week2": "Week 2",
+      "week2Title": "Prioritize and plan",
+      "week2Desc": "We rank your opportunities, build the ROI model, create the execution plan, and spec out your first pilot."
     },
     "requirements": {
-      "title": "Mitä tarvitsemme teiltä",
-      "item1": "Yhteyshenkilö (1 henkilö)",
-      "item2": "Pääsy johtoon + käyttäjiin (3–5 haastateltavaa)",
-      "item3": "Sopimus 1–2 liiketoimintatavoitteesta",
-      "notIncludedTitle": "Ei sisälly",
-      "notIncluded1": "Pilotin rakentaminen/käyttöönotto",
-      "notIncluded2": "Täysi data-alustatyö",
-      "notIncluded3": "Yrityksenlaajuiset koulutusohjelmat"
+      "title": "What we need from you",
+      "item1": "One point of contact",
+      "item2": "Access to 3-5 people for interviews (leadership + frontline users)",
+      "item3": "Agreement on 1-2 business outcomes you want to improve",
+      "honesty": "If you can't commit these, the Sprint won't deliver. We'll tell you that upfront."
     },
     "afterSprint": {
-      "title": "Sprintin jälkeen",
-      "subtitle": "Valitset polkusi eteenpäin.",
-      "option1Title": "Toteuta sisäisesti",
-      "option1Desc": "Vie tiekartta ja pilottispesifikaatio sisäiselle tiimillesi tai nykyisille toimittajillesi.",
-      "option2Title": "Pilotti VonAI:n kanssa",
-      "option2Desc": "Rakennamme ja toimitamme Pilotti #1:n tuotantoon (4–6 viikkoa).",
-      "option3Title": "Kuukausittainen optimointi",
-      "option3Desc": "Jatkuva hienosäätö, päivitykset, ROI-raportointi ja koulutus."
+      "title": "After the Sprint, you choose",
+      "option1Title": "Execute internally",
+      "option1Desc": "Take the roadmap and pilot spec to your own team or existing vendors.",
+      "option2Title": "Build with us",
+      "option2Desc": "We ship Pilot #1 into production in 4-6 weeks, with measured results.",
+      "option3Title": "Ongoing optimization",
+      "option3Desc": "Monthly tuning, ROI reporting, adoption support. Results compound."
+    },
+    "faq": {
+      "title": "Sprint FAQ",
+      "q1": "Is this just a workshop?",
+      "a1": "No. You leave with real deliverables: a workflow map, ranked opportunities, an ROI model, a 90-day plan, and a build-ready pilot spec.",
+      "q2": "Do you build anything during the Sprint?",
+      "a2": "No. The Sprint is for clarity and prioritization. Building happens in the Pilot phase (4-6 weeks), if you choose to continue.",
+      "q3": "What if we already tried AI and it failed?",
+      "a3": "That's common and usually fixable. The Sprint finds what went wrong: missing prioritization, poor workflow fit, weak adoption, or no guardrails.",
+      "q4": "Do we need perfect data to start?",
+      "a4": "No. We start workflow-first and identify the minimum data you actually need. If data quality is the blocker, the Sprint makes that visible early.",
+      "q5": "Will AI replace our people?",
+      "a5": "Not the goal. We design human-in-the-loop by default. AI supports your team; it doesn't replace the relationships your clients value.",
+      "q6": "How do you calculate ROI?",
+      "a6": "Two layers. First: time saved (the most defensible metric). Second: revenue uplift (conversion, cycle time) modeled conservatively and validated with your team."
     },
     "cta": {
-      "title": "Valmis aloittamaan?",
-      "subtitle": "Varaa puhelu ja keskustellaan tilanteestasi. Jos sprintti sopii, voimme aloittaa 2 viikon sisällä.",
-      "estimateRoi": "Arvioi ROI ensin"
-    }
-  },
-  "roiCalculator": {
-    "hero": {
-      "badge": "Itsepalveluarvio",
-      "title": "ROI-laskuri",
-      "subtitle": "Saa konservatiivinen arvio siitä, mitä yksi AI-työnkulku voisi säästää sinulle seuraavan 90 päivän aikana.",
-      "disclaimer": "Nämä ovat arvioita, eivät lupauksia. Sprintti validoi syötteet ja muuttaa tämän todelliseksi suunnitelmaksi."
-    },
-    "step1": {
-      "title": "Vaihe 1: Valitse aloituspiste",
-      "sales": "Myynti",
-      "salesDesc": "Enemmän asiakkaita, nopeammin",
-      "service": "Palvelu",
-      "serviceDesc": "Ohjaa + säilytä",
-      "operations": "Toiminnot",
-      "operationsDesc": "Vähemmän hallintoa"
-    },
-    "step2": {
-      "title": "Vaihe 2: Ajansäästöt",
-      "subtitle": "(helpoin puolustaa ROI)",
-      "itemsPerMonth": "Kohteet kuukaudessa",
-      "itemsHint": "esim. liidit, seurannat, tiketit, pyynnöt",
-      "minutesPerItem": "Minuuttia per kohde tänään",
-      "minutesHint": "Keskimääräinen aika per kohde",
-      "timeSaved": "% säästetty aika",
-      "conservative": "Konservatiivinen",
-      "likely": "Todennäköinen",
-      "aggressive": "Aggressiivinen",
-      "hourlyRate": "Täyskuormitettu tuntikustannus (€)",
-      "hourlyHint": "Jos epävarma, käytä €35–€60/h roolista riippuen"
-    },
-    "step3": {
-      "title": "Vaihe 3: Liikevaihdon vaikutus",
-      "subtitle": "(valinnainen)",
-      "leadsPerMonth": "Liidit kuukaudessa",
-      "conversionImprovement": "Konversion parannus",
-      "conservative": "Konservatiivinen",
-      "likely": "Todennäköinen",
-      "aggressive": "Aggressiivinen",
-      "grossProfit": "Bruttokate per myynti (€)",
-      "grossProfitHint": "Kate, ei liikevaihto. Jos epävarma: keskim. kauppa × bruttokate"
-    },
-    "step4": {
-      "title": "Vaihe 4: Kustannukset",
-      "subtitle": "(edistynyt / valinnainen)",
-      "setupCost": "Kertakäyttöönottokustannus (€)",
-      "monthlyCost": "Kuukausittainen työkalu/tukikustannus (€)"
-    },
-    "results": {
-      "title": "Arvio ROI:stasi",
-      "timeSaved": "Säästetty aika",
-      "hoursPerMonth": "h/kk",
-      "valueTimeSaved": "Säästetyn ajan arvo",
-      "perMonth": "/kk",
-      "grossProfitUplift": "Bruttokatteen kasvu",
-      "estimate": "arvio",
-      "netBenefit": "Nettohyöty",
-      "impact90Days": "90 päivän vaikutus",
-      "payback": "Takaisinmaksu",
-      "months": "kuukautta",
-      "annualRoi": "Vuotuinen ROI"
-    },
-    "cta": {
-      "title": "Haluatko oikean ROI-mallin?",
-      "subtitle": "Tämä laskuri antaa arvion. Sprintti antaa validoidun suunnitelman todellisilla luvuilla työnkuluistasi."
-    }
-  },
-  "about": {
-    "hero": {
-      "title1": "Operaattorivetoinen AI-transformaatio.",
-      "title2": "Rakennettu oikeaa työtä varten."
-    },
-    "story": {
-      "p1": "VonAI on olemassa lopettaakseen \"AI-teatterin\" ja aloittaakseen mitattavat tulokset.",
-      "p2": "Kartoitamme työnkulut, valitsemme oikean ensimmäisen voiton ja autamme tiimejä toimittamaan AI:n, joka maksaa itsensä takaisin.",
-      "p3": "Olemme suunnitelmallisesti työkaluriippumattomia ja keskitymme käyttöönottoon ja hallintoon, jotta ratkaisut jäävät pysyviksi."
-    },
-    "principles": {
-      "title": "Periaatteemme",
-      "workflowFirst": "Työnkulku ensin",
-      "workflowFirstDesc": "Ymmärrämme prosessisi ennen työkalujen suosittelemista.",
-      "roiMeasured": "ROI mitattu",
-      "roiMeasuredDesc": "Jos emme voi mitata sitä, emme suosittele sitä.",
-      "humanInLoop": "Ihminen mukana",
-      "humanInLoopDesc": "AI täydentää ihmisiä tarvittaessa, ei korvaa sokeasti.",
-      "buildSmall": "Rakenna pienesti, skaalaa sitten",
-      "buildSmallDesc": "Todista toimivuus ennen lisäinvestointeja."
-    },
-    "cta": {
-      "title": "Valmis työskentelemään yhdessä?",
-      "subtitle": "Aloita keskustelulla. Jos sovimme yhteen, voimme käynnistää sprintin 2 viikon sisällä."
+      "title": "Two weeks to clarity.",
+      "subtitle": "Book a free call. We'll confirm fit in 15 minutes.",
+      "cta": "Book a free call"
     }
   },
   "contact": {
     "hero": {
-      "title": "Varaa AI ROI -sprintti tai kysy kysymys.",
-      "subtitle": "Jos haluat selkeyden 2 viikossa ja 90 päivän suunnitelman, jonka voit toteuttaa, aloita sprintillä."
+      "title": "Let's figure out if the Sprint is right for you.",
+      "subtitle": "15 minutes. No pitch. We'll ask about your situation, tell you honestly whether we can help, and if so, what it would cost."
     },
     "bookCall": {
-      "title": "Varaa puhelu",
-      "subtitle": "Varaa 30–45 minuutin puhelu tilanteesi keskustelemiseksi."
+      "title": "Book a call",
+      "subtitle": "Pick a time that works. 15-30 minutes, depending on complexity."
     },
     "form": {
-      "title": "Lähetä viesti",
-      "subtitle": "Täytä lomake ja palaamme asiaan 24 tunnin sisällä.",
-      "name": "Nimi *",
-      "namePlaceholder": "Nimesi",
-      "email": "Sähköposti *",
-      "emailPlaceholder": "sinä@yritys.fi",
-      "company": "Yritys",
-      "companyPlaceholder": "Yrityksesi (valinnainen)",
-      "message": "Viesti *",
-      "messagePlaceholder": "Kerro työnkulkuhaasteistasi...",
-      "submit": "Lähetä viesti",
-      "sending": "Lähetetään...",
-      "emailDirect": "Tai lähetä sähköpostia suoraan osoitteeseen",
-      "successTitle": "Viesti lähetetty!",
-      "successDesc": "Olemme vastaanottaneet viestisi ja palaamme asiaan 24 tunnin sisällä.",
-      "errorTitle": "Jokin meni pieleen",
-      "errorDesc": "Yritä uudelleen tai lähetä sähköpostia osoitteeseen hello@von-ai.com"
+      "title": "Prefer to write?",
+      "subtitle": "Send a message and we'll reply within 24 hours.",
+      "name": "Name *",
+      "namePlaceholder": "Your name",
+      "email": "Email *",
+      "emailPlaceholder": "you@company.com",
+      "company": "Company",
+      "companyPlaceholder": "Your company (optional)",
+      "message": "Message *",
+      "messagePlaceholder": "What's the biggest friction in your workflows right now?",
+      "submit": "Send message",
+      "sending": "Sending...",
+      "emailDirect": "Or email directly:",
+      "successTitle": "Message sent!",
+      "successDesc": "We'll get back to you within 24 hours.",
+      "errorTitle": "Something went wrong",
+      "errorDesc": "Please try again or email us directly at hello@von-ai.com"
     },
-    "whatToInclude": {
-      "title": "Mitä sisällyttää viestiisi",
-      "item1": "Mikä tiimi/prosessi",
-      "item1Desc": "— myynti, palvelu, toiminnot vai muu?",
-      "item2": "Mikä ei toimi tänään",
-      "item2Desc": "— missä näet eniten kitkaa?",
-      "item3": "Mikä tulos on tärkein",
-      "item3Desc": "— säästetty aika, vähennetyt kustannukset vai kasvanut liikevaihto?",
-      "item4": "Nykyiset työkalusi",
-      "item4Desc": "(valinnainen) — CRM, tikettijärjestelmä, ERP jne.",
-      "bottomText": "Älä huoli, jos et ole varma kaikista yksityiskohdista — sitä varten sprintti on."
+    "whatHelps": {
+      "title": "It helps if you mention",
+      "item1": "What team or process is causing the most pain",
+      "item2": "What you've already tried (if anything)",
+      "item3": "What outcome matters most: time saved, cost reduced, or revenue increased",
+      "bottomText": "Don't have all the details? That's fine. That's what the call is for."
     },
     "finalCta": {
-      "title": "Valmis muuttamaan AI:n tuloksiksi?",
-      "subtitle": "Varaa sprintti-puhelu yllä ja saa selkeys 2 viikossa."
+      "title": "No commitment. Just clarity.",
+      "subtitle": "If we're not a fit, we'll tell you. If we are, you'll know exactly what happens next."
     }
   },
   "auth": {
-    "title": "Ylläpitäjän käyttöoikeus",
-    "signInSubtitle": "Kirjaudu sisään päästäksesi hallintapaneeliin",
-    "signUpSubtitle": "Luo ylläpitäjätili",
-    "email": "Sähköposti",
-    "password": "Salasana",
-    "signIn": "Kirjaudu sisään",
-    "createAccount": "Luo tili",
-    "needAccount": "Tarvitsetko tilin? Rekisteröidy",
-    "haveAccount": "Onko sinulla jo tili? Kirjaudu sisään",
-    "validationError": "Validointivirhe",
-    "authError": "Todennusvirhe",
-    "accountCreated": "Tili luotu",
-    "accountCreatedDesc": "Voit nyt kirjautua sisään.",
-    "forgotPassword": "Unohditko salasanan?",
-    "forgotPasswordTitle": "Nollaa salasana",
-    "forgotPasswordSubtitle": "Syötä sähköpostiosoitteesi ja lähetämme nollauslinkin",
-    "sendResetLink": "Lähetä nollauslinkki",
-    "resetLinkSent": "Nollauslinkki lähetetty",
-    "resetLinkSentDesc": "Tarkista sähköpostisi salasanan nollauslinkin varalta",
-    "newPassword": "Uusi salasana",
-    "confirmNewPassword": "Vahvista uusi salasana",
-    "updatePassword": "Päivitä salasana",
-    "passwordUpdated": "Salasana päivitetty",
-    "passwordUpdatedDesc": "Voit nyt kirjautua sisään uudella salasanallasi",
-    "passwordMismatch": "Salasanat eivät täsmää",
-    "backToLogin": "Takaisin kirjautumiseen"
+    "title": "Admin Access",
+    "signInSubtitle": "Sign in to access the admin dashboard",
+    "signUpSubtitle": "Create an admin account",
+    "email": "Email",
+    "password": "Password",
+    "signIn": "Sign In",
+    "createAccount": "Create Account",
+    "needAccount": "Need an account? Sign up",
+    "haveAccount": "Already have an account? Sign in",
+    "validationError": "Validation error",
+    "authError": "Authentication error",
+    "accountCreated": "Account created",
+    "accountCreatedDesc": "You can now sign in.",
+    "forgotPassword": "Forgot password?",
+    "forgotPasswordTitle": "Reset Password",
+    "forgotPasswordSubtitle": "Enter your email and we'll send you a reset link",
+    "sendResetLink": "Send Reset Link",
+    "resetLinkSent": "Reset link sent",
+    "resetLinkSentDesc": "Check your email for the password reset link",
+    "newPassword": "New Password",
+    "confirmNewPassword": "Confirm New Password",
+    "updatePassword": "Update Password",
+    "passwordUpdated": "Password updated",
+    "passwordUpdatedDesc": "You can now sign in with your new password",
+    "passwordMismatch": "Passwords do not match",
+    "backToLogin": "Back to login"
   },
   "notFound": {
     "title": "404",
-    "message": "Hups! Sivua ei löytynyt",
-    "returnHome": "Palaa etusivulle"
+    "message": "Page not found",
+    "returnHome": "Back to Home"
   },
   "chatWidget": {
-    "title": "VON AI -avustaja",
-    "subtitle": "Kysy palveluistamme",
-    "greeting": "Hei! Voin vastata kysymyksiin VON AI:n palveluista. Kokeile jotain näistä:",
-    "placeholder": "Kysy kysymys...",
+    "title": "VonAI Assistant",
+    "subtitle": "Ask about our services",
+    "greeting": "Hi! I can answer questions about VonAI. What would you like to know?",
+    "placeholder": "Ask a question...",
     "quickReplies": {
-      "whatIsSprint": "Mikä on AI ROI -sprintti?",
-      "howToStart": "Miten pääsen alkuun?",
-      "whatCost": "Mitä se maksaa?",
-      "howLong": "Kuinka kauan se kestää?"
+      "whatIsSprint": "What is the AI ROI Sprint?",
+      "howToStart": "How do I get started?",
+      "whatCost": "What does it cost?",
+      "howLong": "How long does it take?"
     },
-    "thinking": "Tarkistetaan tietoja...",
-    "error": "Pahoittelut, jokin meni pieleen:"
+    "thinking": "Checking...",
+    "error": "Sorry, something went wrong:"
   }
 }

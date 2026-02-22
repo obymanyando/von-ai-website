@@ -1,340 +1,184 @@
 {
   "nav": {
     "home": "Home",
-    "services": "Services",
     "aiRoiSprint": "AI ROI Sprint",
-    "roiCalculator": "ROI Calculator",
-    "about": "About",
     "contact": "Contact",
-    "bookSprint": "Book an AI ROI Sprint"
+    "bookCall": "Book a Free Call"
   },
   "footer": {
-    "description": "From AI experiments to ROI. We turn AI experimentation into measurable outcomes with a 2-week Sprint and a 90-day execution plan.",
+    "description": "VonAI helps B2B services firms stop experimenting with AI and start measuring results. Based in Helsinki. Working globally.",
     "navigation": "Navigation",
     "company": "Company",
     "rights": "© {{year}} VonAI. All rights reserved."
   },
   "home": {
     "hero": {
-      "title1": "From AI experiments",
-      "title2": "to ROI.",
-      "subtitle": "You don't need more AI tools. You need AI that moves the numbers.",
-      "description": "You'll leave with a <strong>90-day plan</strong> that tells you what to do first, why it matters, and how you'll measure success.",
-      "tagline": "No fluff. No \"innovation theatre.\" One clear plan. One real win.",
-      "seeHow": "See how it works"
+      "title1": "Your AI budget is growing.",
+      "title2": "Your results aren't.",
+      "subtitle": "Most B2B services firms have tried AI. Few can point to a number that changed. We fix that.",
+      "cta": "See how it works",
+      "secondaryCta": "Book a free call"
     },
     "problem": {
-      "title": "AI is easy to demo. Hard to make pay back.",
-      "description": "Most initiatives stall because: no ranked priorities, pilots don't reach production, teams don't trust outputs, adoption is random, ROI isn't measured.",
-      "solution": "We fix the part between \"cool demo\" and \"business impact.\""
+      "title": "Sound familiar?",
+      "pain1": "You've demoed tools but nothing reached production.",
+      "pain2": "Your team doesn't trust AI outputs, so adoption is low.",
+      "pain3": "Leadership wants an AI strategy. You don't know where to start that won't waste six figures.",
+      "pain4": "You tried a pilot. It worked in the demo. Then nothing happened.",
+      "punchline": "The gap between \"cool demo\" and business impact is where most AI money dies. That's the only part we work on."
+    },
+    "proof": {
+      "title": "Results from real engagements",
+      "case1Label": "Leadership coaching firm (9 people)",
+      "case1Problem": "Leads flooding in via WhatsApp, email, and DMs. Too few people to respond. Deals were slipping.",
+      "case1Solution": "We built an AI lead management system across WhatsApp, website, and email: automatic responses, contact capture, CRM updates, and calendar booking.",
+      "case1Result": "40% increase in lead conversion rate",
+      "case2Label": "Fitness center",
+      "case2Problem": "Customers kept asking questions already answered on the website. Staff spent 15 hours/week on repetitive replies.",
+      "case2Solution": "We deployed a customer-ready FAQ assistant grounded on real company data, with escalation to humans, unknown-question logging, and a weekly improvement loop.",
+      "case2Result": "From 15 hrs/week to 1.5 hrs/week on repetitive questions"
     },
     "sprint": {
-      "title": "AI ROI Sprint (2 weeks)",
-      "subtitle": "Everything you need to stop experimenting and start executing.",
-      "youGet": "You get:",
-      "workflowMap": "Workflow map:",
-      "workflowMapDesc": "where time, money, and quality leak",
-      "opportunityShortlist": "Opportunity shortlist",
-      "opportunityShortlistDesc": "ranked by Impact vs Effort",
-      "roiModel": "ROI model:",
-      "roiModelDesc": "cost saved + revenue uplift",
-      "roadmap": "90-day roadmap",
-      "roadmapDesc": "with owners, steps, and metrics",
-      "pilotSpec": "Pilot #1 spec",
-      "pilotSpecDesc": "(build-ready)",
-      "weDoItBy": "We do it by:",
-      "mapping": "Mapping your real workflows (leadership + users)",
-      "prioritizing": "Prioritizing the fastest wins",
-      "pressureTesting": "Pressure-testing with your team"
-    },
-    "startingPoints": {
-      "title": "Starting points",
-      "subtitle": "If one area is already strong, the Sprint surfaces the next best ROI lever.",
-      "sales": "Sales — more customers, faster",
-      "salesDesc": "Faster follow-up, less pipeline leakage. Cleaner CRM, better visibility.",
-      "service": "Service — deflect, retain, upsell",
-      "serviceDesc": "Faster answers, better triage, better experience.",
-      "operations": "Operations — less manual work",
-      "operationsDesc": "Fewer handoffs, fewer errors, more flow.",
-      "tryCalculator": "Try the ROI Calculator"
+      "title": "How we work: the AI ROI Sprint",
+      "subtitle": "A 2-week engagement that replaces months of guessing with a clear, executable plan.",
+      "youLeaveWith": "You leave with:",
+      "deliverable1": "A map of where your workflows leak time and money",
+      "deliverable2": "Your highest-impact AI opportunities, ranked",
+      "deliverable3": "A conservative ROI model your CFO can believe",
+      "deliverable4": "A 90-day execution plan with owners and metrics",
+      "deliverable5": "A build-ready spec for your first AI implementation",
+      "learnMore": "See full Sprint details"
     },
     "path": {
-      "title": "Your path from AI idea to ROI",
-      "step1Title": "AI ROI Sprint",
-      "step1Desc": "2 weeks — 90-day roadmap + ROI model + Pilot #1 spec",
-      "step2Title": "AI ROI Pilot",
-      "step2Desc": "4–6 weeks — Pilot #1 shipped into production with measured results",
-      "step3Title": "Optimization & Adoption",
-      "step3Desc": "Monthly — ROI compounds; AI stays useful and aligned",
-      "learnMore": "Learn more about our services"
+      "title": "What happens after the Sprint",
+      "step1Title": "Sprint",
+      "step1Duration": "2 weeks",
+      "step1Desc": "Clarity, priorities, and a plan you can execute.",
+      "step2Title": "Pilot",
+      "step2Duration": "4-6 weeks",
+      "step2Desc": "Your first AI use case shipped into production with measured results.",
+      "step3Title": "Scale",
+      "step3Duration": "Monthly",
+      "step3Desc": "Ongoing optimization, adoption support, and ROI reporting."
     },
     "whyVonai": {
-      "title": "Why VonAI",
-      "ship": "We ship. Not just advise.",
-      "workflow": "Workflow-first. Tools come after clarity.",
-      "roi": "ROI or it doesn't count.",
-      "human": "Human-first adoption.",
-      "agnostic": "Tool-agnostic."
+      "title": "Why teams pick VonAI",
+      "reason1Title": "We ship, not just advise.",
+      "reason1Desc": "Every engagement ends with something in production, not a slide deck.",
+      "reason2Title": "Workflow-first, not tool-first.",
+      "reason2Desc": "We understand your process before recommending any technology.",
+      "reason3Title": "ROI or it doesn't count.",
+      "reason3Desc": "Every project has a number attached. If we can't measure it, we don't recommend it.",
+      "reason4Title": "Human-first adoption.",
+      "reason4Desc": "AI that your team doesn't trust is AI that doesn't get used. We design for real humans.",
+      "reason5Title": "Tool-agnostic.",
+      "reason5Desc": "We work with your current stack. No forced platform decisions."
     },
     "faq": {
-      "title": "FAQ",
-      "subtitle": "Quick answers to the questions people ask before they book.",
-      "q1": "Is the AI ROI Sprint just a workshop?",
-      "a1": "No. You leave with real outputs: an opportunity matrix, a simple ROI model, and a 90-day plan—plus a build-ready spec for Pilot #1.",
-      "q2": "Do you build anything during the Sprint?",
-      "a2": "Usually no. The Sprint is for clarity + prioritization + ROI validation. If you want implementation, that's the AI ROI Pilot (4–6 weeks).",
-      "q3": "How do you calculate ROI?",
-      "a3": "We start with time savings (the most defensible). If relevant, we also model revenue uplift (conversion, cycle time) conservatively and validate assumptions with your team.",
-      "q4": "What do you need from us?",
-      "a4": "A point of contact, access to 3–5 people for interviews (leadership + users), and agreement on 1–2 outcomes you care about (time, cost, revenue).",
-      "stillUnsure": "Still unsure?",
-      "bookCall": "Book the Sprint call",
-      "confirmFit": "and we'll confirm fit in 15 minutes."
+      "title": "Questions before you reach out",
+      "q1": "Who is this for?",
+      "a1": "B2B services firms (typically 10-200 people) who've tried AI or are under pressure to start, and want measurable results instead of more experiments.",
+      "q2": "What does it cost?",
+      "a2": "It depends on scope. Book a free call and we'll tell you within 15 minutes whether the Sprint is a fit and what it would cost for your situation.",
+      "q3": "What if we already tried AI and it didn't work?",
+      "a3": "That's most of our clients. Usually the missing piece is prioritization, workflow fit, adoption, or guardrails. The Sprint finds what blocked ROI and fixes the approach.",
+      "q4": "Which tools do you use?",
+      "a4": "Whatever fits your situation. We're tool-agnostic by design. No vendor lock-in, no forced platform changes.",
+      "q5": "How fast can we see results?",
+      "a5": "Clarity in 2 weeks. A production pilot in 4-6 weeks after that. Measurement starts from day one."
     },
     "finalCta": {
-      "title": "Ready to turn AI into a 90-day plan you can actually execute?",
-      "tryCalculator": "Try the ROI Calculator"
-    }
-  },
-  "services": {
-    "hero": {
-      "title": "Plan → Ship → Scale",
-      "subtitle": "From clarity to production to compounding returns. Each step builds on the last."
-    },
-    "sprint": {
-      "step": "Step 1: Plan",
-      "title": "AI ROI Sprint",
-      "duration": "2 weeks",
-      "outcome": "Outcome:",
-      "outcomeDesc": "90-day roadmap + ROI model + Pilot #1 spec",
-      "goodFit": "Good fit if:",
-      "goodFit1": "You want measurable outcomes in 90 days",
-      "goodFit2": "You can give access to 3–5 interviewees",
-      "goodFit3": "You're ready to change a workflow, not just buy a tool",
-      "notFit": "Not a fit if:",
-      "notFit1": "You want \"AI strategy\" without implementation",
-      "notFit2": "You want a huge platform build as step one",
-      "tryCalculator": "Try the ROI Calculator",
-      "deliverables": "Sprint Deliverables",
-      "deliverable1": "Workflow Reality Map",
-      "deliverable2": "Opportunity Matrix (Impact vs Effort)",
-      "deliverable3": "ROI Model (the money slide)",
-      "deliverable4": "90-day Execution Plan (owners + metrics)",
-      "deliverable5": "Pilot #1 Specification (build-ready)",
-      "seeDetails": "See full Sprint details"
-    },
-    "pilot": {
-      "step": "Step 2: Ship",
-      "title": "AI ROI Pilot",
-      "duration": "4–6 weeks",
-      "outcome": "Outcome:",
-      "outcomeDesc": "Pilot #1 shipped into production with measured results.",
-      "production": "Production means: scope, guardrails, escalation, monitoring, measurement."
-    },
-    "optimization": {
-      "step": "Step 3: Scale",
-      "title": "Optimization & Adoption",
-      "duration": "Monthly",
-      "outcome": "Outcome:",
-      "outcomeDesc": "ROI compounds; AI stays useful and aligned.",
-      "includes": "Includes tuning, updates, ROI reporting, enablement."
-    },
-    "whatWeDont": {
-      "title": "What we don't do",
-      "item1": "No vague strategy with no execution.",
-      "item2": "No massive platforms as step one.",
-      "item3": "No tool forcing."
-    },
-    "cta": {
-      "title": "Ready to start with clarity?",
-      "subtitle": "The Sprint is where every engagement begins. Two weeks to a 90-day plan you can execute."
+      "title": "Stop guessing. Start measuring.",
+      "subtitle": "Book a free 15-minute call. We'll tell you if the Sprint is a fit for your situation.",
+      "cta": "Book a free call"
     }
   },
   "aiRoiSprint": {
     "hero": {
       "badge": "2-week engagement",
       "title": "AI ROI Sprint",
-      "subtitle": "Leave with a 90-day plan you can execute."
+      "subtitle": "Stop experimenting. Leave with a 90-day plan your team can actually execute."
+    },
+    "problem": {
+      "title": "Why most AI initiatives stall",
+      "reason1": "No ranked priorities. Everything feels equally urgent.",
+      "reason2": "Pilots never reach production. The demo works, then sits.",
+      "reason3": "Teams don't trust the outputs. Adoption stays low.",
+      "reason4": "Nobody is measuring ROI. So nobody knows what's working.",
+      "bridgeLine": "The Sprint solves all four in two weeks."
     },
     "deliverables": {
-      "title": "5 Deliverables",
-      "subtitle": "Everything you need to move from experimentation to execution.",
-      "item1Title": "1. Workflow Reality Map",
-      "item1Desc": "Where time, money, and quality leak in your current processes.",
-      "item2Title": "2. Opportunity Matrix",
-      "item2Desc": "Impact vs Effort ranking to prioritize the fastest wins.",
-      "item3Title": "3. ROI Model",
-      "item3Desc": "The money slide — cost saved + revenue uplift, clearly quantified.",
-      "item4Title": "4. 90-day Execution Plan",
-      "item4Desc": "Owners, steps, and metrics. No ambiguity.",
-      "item5Title": "5. Pilot #1 Specification",
-      "item5Desc": "Build-ready spec for your first AI implementation.",
-      "allIn2Weeks": "All in just 2 weeks"
-    },
-    "faq": {
-      "title": "FAQ (Before you book)",
-      "subtitle": "These are the questions that decide whether a Sprint is worth it. Here are direct answers.",
-      "q1": "Is the AI ROI Sprint just a workshop?",
-      "a1": "No. It's a fixed-scope engagement with deliverables: workflow reality map, ranked opportunity matrix, ROI model, and a 90-day execution plan.",
-      "q2": "What's the biggest outcome of the Sprint?",
-      "a2": "You stop guessing. You leave knowing what to build first, why it matters, and how you'll measure success in the next 90 days.",
-      "q3": "Do you build anything during the Sprint?",
-      "a3": "Not typically. The Sprint is designed to choose the right first win and define it properly. Building happens in the AI ROI Pilot (4–6 weeks).",
-      "q4": "What if we already tried AI and it didn't work?",
-      "a4": "That's common. Usually the missing piece is prioritization, workflow integration, adoption, or guardrails. The Sprint finds what blocked ROI and fixes the approach.",
-      "q5": "Do we need perfect data before we start?",
-      "a5": "No. We start workflow-first and identify the minimum viable data needed. If data quality is the blocker, the Sprint makes that visible early so you don't waste time building the wrong thing.",
-      "q6": "Will AI replace our people?",
-      "a6": "That's not the goal. For high-trust work, we design human-in-the-loop by default. AI supports the team; it doesn't undermine the relationship.",
-      "q7": "Which tools do you use?",
-      "a7": "Tool-agnostic. We work with your current stack and recommend the simplest approach that gets a measurable result. No forced platform decisions.",
-      "q8": "How do you measure ROI?",
-      "a8": "We model ROI in two layers: (1) Time saved → cost savings (most defensible), and (2) Revenue uplift (optional, conservative, validated—e.g., improved follow-up, conversion, cycle time).",
-      "q9": "How fast can we see results?",
-      "a9": "Clarity in 2 weeks (Sprint). A first production pilot can usually ship in 4–6 weeks after that. Measurement starts from day one.",
-      "q10": "What do you need from us to make this work?",
-      "a10": "One point of contact, 3–5 interviews (leadership + users), and agreement on 1–2 business outcomes to optimize. If you can't allocate this, the Sprint won't be worth it—and we'll tell you upfront.",
-      "bottomText": "If you want a 90-day plan you can actually execute, start with the Sprint."
+      "title": "What you walk away with",
+      "subtitle": "Five deliverables. Two weeks. No ambiguity.",
+      "item1Title": "1. Workflow map",
+      "item1Desc": "A clear picture of where your processes leak time, money, and quality today.",
+      "item2Title": "2. Opportunity shortlist",
+      "item2Desc": "Your AI opportunities ranked by impact vs. effort, so you know what to build first.",
+      "item3Title": "3. ROI model",
+      "item3Desc": "A conservative, defensible projection of what your first AI use case is worth. The slide your CFO needs.",
+      "item4Title": "4. 90-day execution plan",
+      "item4Desc": "Owners, steps, and success metrics. No vague timelines.",
+      "item5Title": "5. Pilot spec",
+      "item5Desc": "A build-ready specification for your first AI implementation. Scope, guardrails, escalation, and measurement defined."
     },
     "timeline": {
-      "title": "Timeline",
-      "week1": "W1",
-      "week1Title": "Discover & Map",
-      "week1Desc": "We interview leadership and users, map workflows, identify pain points, and uncover where AI can add real value.",
-      "week2": "W2",
-      "week2Title": "Prioritize & Plan",
-      "week2Desc": "We rank opportunities, build the ROI model, create the 90-day execution plan, and spec out Pilot #1."
+      "title": "How the two weeks work",
+      "week1": "Week 1",
+      "week1Title": "Discover and map",
+      "week1Desc": "We interview leadership and frontline users, map your real workflows, and identify where AI can create measurable value.",
+      "week2": "Week 2",
+      "week2Title": "Prioritize and plan",
+      "week2Desc": "We rank your opportunities, build the ROI model, create the execution plan, and spec out your first pilot."
     },
     "requirements": {
       "title": "What we need from you",
-      "item1": "Point of contact (1 person)",
-      "item2": "Access to leadership + users (3–5 interviewees)",
-      "item3": "Agreement on 1–2 business outcomes to target",
-      "notIncludedTitle": "Not included",
-      "notIncluded1": "Building/deploying the pilot",
-      "notIncluded2": "Full data platform work",
-      "notIncluded3": "Company-wide training programs"
+      "item1": "One point of contact",
+      "item2": "Access to 3-5 people for interviews (leadership + frontline users)",
+      "item3": "Agreement on 1-2 business outcomes you want to improve",
+      "honesty": "If you can't commit these, the Sprint won't deliver. We'll tell you that upfront."
     },
     "afterSprint": {
-      "title": "After the Sprint",
-      "subtitle": "You choose your path forward.",
+      "title": "After the Sprint, you choose",
       "option1Title": "Execute internally",
-      "option1Desc": "Take the roadmap and pilot spec to your internal team or existing vendors.",
-      "option2Title": "Pilot with VonAI",
-      "option2Desc": "We build and ship Pilot #1 into production (4–6 weeks).",
-      "option3Title": "Monthly optimization",
-      "option3Desc": "Ongoing tuning, updates, ROI reporting, and enablement."
+      "option1Desc": "Take the roadmap and pilot spec to your own team or existing vendors.",
+      "option2Title": "Build with us",
+      "option2Desc": "We ship Pilot #1 into production in 4-6 weeks, with measured results.",
+      "option3Title": "Ongoing optimization",
+      "option3Desc": "Monthly tuning, ROI reporting, adoption support. Results compound."
+    },
+    "faq": {
+      "title": "Sprint FAQ",
+      "q1": "Is this just a workshop?",
+      "a1": "No. You leave with real deliverables: a workflow map, ranked opportunities, an ROI model, a 90-day plan, and a build-ready pilot spec.",
+      "q2": "Do you build anything during the Sprint?",
+      "a2": "No. The Sprint is for clarity and prioritization. Building happens in the Pilot phase (4-6 weeks), if you choose to continue.",
+      "q3": "What if we already tried AI and it failed?",
+      "a3": "That's common and usually fixable. The Sprint finds what went wrong: missing prioritization, poor workflow fit, weak adoption, or no guardrails.",
+      "q4": "Do we need perfect data to start?",
+      "a4": "No. We start workflow-first and identify the minimum data you actually need. If data quality is the blocker, the Sprint makes that visible early.",
+      "q5": "Will AI replace our people?",
+      "a5": "Not the goal. We design human-in-the-loop by default. AI supports your team; it doesn't replace the relationships your clients value.",
+      "q6": "How do you calculate ROI?",
+      "a6": "Two layers. First: time saved (the most defensible metric). Second: revenue uplift (conversion, cycle time) modeled conservatively and validated with your team."
     },
     "cta": {
-      "title": "Ready to get started?",
-      "subtitle": "Book a call and we'll discuss your situation. If the Sprint is a fit, we can start within 2 weeks.",
-      "estimateRoi": "Estimate your ROI first"
-    }
-  },
-  "roiCalculator": {
-    "hero": {
-      "badge": "Self-serve estimate",
-      "title": "ROI Calculator",
-      "subtitle": "Get a conservative ballpark estimate of what one AI workflow could save you in the next 90 days.",
-      "disclaimer": "These are estimates, not promises. The Sprint validates the inputs and turns this into a real plan."
-    },
-    "step1": {
-      "title": "Step 1: Choose a starting point",
-      "sales": "Sales",
-      "salesDesc": "More customers, faster",
-      "service": "Service",
-      "serviceDesc": "Deflect + retain",
-      "operations": "Operations",
-      "operationsDesc": "Less admin"
-    },
-    "step2": {
-      "title": "Step 2: Time savings",
-      "subtitle": "(the most defensible ROI)",
-      "itemsPerMonth": "Items per month",
-      "itemsHint": "e.g., leads, follow-ups, tickets, requests",
-      "minutesPerItem": "Minutes per item today",
-      "minutesHint": "Average time spent per item",
-      "timeSaved": "% time saved",
-      "conservative": "Conservative",
-      "likely": "Likely",
-      "aggressive": "Aggressive",
-      "hourlyRate": "Fully-loaded hourly cost (€)",
-      "hourlyHint": "If unsure, use €35–€60/hr depending on role"
-    },
-    "step3": {
-      "title": "Step 3: Revenue impact",
-      "subtitle": "(optional)",
-      "leadsPerMonth": "Leads per month",
-      "conversionImprovement": "Conversion improvement",
-      "conservative": "Conservative",
-      "likely": "Likely",
-      "aggressive": "Aggressive",
-      "grossProfit": "Gross profit per sale (€)",
-      "grossProfitHint": "Profit, not revenue. If unsure: avg deal value × gross margin"
-    },
-    "step4": {
-      "title": "Step 4: Costs",
-      "subtitle": "(advanced / optional)",
-      "setupCost": "One-time setup cost (€)",
-      "monthlyCost": "Monthly tools/support cost (€)"
-    },
-    "results": {
-      "title": "Your ballpark ROI",
-      "timeSaved": "Time saved",
-      "hoursPerMonth": "hrs/mo",
-      "valueTimeSaved": "Value of time saved",
-      "perMonth": "/mo",
-      "grossProfitUplift": "Gross profit uplift",
-      "estimate": "estimate",
-      "netBenefit": "Net benefit",
-      "impact90Days": "90-day impact",
-      "payback": "Payback",
-      "months": "months",
-      "annualRoi": "Annual ROI"
-    },
-    "cta": {
-      "title": "Want a real ROI model?",
-      "subtitle": "This calculator gives you a ballpark. The Sprint gives you a validated plan with real numbers from your workflows."
-    }
-  },
-  "about": {
-    "hero": {
-      "title1": "Operator-led AI transformation.",
-      "title2": "Built for real work."
-    },
-    "story": {
-      "p1": "VonAI exists to stop \"AI theatre\" and start measurable outcomes.",
-      "p2": "We map workflows, choose the right first win, and help teams ship AI that pays back.",
-      "p3": "We're tool-agnostic by design and focused on adoption and governance so solutions stick."
-    },
-    "principles": {
-      "title": "Our principles",
-      "workflowFirst": "Workflow-first",
-      "workflowFirstDesc": "We understand your processes before recommending tools.",
-      "roiMeasured": "ROI measured",
-      "roiMeasuredDesc": "If we can't measure it, we don't recommend it.",
-      "humanInLoop": "Human-in-the-loop",
-      "humanInLoopDesc": "AI augments humans where needed, not replaces blindly.",
-      "buildSmall": "Build small, then scale",
-      "buildSmallDesc": "Prove it works before investing more."
-    },
-    "cta": {
-      "title": "Ready to work together?",
-      "subtitle": "Start with a conversation. If we're a fit, we can kick off the Sprint within 2 weeks."
+      "title": "Two weeks to clarity.",
+      "subtitle": "Book a free call. We'll confirm fit in 15 minutes.",
+      "cta": "Book a free call"
     }
   },
   "contact": {
     "hero": {
-      "title": "Book an AI ROI Sprint or ask a question.",
-      "subtitle": "If you want clarity in 2 weeks and a 90-day plan you can execute, start with the Sprint."
+      "title": "Let's figure out if the Sprint is right for you.",
+      "subtitle": "15 minutes. No pitch. We'll ask about your situation, tell you honestly whether we can help, and if so, what it would cost."
     },
     "bookCall": {
       "title": "Book a call",
-      "subtitle": "Schedule a 30-45 minutes call to discuss your situation."
+      "subtitle": "Pick a time that works. 15-30 minutes, depending on complexity."
     },
     "form": {
-      "title": "Send a message",
-      "subtitle": "Fill out the form and we'll get back to you within 24 hours.",
+      "title": "Prefer to write?",
+      "subtitle": "Send a message and we'll reply within 24 hours.",
       "name": "Name *",
       "namePlaceholder": "Your name",
       "email": "Email *",
@@ -342,30 +186,25 @@
       "company": "Company",
       "companyPlaceholder": "Your company (optional)",
       "message": "Message *",
-      "messagePlaceholder": "Tell us about your workflow challenges...",
-      "submit": "Send Message",
+      "messagePlaceholder": "What's the biggest friction in your workflows right now?",
+      "submit": "Send message",
       "sending": "Sending...",
-      "emailDirect": "Or email us directly at",
+      "emailDirect": "Or email directly:",
       "successTitle": "Message sent!",
-      "successDesc": "We've received your message and will get back to you within 24 hours.",
+      "successDesc": "We'll get back to you within 24 hours.",
       "errorTitle": "Something went wrong",
       "errorDesc": "Please try again or email us directly at hello@von-ai.com"
     },
-    "whatToInclude": {
-      "title": "What to include in your message",
-      "item1": "What team/process",
-      "item1Desc": "— sales, service, ops, or other?",
-      "item2": "What's breaking today",
-      "item2Desc": "— where do you see the most friction?",
-      "item3": "What outcome matters most",
-      "item3Desc": "— time saved, cost reduced, or revenue increased?",
-      "item4": "Your current tools",
-      "item4Desc": "(optional) — CRM, ticketing, ERP, etc.",
-      "bottomText": "Don't worry if you're not sure about all the details — that's what the Sprint is for."
+    "whatHelps": {
+      "title": "It helps if you mention",
+      "item1": "What team or process is causing the most pain",
+      "item2": "What you've already tried (if anything)",
+      "item3": "What outcome matters most: time saved, cost reduced, or revenue increased",
+      "bottomText": "Don't have all the details? That's fine. That's what the call is for."
     },
     "finalCta": {
-      "title": "Ready to turn AI into results?",
-      "subtitle": "Book the Sprint call above and get clarity in 2 weeks."
+      "title": "No commitment. Just clarity.",
+      "subtitle": "If we're not a fit, we'll tell you. If we are, you'll know exactly what happens next."
     }
   },
   "auth": {
@@ -398,13 +237,13 @@
   },
   "notFound": {
     "title": "404",
-    "message": "Oops! Page not found",
-    "returnHome": "Return to Home"
+    "message": "Page not found",
+    "returnHome": "Back to Home"
   },
   "chatWidget": {
-    "title": "VON AI Assistant",
+    "title": "VonAI Assistant",
     "subtitle": "Ask about our services",
-    "greeting": "Hi! I can answer questions about VON AI's services. Try one of these:",
+    "greeting": "Hi! I can answer questions about VonAI. What would you like to know?",
     "placeholder": "Ask a question...",
     "quickReplies": {
       "whatIsSprint": "What is the AI ROI Sprint?",
@@ -412,7 +251,7 @@
       "whatCost": "What does it cost?",
       "howLong": "How long does it take?"
     },
-    "thinking": "Checking knowledge...",
+    "thinking": "Checking...",
     "error": "Sorry, something went wrong:"
   }
 }

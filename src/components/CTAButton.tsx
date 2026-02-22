@@ -33,7 +33,7 @@ export function CTAButton({
 
   const buttonContent = (
     <>
-      {t("nav.bookSprint")}
+      {t("nav.bookCall")}
       {showArrow && <ArrowRight className="ml-1 h-4 w-4" />}
     </>
   );

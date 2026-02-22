@@ -10,13 +10,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
 import {
-  ArrowRight,
   Check,
-  X,
-  Calendar,
   Users,
   Target,
   FileText,
@@ -24,6 +19,8 @@ import {
   Clock,
   Workflow,
   Zap,
+  Calendar,
+  AlertTriangle,
 } from "lucide-react";
 
 export default function AIROISprint() {
@@ -33,7 +30,7 @@ export default function AIROISprint() {
     <Layout>
       <SEO
         title="AI ROI Sprint — 90-Day AI Implementation Plan"
-        description="Get a 90-day roadmap, ROI model, and Pilot #1 spec in just 2 weeks. Stop experimenting, start executing with measurable AI results."
+        description="Stop experimenting. Leave with a 90-day plan your team can actually execute. 2-week engagement with 5 deliverables."
         canonical="/ai-roi-sprint"
       />
       {/* Hero */}
@@ -57,6 +54,28 @@ export default function AIROISprint() {
         </div>
       </section>
 
+      {/* Why most AI initiatives stall */}
+      <Section variant="muted">
+        <div className="mx-auto max-w-4xl">
+          <h2 className="text-center text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+            {t("aiRoiSprint.problem.title")}
+          </h2>
+          <ul className="mt-10 space-y-4">
+            {[1, 2, 3, 4].map((num) => (
+              <li key={num} className="flex items-start gap-3">
+                <AlertTriangle className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber-500" />
+                <span className="text-lg text-muted-foreground">
+                  {t(`aiRoiSprint.problem.reason${num}`)}
+                </span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-10 text-center text-xl font-semibold text-primary">
+            {t("aiRoiSprint.problem.bridgeLine")}
+          </p>
+        </div>
+      </Section>
+
       {/* 5 Deliverables */}
       <Section>
         <SectionHeader
@@ -65,87 +84,25 @@ export default function AIROISprint() {
         />
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          <Card variant="elevated" className="flex flex-col">
-            <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-              <Workflow className="h-6 w-6 text-primary" />
-            </div>
-            <h3 className="mb-2 text-lg font-bold text-foreground">{t("aiRoiSprint.deliverables.item1Title")}</h3>
-            <p className="text-muted-foreground">
-              {t("aiRoiSprint.deliverables.item1Desc")}
-            </p>
-          </Card>
-
-          <Card variant="elevated" className="flex flex-col">
-            <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-              <Target className="h-6 w-6 text-primary" />
-            </div>
-            <h3 className="mb-2 text-lg font-bold text-foreground">{t("aiRoiSprint.deliverables.item2Title")}</h3>
-            <p className="text-muted-foreground">
-              {t("aiRoiSprint.deliverables.item2Desc")}
-            </p>
-          </Card>
-
-          <Card variant="elevated" className="flex flex-col">
-            <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-              <BarChart3 className="h-6 w-6 text-primary" />
-            </div>
-            <h3 className="mb-2 text-lg font-bold text-foreground">{t("aiRoiSprint.deliverables.item3Title")}</h3>
-            <p className="text-muted-foreground">
-              {t("aiRoiSprint.deliverables.item3Desc")}
-            </p>
-          </Card>
-
-          <Card variant="elevated" className="flex flex-col">
-            <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-              <Calendar className="h-6 w-6 text-primary" />
-            </div>
-            <h3 className="mb-2 text-lg font-bold text-foreground">{t("aiRoiSprint.deliverables.item4Title")}</h3>
-            <p className="text-muted-foreground">
-              {t("aiRoiSprint.deliverables.item4Desc")}
-            </p>
-          </Card>
-
-          <Card variant="elevated" className="flex flex-col">
-            <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-              <FileText className="h-6 w-6 text-primary" />
-            </div>
-            <h3 className="mb-2 text-lg font-bold text-foreground">{t("aiRoiSprint.deliverables.item5Title")}</h3>
-            <p className="text-muted-foreground">
-              {t("aiRoiSprint.deliverables.item5Desc")}
-            </p>
-          </Card>
-
-          <Card variant="bordered" className="flex flex-col items-center justify-center text-center">
-            <Zap className="mb-4 h-10 w-10 text-primary" />
-            <p className="font-semibold text-foreground">{t("aiRoiSprint.deliverables.allIn2Weeks")}</p>
-          </Card>
-        </div>
-      </Section>
-
-      {/* FAQ */}
-      <Section variant="muted">
-        <SectionHeader
-          title={t("aiRoiSprint.faq.title")}
-          subtitle={t("aiRoiSprint.faq.subtitle")}
-        />
-
-        <div className="mx-auto max-w-3xl">
-          <Accordion type="single" collapsible className="w-full">
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (
-              <AccordionItem key={num} value={`item-${num}`} className="border-border">
-                <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:no-underline">
-                  {t(`aiRoiSprint.faq.q${num}`)}
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">
-                  {t(`aiRoiSprint.faq.a${num}`)}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-
-          <p className="mt-8 text-center text-lg text-muted-foreground">
-            {t("aiRoiSprint.faq.bottomText")}
-          </p>
+          {[
+            { icon: Workflow, num: 1 },
+            { icon: Target, num: 2 },
+            { icon: BarChart3, num: 3 },
+            { icon: Calendar, num: 4 },
+            { icon: FileText, num: 5 },
+          ].map((item) => (
+            <Card key={item.num} variant="elevated" className="flex flex-col">
+              <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
+                <item.icon className="h-6 w-6 text-primary" />
+              </div>
+              <h3 className="mb-2 text-lg font-bold text-foreground">
+                {t(`aiRoiSprint.deliverables.item${item.num}Title`)}
+              </h3>
+              <p className="text-muted-foreground">
+                {t(`aiRoiSprint.deliverables.item${item.num}Desc`)}
+              </p>
+            </Card>
+          ))}
         </div>
       </Section>
 
@@ -169,77 +126,67 @@ export default function AIROISprint() {
 
       {/* What we need */}
       <Section>
-        <div className="grid gap-12 lg:grid-cols-2">
-          <div>
-            <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-              {t("aiRoiSprint.requirements.title")}
-            </h2>
-            <ul className="mt-8 space-y-4">
-              <IconListItem icon={Users}>
-                {t("aiRoiSprint.requirements.item1")}
-              </IconListItem>
-              <IconListItem icon={Check}>
-                {t("aiRoiSprint.requirements.item2")}
-              </IconListItem>
-              <IconListItem icon={Target}>
-                {t("aiRoiSprint.requirements.item3")}
-              </IconListItem>
-            </ul>
-          </div>
-
-          <div>
-            <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-              {t("aiRoiSprint.requirements.notIncludedTitle")}
-            </h2>
-            <ul className="mt-8 space-y-4 text-muted-foreground">
-              <li className="flex items-start gap-3">
-                <X className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
-                <span>{t("aiRoiSprint.requirements.notIncluded1")}</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <X className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
-                <span>{t("aiRoiSprint.requirements.notIncluded2")}</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <X className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
-                <span>{t("aiRoiSprint.requirements.notIncluded3")}</span>
-              </li>
-            </ul>
-          </div>
+        <div className="mx-auto max-w-3xl">
+          <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+            {t("aiRoiSprint.requirements.title")}
+          </h2>
+          <ul className="mt-8 space-y-4">
+            <IconListItem icon={Users}>
+              {t("aiRoiSprint.requirements.item1")}
+            </IconListItem>
+            <IconListItem icon={Check}>
+              {t("aiRoiSprint.requirements.item2")}
+            </IconListItem>
+            <IconListItem icon={Target}>
+              {t("aiRoiSprint.requirements.item3")}
+            </IconListItem>
+          </ul>
+          <p className="mt-6 text-sm font-medium text-muted-foreground">
+            {t("aiRoiSprint.requirements.honesty")}
+          </p>
         </div>
       </Section>
 
       {/* After the Sprint */}
       <Section variant="muted">
-        <SectionHeader
-          title={t("aiRoiSprint.afterSprint.title")}
-          subtitle={t("aiRoiSprint.afterSprint.subtitle")}
-        />
+        <SectionHeader title={t("aiRoiSprint.afterSprint.title")} />
 
         <div className="grid gap-6 md:grid-cols-3">
-          <Card variant="bordered">
-            <h3 className="mb-3 text-lg font-bold text-foreground">{t("aiRoiSprint.afterSprint.option1Title")}</h3>
-            <p className="text-muted-foreground">
-              {t("aiRoiSprint.afterSprint.option1Desc")}
-            </p>
-          </Card>
-          <Card variant="bordered">
-            <h3 className="mb-3 text-lg font-bold text-foreground">{t("aiRoiSprint.afterSprint.option2Title")}</h3>
-            <p className="text-muted-foreground">
-              {t("aiRoiSprint.afterSprint.option2Desc")}
-            </p>
-          </Card>
-          <Card variant="bordered">
-            <h3 className="mb-3 text-lg font-bold text-foreground">{t("aiRoiSprint.afterSprint.option3Title")}</h3>
-            <p className="text-muted-foreground">
-              {t("aiRoiSprint.afterSprint.option3Desc")}
-            </p>
-          </Card>
+          {[1, 2, 3].map((num) => (
+            <Card key={num} variant="bordered">
+              <h3 className="mb-3 text-lg font-bold text-foreground">
+                {t(`aiRoiSprint.afterSprint.option${num}Title`)}
+              </h3>
+              <p className="text-muted-foreground">
+                {t(`aiRoiSprint.afterSprint.option${num}Desc`)}
+              </p>
+            </Card>
+          ))}
+        </div>
+      </Section>
+
+      {/* FAQ */}
+      <Section>
+        <SectionHeader title={t("aiRoiSprint.faq.title")} />
+
+        <div className="mx-auto max-w-3xl">
+          <Accordion type="single" collapsible className="w-full">
+            {[1, 2, 3, 4, 5, 6].map((num) => (
+              <AccordionItem key={num} value={`item-${num}`} className="border-border">
+                <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:no-underline">
+                  {t(`aiRoiSprint.faq.q${num}`)}
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
+                  {t(`aiRoiSprint.faq.a${num}`)}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </Section>
 
       {/* CTA */}
-      <Section>
+      <Section variant="muted">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
             {t("aiRoiSprint.cta.title")}
@@ -247,14 +194,8 @@ export default function AIROISprint() {
           <p className="mx-auto mt-4 max-w-xl text-lg text-muted-foreground">
             {t("aiRoiSprint.cta.subtitle")}
           </p>
-          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <div className="mt-10">
             <CTAButton variant="primary" size="xl" />
-            <Button variant="cta-outline" size="lg" asChild>
-              <Link to="/roi-calculator">
-                {t("aiRoiSprint.cta.estimateRoi")}
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
           </div>
         </div>
       </Section>

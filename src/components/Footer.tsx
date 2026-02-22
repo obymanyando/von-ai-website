@@ -7,13 +7,7 @@ const CONTACT_EMAIL = "hello@von-ai.com";
 
 const navigationKeys = [
   { href: "/", key: "home" },
-  { href: "/services", key: "services" },
   { href: "/ai-roi-sprint", key: "aiRoiSprint" },
-  { href: "/roi-calculator", key: "roiCalculator" },
-];
-
-const companyKeys = [
-  { href: "/about", key: "about" },
   { href: "/contact", key: "contact" },
 ];
 
@@ -24,7 +18,7 @@ export function Footer() {
   return (
     <footer className="border-t border-border bg-muted/30">
       <div className="container-padding mx-auto max-w-7xl py-12 md:py-16">
-        <div className="grid gap-8 md:grid-cols-4">
+        <div className="grid gap-8 md:grid-cols-3">
           {/* Brand */}
           <div className="md:col-span-2">
             <Link to="/" className="inline-block">
@@ -47,23 +41,6 @@ export function Footer() {
             <h4 className="text-sm font-semibold text-foreground">{t("footer.navigation")}</h4>
             <ul className="mt-4 space-y-2">
               {navigationKeys.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    to={link.href}
-                    className="text-sm text-muted-foreground transition-colors hover:text-primary"
-                  >
-                    {t(`nav.${link.key}`)}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Company Links */}
-          <div>
-            <h4 className="text-sm font-semibold text-foreground">{t("footer.company")}</h4>
-            <ul className="mt-4 space-y-2">
-              {companyKeys.map((link) => (
                 <li key={link.href}>
                   <Link
                     to={link.href}

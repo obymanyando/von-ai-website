@@ -12,10 +12,7 @@ const CALENDLY_URL = "https://calendly.com/oby-manyando/onboarding-call";
 
 const navLinkKeys = [
   { href: "/", key: "home" },
-  { href: "/services", key: "services" },
   { href: "/ai-roi-sprint", key: "aiRoiSprint" },
-  { href: "/roi-calculator", key: "roiCalculator" },
-  { href: "/about", key: "about" },
   { href: "/contact", key: "contact" },
 ];
 
@@ -52,16 +49,16 @@ export function Navbar() {
 
         {/* CTA Button & Theme Toggle & Language Switcher - Desktop */}
         <div className="hidden items-center gap-2 md:flex">
-          <LanguageSwitcher />
+          {/* <LanguageSwitcher /> */}
           <ThemeToggle />
           <Button variant="cta" size="default" asChild>
-            <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">{t("nav.bookSprint")}</a>
+            <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">{t("nav.bookCall")}</a>
           </Button>
         </div>
 
         {/* Mobile Menu Button & Theme Toggle & Language Switcher */}
         <div className="flex items-center gap-2 md:hidden">
-          <LanguageSwitcher />
+          {/* <LanguageSwitcher /> */}
           <ThemeToggle />
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -96,7 +93,7 @@ export function Navbar() {
             ))}
             <div className="pt-4">
               <Button variant="cta" size="default" className="w-full" asChild>
-                <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">{t("nav.bookSprint")}</a>
+                <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">{t("nav.bookCall")}</a>
               </Button>
             </div>
           </div>

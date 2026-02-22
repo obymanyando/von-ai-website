@@ -4,7 +4,7 @@ import { Layout } from "@/components/Layout";
 import { Section } from "@/components/Section";
 import { Card, IconListItem } from "@/components/Card";
 import { InlineWidget } from "react-calendly";
-import { Mail, Calendar, MessageSquare, Briefcase, AlertCircle, Target, Wrench, Send, Loader2 } from "lucide-react";
+import { Mail, Calendar, MessageSquare, Briefcase, AlertCircle, Target, Send, Loader2 } from "lucide-react";
 import { SEO } from "@/components/SEO";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -213,33 +213,30 @@ export default function Contact() {
         </div>
       </Section>
 
-      {/* What to Include */}
+      {/* What Helps */}
       <Section variant="muted">
         <div className="mx-auto max-w-3xl">
           <div className="mb-8 flex items-center gap-3">
             <MessageSquare className="h-8 w-8 text-primary" />
-            <h2 className="text-2xl font-bold text-foreground">{t("contact.whatToInclude.title")}</h2>
+            <h2 className="text-2xl font-bold text-foreground">{t("contact.whatHelps.title")}</h2>
           </div>
 
           <Card variant="bordered">
             <ul className="space-y-4">
               <IconListItem icon={Briefcase}>
-                <span className="font-medium">{t("contact.whatToInclude.item1")}</span> {t("contact.whatToInclude.item1Desc")}
+                {t("contact.whatHelps.item1")}
               </IconListItem>
               <IconListItem icon={AlertCircle}>
-                <span className="font-medium">{t("contact.whatToInclude.item2")}</span> {t("contact.whatToInclude.item2Desc")}
+                {t("contact.whatHelps.item2")}
               </IconListItem>
               <IconListItem icon={Target}>
-                <span className="font-medium">{t("contact.whatToInclude.item3")}</span> {t("contact.whatToInclude.item3Desc")}
-              </IconListItem>
-              <IconListItem icon={Wrench}>
-                <span className="font-medium">{t("contact.whatToInclude.item4")}</span> {t("contact.whatToInclude.item4Desc")}
+                {t("contact.whatHelps.item3")}
               </IconListItem>
             </ul>
           </Card>
 
           <p className="mt-6 text-center text-muted-foreground">
-            {t("contact.whatToInclude.bottomText")}
+            {t("contact.whatHelps.bottomText")}
           </p>
         </div>
       </Section>

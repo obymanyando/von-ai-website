@@ -1,4 +1,4 @@
-import { useTranslation, Trans } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/Layout";
 import { Section, SectionHeader } from "@/components/Section";
 import { CTAButton, SecondaryCTA } from "@/components/CTAButton";
@@ -23,7 +23,10 @@ import {
   Clock,
   Shield,
   Workflow,
+  AlertTriangle,
 } from "lucide-react";
+
+const CALENDLY_URL = "https://calendly.com/oby-manyando/onboarding-call";
 
 export default function Home() {
   const { t } = useTranslation();
@@ -31,13 +34,12 @@ export default function Home() {
   return (
     <Layout>
       <SEO
-        title="VonAI — From AI experiments to ROI"
-        description="You don't need more AI tools. You need AI that moves the numbers. Get a 90-day plan with the AI ROI Sprint."
+        title="VonAI — Your AI budget is growing. Your results aren't."
+        description="Most B2B services firms have tried AI. Few can point to a number that changed. We fix that."
         canonical="/"
       />
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-background">
-        {/* Subtle background pattern */}
         <div className="absolute inset-0 -z-10">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent" />
           <div className="absolute right-0 top-0 -z-10 h-[600px] w-[600px] rounded-full bg-primary/5 blur-3xl" />
@@ -54,19 +56,9 @@ export default function Home() {
               {t("home.hero.subtitle")}
             </p>
 
-            <p className="animate-fade-in-up animation-delay-200 mx-auto mt-4 max-w-2xl text-base text-muted-foreground md:text-lg">
-              <Trans i18nKey="home.hero.description">
-                You'll leave with a <span className="font-semibold text-foreground">90-day plan</span> that tells you what to do first, why it matters, and how you'll measure success.
-              </Trans>
-            </p>
-
-            <p className="animate-fade-in-up animation-delay-300 mt-6 text-sm font-medium text-muted-foreground">
-              {t("home.hero.tagline")}
-            </p>
-
-            <div className="animate-fade-in-up animation-delay-400 mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <div className="animate-fade-in-up animation-delay-200 mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <SecondaryCTA text={t("home.hero.cta")} href="/ai-roi-sprint" />
               <CTAButton variant="primary" size="xl" />
-              <SecondaryCTA text={t("home.hero.seeHow")} href="/ai-roi-sprint" />
             </div>
           </div>
         </div>
@@ -74,137 +66,97 @@ export default function Home() {
 
       {/* Problem Section */}
       <Section variant="muted">
-        <div className="mx-auto max-w-4xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+        <div className="mx-auto max-w-4xl">
+          <h2 className="text-center text-3xl font-bold tracking-tight text-foreground md:text-4xl">
             {t("home.problem.title")}
           </h2>
-          <p className="mx-auto mt-6 max-w-3xl text-lg text-muted-foreground">
-            {t("home.problem.description")}
-          </p>
-          <p className="mt-8 text-xl font-semibold text-foreground">
-            {t("home.problem.solution")}
+          <ul className="mt-10 space-y-4">
+            {[1, 2, 3, 4].map((num) => (
+              <li key={num} className="flex items-start gap-3">
+                <AlertTriangle className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber-500" />
+                <span className="text-lg text-muted-foreground">
+                  {t(`home.problem.pain${num}`)}
+                </span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-10 text-center text-xl font-semibold text-foreground">
+            {t("home.problem.punchline")}
           </p>
         </div>
       </Section>
 
-      {/* AI ROI Sprint Section */}
+      {/* Proof / Case Studies Section */}
       <Section>
+        <SectionHeader title={t("home.proof.title")} />
+
+        <div className="grid gap-8 md:grid-cols-2">
+          {[1, 2].map((num) => (
+            <Card key={num} variant="elevated" className="flex flex-col">
+              <div className="mb-4 inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
+                {t(`home.proof.case${num}Label`)}
+              </div>
+              <div className="space-y-3">
+                <div>
+                  <p className="text-sm font-medium text-muted-foreground">Problem:</p>
+                  <p className="text-muted-foreground">{t(`home.proof.case${num}Problem`)}</p>
+                </div>
+                <div>
+                  <p className="text-sm font-medium text-muted-foreground">Solution:</p>
+                  <p className="text-muted-foreground">{t(`home.proof.case${num}Solution`)}</p>
+                </div>
+                <div className="rounded-lg bg-primary/5 p-4">
+                  <p className="font-semibold text-primary">{t(`home.proof.case${num}Result`)}</p>
+                </div>
+              </div>
+            </Card>
+          ))}
+        </div>
+      </Section>
+
+      {/* AI ROI Sprint Section */}
+      <Section variant="muted">
         <SectionHeader
           title={t("home.sprint.title")}
           subtitle={t("home.sprint.subtitle")}
         />
 
-        <div className="grid gap-8 lg:grid-cols-2">
-          {/* You get */}
-          <Card variant="elevated" className="h-full">
-            <h3 className="mb-6 text-xl font-bold text-foreground">{t("home.sprint.youGet")}</h3>
+        <div className="mx-auto max-w-3xl">
+          <Card variant="elevated">
+            <h3 className="mb-6 text-xl font-bold text-foreground">{t("home.sprint.youLeaveWith")}</h3>
             <ul className="space-y-4">
-              <IconListItem icon={Workflow}>
-                <span className="font-medium">{t("home.sprint.workflowMap")}</span> {t("home.sprint.workflowMapDesc")}
-              </IconListItem>
-              <IconListItem icon={Target}>
-                <span className="font-medium">{t("home.sprint.opportunityShortlist")}</span> {t("home.sprint.opportunityShortlistDesc")}
-              </IconListItem>
-              <IconListItem icon={BarChart3}>
-                <span className="font-medium">{t("home.sprint.roiModel")}</span> {t("home.sprint.roiModelDesc")}
-              </IconListItem>
-              <IconListItem icon={Clock}>
-                <span className="font-medium">{t("home.sprint.roadmap")}</span> {t("home.sprint.roadmapDesc")}
-              </IconListItem>
-              <IconListItem icon={Zap}>
-                <span className="font-medium">{t("home.sprint.pilotSpec")}</span> {t("home.sprint.pilotSpecDesc")}
-              </IconListItem>
-            </ul>
-          </Card>
-
-          {/* We do it by */}
-          <Card variant="bordered" className="h-full">
-            <h3 className="mb-6 text-xl font-bold text-foreground">{t("home.sprint.weDoItBy")}</h3>
-            <ul className="space-y-4 text-muted-foreground">
-              <li className="flex items-start gap-3">
-                <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-                <span>{t("home.sprint.mapping")}</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-                <span>{t("home.sprint.prioritizing")}</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-                <span>{t("home.sprint.pressureTesting")}</span>
-              </li>
+              {[1, 2, 3, 4, 5].map((num) => (
+                <li key={num} className="flex items-start gap-3">
+                  <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                  <span className="text-muted-foreground">{t(`home.sprint.deliverable${num}`)}</span>
+                </li>
+              ))}
             </ul>
             <div className="mt-8">
-              <CTAButton variant="primary" size="lg" />
+              <Button variant="cta-outline" size="lg" asChild>
+                <Link to="/ai-roi-sprint">
+                  {t("home.sprint.learnMore")}
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
             </div>
           </Card>
         </div>
       </Section>
 
-      {/* Starting Points Section */}
-      <Section variant="muted">
-        <SectionHeader
-          title={t("home.startingPoints.title")}
-          subtitle={t("home.startingPoints.subtitle")}
-        />
-
-        <div className="grid gap-6 md:grid-cols-3">
-          <FeatureCard
-            icon={TrendingUp}
-            title={t("home.startingPoints.sales")}
-            description={t("home.startingPoints.salesDesc")}
-          />
-          <FeatureCard
-            icon={Users}
-            title={t("home.startingPoints.service")}
-            description={t("home.startingPoints.serviceDesc")}
-          />
-          <FeatureCard
-            icon={Workflow}
-            title={t("home.startingPoints.operations")}
-            description={t("home.startingPoints.operationsDesc")}
-          />
-        </div>
-
-        <div className="mt-12 text-center">
-          <Button variant="cta-outline" size="lg" asChild>
-            <Link to="/roi-calculator">
-              {t("home.startingPoints.tryCalculator")}
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
-          </Button>
-        </div>
-      </Section>
-
-      {/* Offers Preview Section */}
+      {/* Path Section */}
       <Section>
         <SectionHeader title={t("home.path.title")} />
 
         <div className="grid gap-6 md:grid-cols-3">
-          <NumberedCard
-            number="1"
-            title={t("home.path.step1Title")}
-            description={t("home.path.step1Desc")}
-          />
-          <NumberedCard
-            number="2"
-            title={t("home.path.step2Title")}
-            description={t("home.path.step2Desc")}
-          />
-          <NumberedCard
-            number="3"
-            title={t("home.path.step3Title")}
-            description={t("home.path.step3Desc")}
-          />
-        </div>
-
-        <div className="mt-12 text-center">
-          <Button variant="ghost" size="lg" asChild>
-            <Link to="/services">
-              {t("home.path.learnMore")}
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
-          </Button>
+          {[1, 2, 3].map((num) => (
+            <NumberedCard
+              key={num}
+              number={String(num)}
+              title={`${t(`home.path.step${num}Title`)} (${t(`home.path.step${num}Duration`)})`}
+              description={t(`home.path.step${num}Desc`)}
+            />
+          ))}
         </div>
       </Section>
 
@@ -212,17 +164,22 @@ export default function Home() {
       <Section variant="muted">
         <SectionHeader title={t("home.whyVonai.title")} />
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {[
-            { icon: Zap, text: t("home.whyVonai.ship") },
-            { icon: Workflow, text: t("home.whyVonai.workflow") },
-            { icon: BarChart3, text: t("home.whyVonai.roi") },
-            { icon: Users, text: t("home.whyVonai.human") },
-            { icon: Shield, text: t("home.whyVonai.agnostic") },
-          ].map((item, index) => (
-            <Card key={index} variant="bordered" className="text-center">
-              <item.icon className="mx-auto mb-3 h-8 w-8 text-primary" />
-              <p className="font-medium text-foreground">{item.text}</p>
+            { icon: Zap, num: 1 },
+            { icon: Workflow, num: 2 },
+            { icon: BarChart3, num: 3 },
+            { icon: Users, num: 4 },
+            { icon: Shield, num: 5 },
+          ].map((item) => (
+            <Card key={item.num} variant="bordered">
+              <item.icon className="mb-3 h-8 w-8 text-primary" />
+              <h3 className="mb-2 font-semibold text-foreground">
+                {t(`home.whyVonai.reason${item.num}Title`)}
+              </h3>
+              <p className="text-sm text-muted-foreground">
+                {t(`home.whyVonai.reason${item.num}Desc`)}
+              </p>
             </Card>
           ))}
         </div>
@@ -230,79 +187,35 @@ export default function Home() {
 
       {/* FAQ */}
       <Section>
-        <SectionHeader
-          title={t("home.faq.title")}
-          subtitle={t("home.faq.subtitle")}
-        />
+        <SectionHeader title={t("home.faq.title")} />
 
         <div className="mx-auto max-w-3xl">
           <Accordion type="single" collapsible className="w-full">
-            <AccordionItem value="item-1" className="border-border">
-              <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:no-underline">
-                {t("home.faq.q1")}
-              </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground">
-                {t("home.faq.a1")}
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="item-2" className="border-border">
-              <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:no-underline">
-                {t("home.faq.q2")}
-              </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground">
-                {t("home.faq.a2")}
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="item-3" className="border-border">
-              <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:no-underline">
-                {t("home.faq.q3")}
-              </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground">
-                {t("home.faq.a3")}
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="item-4" className="border-border">
-              <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:no-underline">
-                {t("home.faq.q4")}
-              </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground">
-                {t("home.faq.a4")}
-              </AccordionContent>
-            </AccordionItem>
+            {[1, 2, 3, 4, 5].map((num) => (
+              <AccordionItem key={num} value={`item-${num}`} className="border-border">
+                <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:no-underline">
+                  {t(`home.faq.q${num}`)}
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
+                  {t(`home.faq.a${num}`)}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
           </Accordion>
-
-          <p className="mt-8 text-center text-muted-foreground">
-            {t("home.faq.stillUnsure")}{" "}
-            <a 
-              href="https://calendly.com/vonai/ai-roi-sprint" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="font-medium text-primary hover:underline"
-            >
-              {t("home.faq.bookCall")}
-            </a>{" "}
-            {t("home.faq.confirmFit")}
-          </p>
         </div>
       </Section>
 
       {/* Final CTA Section */}
-      <Section>
+      <Section variant="muted">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
             {t("home.finalCta.title")}
           </h2>
-          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <p className="mx-auto mt-4 max-w-xl text-lg text-muted-foreground">
+            {t("home.finalCta.subtitle")}
+          </p>
+          <div className="mt-10">
             <CTAButton variant="primary" size="xl" />
-            <Button variant="cta-outline" size="lg" asChild>
-              <Link to="/roi-calculator">
-                {t("home.finalCta.tryCalculator")}
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
           </div>
         </div>
       </Section>
