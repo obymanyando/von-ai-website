@@ -1,3 +1,16 @@
+# Dependencies
+node_modules
+
+# Build output
+dist
+dist-ssr
+
+# Environment variables — never commit secrets
+.env
+.env.local
+.env.*.local
+.env.production
+
 # Logs
 logs
 *.log
@@ -7,18 +20,22 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# OS
+.DS_Store
+Thumbs.db
 
-# Editor directories and files
+# Editor
 .vscode/*
 !.vscode/extensions.json
 .idea
-.DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# Vite
+*.local
+
+# Claude Code
+.claude/
