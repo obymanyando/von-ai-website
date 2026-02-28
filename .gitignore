@@ -37,5 +37,8 @@ Thumbs.db
 # Vite
 *.local
 
+# Supabase CLI
+supabase/.temp/
+
 # Claude Code
 .claude/

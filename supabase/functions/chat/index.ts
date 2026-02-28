@@ -281,10 +281,10 @@ serve(async (req) => {
 
     const sanitizedMessages = messagesValidation.sanitized!;
     
-    const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
-    
-    if (!LOVABLE_API_KEY) {
-      throw new Error("LOVABLE_API_KEY is not configured");
+    const GOOGLE_AI_API_KEY = Deno.env.get("GOOGLE_AI_API_KEY");
+
+    if (!GOOGLE_AI_API_KEY) {
+      throw new Error("GOOGLE_AI_API_KEY is not configured");
     }
 
     // Create or get conversation
@@ -349,14 +349,14 @@ serve(async (req) => {
 
     console.log(`Processing chat request with ${sanitizedMessages.length} messages, conversation: ${convId}, remaining rate limit: ${messageRateCheck.remaining}`);
 
-    const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+    const response = await fetch("https://generativelanguage.googleapis.com/v1beta/openai/chat/completions", {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${LOVABLE_API_KEY}`,
+        Authorization: `Bearer ${GOOGLE_AI_API_KEY}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "google/gemini-2.5-flash",
+        model: "gemini-2.5-flash",
         messages: [
           { role: "system", content: VONAI_CONTEXT },
           ...sanitizedMessages,
@@ -379,8 +379,8 @@ serve(async (req) => {
         });
       }
       const errorText = await response.text();
-      console.error("AI gateway error:", response.status, errorText);
-      throw new Error("AI gateway error");
+      console.error("Gemini API error:", response.status, errorText);
+      throw new Error("Gemini API error");
     }
 
     // We need to collect the full response to save it
