@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { SelfAssessment } from "@/components/SelfAssessment";
 import {
   ArrowRight,
   Check,
@@ -185,6 +186,41 @@ export default function Home() {
         </div>
       </Section>
 
+      {/* Founder Section */}
+      <Section>
+        <div className="mx-auto max-w-4xl">
+          <p className="mb-8 text-center text-sm font-semibold uppercase tracking-wider text-primary">
+            {t("home.founder.label")}
+          </p>
+          <div className="flex flex-col items-center gap-8 md:flex-row md:items-start md:gap-12">
+            <div className="flex-shrink-0">
+              <div className="h-40 w-40 overflow-hidden rounded-2xl bg-muted">
+                <div className="flex h-full w-full items-center justify-center text-muted-foreground">
+                  <Users className="h-16 w-16" />
+                </div>
+              </div>
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold text-foreground">{t("home.founder.name")}</h2>
+              <p className="mt-1 text-primary">{t("home.founder.title")}</p>
+              <div className="mt-4 space-y-4">
+                {t("home.founder.body").split("\n\n").map((paragraph, i) => (
+                  <p key={i} className="text-muted-foreground leading-relaxed">
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+              <p className="mt-6 text-lg font-medium text-foreground">
+                {t("home.founder.cta")}
+              </p>
+              <div className="mt-4">
+                <CTAButton variant="secondary" size="lg" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </Section>
+
       {/* FAQ */}
       <Section>
         <SectionHeader title={t("home.faq.title")} />
@@ -203,6 +239,19 @@ export default function Home() {
             ))}
           </Accordion>
         </div>
+      </Section>
+
+      {/* Self-Assessment */}
+      <Section>
+        <div className="mx-auto max-w-3xl text-center mb-8">
+          <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+            {t("home.selfAssessment.headline")}
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl text-lg text-muted-foreground">
+            {t("home.selfAssessment.subheadline")}
+          </p>
+        </div>
+        <SelfAssessment />
       </Section>
 
       {/* Final CTA Section */}

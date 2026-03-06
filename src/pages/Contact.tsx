@@ -164,6 +164,12 @@ function ContactForm() {
           {CONTACT_EMAIL}
         </a>
       </p>
+      <p className="mt-2 text-center text-sm text-muted-foreground">
+        {t("contact.directContact.label")}{" "}
+        <a href={`mailto:${t("contact.directContact.email")}`} className="text-primary hover:underline">
+          {t("contact.directContact.email")}
+        </a>
+      </p>
     </Card>
   );
 }
