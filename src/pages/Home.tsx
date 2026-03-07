@@ -194,11 +194,11 @@ export default function Home() {
           </p>
           <div className="flex flex-col items-center gap-8 md:flex-row md:items-start md:gap-12">
             <div className="flex-shrink-0">
-              <div className="h-40 w-40 overflow-hidden rounded-2xl bg-muted">
-                <div className="flex h-full w-full items-center justify-center text-muted-foreground">
-                  <Users className="h-16 w-16" />
-                </div>
-              </div>
+              <img
+                src="/Oby.jpg"
+                alt={t("home.founder.imageAlt")}
+                className="h-40 w-40 rounded-2xl object-cover"
+              />
             </div>
             <div>
               <h2 className="text-2xl font-bold text-foreground">{t("home.founder.name")}</h2>
