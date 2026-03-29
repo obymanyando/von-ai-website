@@ -17,6 +17,9 @@
  */
 
 // Bot user agents to detect
+// Social/messaging bots that need pre-rendered HTML for link previews
+// NOTE: Search engine bots (Googlebot, bingbot, yandex, Applebot) are
+// intentionally EXCLUDED — they should crawl the real SPA so pages get indexed.
 const BOT_USER_AGENTS = [
   'facebookexternalhit',
   'Facebot',
@@ -27,10 +30,6 @@ const BOT_USER_AGENTS = [
   'TelegramBot',
   'Discordbot',
   'Pinterest',
-  'Googlebot',
-  'bingbot',
-  'yandex',
-  'Applebot',
 ];
 
 // Your Supabase edge function URL
