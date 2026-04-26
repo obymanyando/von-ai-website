@@ -13,6 +13,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Link } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -28,6 +30,9 @@ const contactFormSchema = z.object({
     .max(255, "Email must be less than 255 characters"),
   company: z.string().trim().max(100, "Company name must be less than 100 characters").optional(),
   message: z.string().trim().min(1, "Message is required").max(2000, "Message must be less than 2000 characters"),
+  consent: z.literal<boolean>(true, {
+    errorMap: () => ({ message: "You must accept the privacy policy to send a message." }),
+  }),
 });
 
 type ContactFormValues = z.infer<typeof contactFormSchema>;
@@ -43,6 +48,7 @@ function ContactForm() {
       email: "",
       company: "",
       message: "",
+      consent: false as unknown as true,
     },
   });
 
@@ -55,6 +61,7 @@ function ContactForm() {
           email: data.email,
           company: data.company || undefined,
           message: data.message,
+          consent: data.consent,
         },
       });
 
@@ -142,6 +149,32 @@ function ContactForm() {
                     {...field}
                   />
                 </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="consent"
+            render={({ field }) => (
+              <FormItem className="flex flex-col gap-2">
+                <div className="flex items-start gap-3">
+                  <FormControl>
+                    <Checkbox
+                      checked={field.value === true}
+                      onCheckedChange={(v) => field.onChange(v === true)}
+                      className="mt-0.5"
+                    />
+                  </FormControl>
+                  <FormLabel className="text-sm font-normal leading-snug text-muted-foreground">
+                    {t("contact.form.consentLabel")}{" "}
+                    <Link to="/privacy" className="text-primary hover:underline">
+                      {t("contact.form.consentLink")}
+                    </Link>
+                    .
+                  </FormLabel>
+                </div>
                 <FormMessage />
               </FormItem>
             )}
