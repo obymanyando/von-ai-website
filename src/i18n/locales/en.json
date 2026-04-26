@@ -54,7 +54,7 @@
       "step1Title": "Sprint",
       "step1Duration": "2 weeks",
       "step1Desc": "Clarity, priorities, and a plan you can execute.",
-      "step2Title": "Build",
+      "step2Title": "Pilot",
       "step2Duration": "4-6 weeks",
       "step2Desc": "Your first AI use case shipped into production with measured results.",
       "step3Title": "Scale",
@@ -74,102 +74,18 @@
       "reason5Title": "Tool-agnostic.",
       "reason5Desc": "We work with your current stack. No forced platform decisions."
     },
-    "founder": {
-      "label": "Who's behind VonAI",
-      "name": "Oby Manyando",
-      "title": "AI Consultant & Founder",
-      "body": "Enterprise AI delivers real results, but the consultants who know how to implement it work almost exclusively with large companies. I've spent the last 5 years doing exactly that: implementing AI and automation in enterprise environments across the Nordics and beyond, with a decade in IT before that.\n\nI started VonAI to change that equation. SMBs deserve the same level of execution, not a workshop and a slide deck, but working AI that shows up in the numbers. Based in Helsinki. Working globally.",
-      "imageAlt": "Oby Manyando, founder of VonAI",
-      "cta": "Let's give your business the AI edge that enterprises take for granted."
-    },
     "faq": {
       "title": "Questions before you reach out",
       "q1": "Who is this for?",
       "a1": "B2B services firms (typically 10-200 people) who've tried AI or are under pressure to start, and want measurable results instead of more experiments.",
       "q2": "What does it cost?",
-      "a2": "The AI ROI Sprint is a fixed-scope 2-week engagement. Pricing starts at €2,490 and varies based on team size and complexity. Book a free call and we'll confirm exact fit and cost within 15 minutes — no ambiguity.",
+      "a2": "It depends on scope. Book a free call and we'll tell you within 15 minutes whether the Sprint is a fit and what it would cost for your situation.",
       "q3": "What if we already tried AI and it didn't work?",
       "a3": "That's most of our clients. Usually the missing piece is prioritization, workflow fit, adoption, or guardrails. The Sprint finds what blocked ROI and fixes the approach.",
       "q4": "Which tools do you use?",
       "a4": "Whatever fits your situation. We're tool-agnostic by design. No vendor lock-in, no forced platform changes.",
       "q5": "How fast can we see results?",
       "a5": "Clarity in 2 weeks. A production pilot in 4-6 weeks after that. Measurement starts from day one."
-    },
-    "selfAssessment": {
-      "cta": "Is the Sprint right for you? →",
-      "headline": "Find out in 2 minutes",
-      "subheadline": "5 questions. No email required.",
-      "questions": [
-        {
-          "id": "q1",
-          "text": "How would you describe your current AI situation?",
-          "options": [
-            "We've tried tools but nothing stuck",
-            "We have a pilot that never reached production",
-            "Leadership wants a strategy and we don't know where to start",
-            "We haven't started yet"
-          ]
-        },
-        {
-          "id": "q2",
-          "text": "What's the biggest blocker right now?",
-          "options": [
-            "We don't know which problem to solve first",
-            "Our team doesn't trust or use AI outputs",
-            "We can't justify the ROI internally",
-            "We don't have time to figure it out"
-          ]
-        },
-        {
-          "id": "q3",
-          "text": "How many people are in your company?",
-          "options": [
-            "Under 10",
-            "10–50",
-            "50–200",
-            "200+"
-          ]
-        },
-        {
-          "id": "q4",
-          "text": "What outcome matters most in the next 90 days?",
-          "options": [
-            "Cut time spent on repetitive work",
-            "Improve lead conversion or sales efficiency",
-            "Reduce costs in a specific team or process",
-            "Show the board we have an AI plan"
-          ]
-        },
-        {
-          "id": "q5",
-          "text": "Have you worked with an AI consultant before?",
-          "options": [
-            "No — this would be the first time",
-            "Yes — it didn't deliver what we expected",
-            "Yes — it went well but we need more"
-          ]
-        }
-      ],
-      "results": {
-        "strong_fit": {
-          "label": "Strong fit",
-          "heading": "The Sprint is built for exactly this.",
-          "body": "You have the right problem, the right team size, and a clear outcome in mind. The Sprint gives you a ranked plan and a build-ready spec in 2 weeks. Most clients see their first production pilot within 6 weeks of starting.",
-          "cta": "Book a free 15-min call"
-        },
-        "likely_fit": {
-          "label": "Likely fit",
-          "heading": "This is probably the right next step.",
-          "body": "A few things to clarify, but based on your answers, the Sprint would give you the prioritisation and ROI model you're missing. Let's spend 15 minutes confirming it's the right fit before you commit anything.",
-          "cta": "Book a free call — no commitment"
-        },
-        "exploratory": {
-          "label": "Worth a conversation",
-          "heading": "You might be earlier in the process than the Sprint assumes.",
-          "body": "The Sprint works best when there's a clear workflow problem to solve. You might benefit from a shorter scoping call first. We'll tell you honestly what makes sense for where you are.",
-          "cta": "Talk to us — no pitch, just a sense-check"
-        }
-      }
     },
     "finalCta": {
       "title": "Stop guessing. Start measuring.",
@@ -274,7 +190,6 @@
       "submit": "Send message",
       "sending": "Sending...",
       "emailDirect": "Or email directly:",
-      "emailDirectPersonal": "Prefer to reach me directly?",
       "consentLabel": "I agree to the processing of my personal data as described in the",
       "consentLink": "Privacy Policy",
       "consentRequired": "You must accept the privacy policy to send a message.",
@@ -282,10 +197,6 @@
       "successDesc": "We'll get back to you within 24 hours.",
       "errorTitle": "Something went wrong",
       "errorDesc": "Please try again or email us directly at hello@von-ai.com"
-    },
-    "directContact": {
-      "label": "Prefer to reach me directly?",
-      "email": "oby@von-ai.com"
     },
     "whatHelps": {
       "title": "It helps if you mention",
