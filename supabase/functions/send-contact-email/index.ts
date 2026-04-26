@@ -15,6 +15,7 @@ interface ContactEmailRequest {
   email: string;
   company?: string;
   message: string;
+  consent?: boolean;
 }
 
 const handler = async (req: Request): Promise<Response> => {
@@ -23,7 +24,14 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    const { name, email, company, message }: ContactEmailRequest = await req.json();
+    const { name, email, company, message, consent }: ContactEmailRequest = await req.json();
+
+    if (consent !== true) {
+      return new Response(
+        JSON.stringify({ error: "Consent to the privacy policy is required." }),
+        { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
 
     console.log("Processing contact submission from:", name, email);
 
@@ -31,7 +39,14 @@ const handler = async (req: Request): Promise<Response> => {
     const supabase = createClient(SUPABASE_URL!, SUPABASE_SERVICE_ROLE_KEY!);
     const { error: dbError } = await supabase
       .from("contact_submissions")
-      .insert({ name, email, company, message });
+      .insert({
+        name,
+        email,
+        company,
+        message,
+        consent_given: true,
+        consent_at: new Date().toISOString(),
+      });
 
     if (dbError) {
       console.error("Database error:", dbError);
