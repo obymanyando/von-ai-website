@@ -67,6 +67,8 @@ export type Database = {
       contact_submissions: {
         Row: {
           company: string | null
+          consent_at: string | null
+          consent_given: boolean
           created_at: string
           email: string
           id: string
@@ -75,6 +77,8 @@ export type Database = {
         }
         Insert: {
           company?: string | null
+          consent_at?: string | null
+          consent_given?: boolean
           created_at?: string
           email: string
           id?: string
@@ -83,6 +87,8 @@ export type Database = {
         }
         Update: {
           company?: string | null
+          consent_at?: string | null
+          consent_given?: boolean
           created_at?: string
           email?: string
           id?: string
