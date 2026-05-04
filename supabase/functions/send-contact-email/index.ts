@@ -96,7 +96,7 @@ const handler = async (req: Request): Promise<Response> => {
         <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
           <h1 style="color: #1a1a1a; font-size: 24px; margin-bottom: 20px;">Here's your framework, ${name}.</h1>
           <p style="color: #4a4a4a; font-size: 16px; line-height: 1.6;">
-            The 30-Day Outcome Pilot framework is attached below. It includes the workflow scoring sheet, the 1-page target sheet, the build doc, and the decision memo template.
+            The 30-Day Outcome Pilot framework is attached below. It walks you through the 4-week sprint and the artifacts your team will build along the way.
           </p>
           <p style="margin: 24px 0;">
             <a href="https://von-ai.com/30-day-outcome-pilot-framework.pdf" style="background: #1a1a1a; color: #ffffff; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-size: 16px; font-weight: 600;">Download the framework PDF</a>
