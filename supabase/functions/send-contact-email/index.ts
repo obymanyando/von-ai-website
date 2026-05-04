@@ -106,8 +106,8 @@ const handler = async (req: Request): Promise<Response> => {
           </p>
           <hr style="border: none; border-top: 1px solid #e5e5e5; margin: 30px 0;" />
           <p style="color: #888; font-size: 14px;">
-            Oby Manyando<br/>
-            VonAI &mdash; <a href="https://von-ai.com" style="color: #888;">von-ai.com</a>
+            The VonAI Team<br/>
+            <a href="https://von-ai.com" style="color: #888;">von-ai.com</a>
           </p>
         </div>
       `
