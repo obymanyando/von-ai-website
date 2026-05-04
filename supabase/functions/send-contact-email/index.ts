@@ -16,6 +16,7 @@ interface ContactEmailRequest {
   company?: string;
   message: string;
   consent?: boolean;
+  emailType?: "contact" | "pilot-lead";
 }
 
 const handler = async (req: Request): Promise<Response> => {
@@ -24,7 +25,7 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    const { name, email, company, message, consent }: ContactEmailRequest = await req.json();
+    const { name, email, company, message, consent, emailType = "contact" }: ContactEmailRequest = await req.json();
 
     if (consent !== true) {
       return new Response(
@@ -86,6 +87,47 @@ const handler = async (req: Request): Promise<Response> => {
     console.log("Notification email sent successfully");
 
     // Send confirmation email to the user
+    const confirmationSubject = emailType === "pilot-lead"
+      ? "Your 30-Day Outcome Pilot framework - VON AI"
+      : "We received your message - VON AI";
+
+    const confirmationHtml = emailType === "pilot-lead"
+      ? `
+        <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+          <h1 style="color: #1a1a1a; font-size: 24px; margin-bottom: 20px;">Here's your framework, ${name}.</h1>
+          <p style="color: #4a4a4a; font-size: 16px; line-height: 1.6;">
+            The 30-Day Outcome Pilot framework is attached below. It includes the workflow scoring sheet, the 1-page target sheet, the build doc, and the decision memo template.
+          </p>
+          <p style="margin: 24px 0;">
+            <a href="https://von-ai.com/30-day-outcome-pilot-framework.pdf" style="background: #1a1a1a; color: #ffffff; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-size: 16px; font-weight: 600;">Download the framework PDF</a>
+          </p>
+          <p style="color: #4a4a4a; font-size: 16px; line-height: 1.6;">
+            Reply to this email and we'll send the spreadsheet pack: the workflow scoring sheet and target sheet in Excel / Google Sheets format.
+          </p>
+          <hr style="border: none; border-top: 1px solid #e5e5e5; margin: 30px 0;" />
+          <p style="color: #888; font-size: 14px;">
+            Oby Manyando<br/>
+            VonAI &mdash; <a href="https://von-ai.com" style="color: #888;">von-ai.com</a>
+          </p>
+        </div>
+      `
+      : `
+        <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+          <h1 style="color: #1a1a1a; font-size: 24px; margin-bottom: 20px;">Thank you for reaching out, ${name}!</h1>
+          <p style="color: #4a4a4a; font-size: 16px; line-height: 1.6;">
+            We've received your message and will get back to you within 24 hours.
+          </p>
+          <p style="color: #4a4a4a; font-size: 16px; line-height: 1.6;">
+            In the meantime, feel free to book a call directly on our <a href="https://von-ai.com/contact" style="color: #2563eb;">contact page</a>.
+          </p>
+          <hr style="border: none; border-top: 1px solid #e5e5e5; margin: 30px 0;" />
+          <p style="color: #888; font-size: 14px;">
+            Best regards,<br/>
+            The VON AI Team
+          </p>
+        </div>
+      `;
+
     const confirmationRes = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
@@ -95,23 +137,8 @@ const handler = async (req: Request): Promise<Response> => {
       body: JSON.stringify({
         from: "VON AI <hello@comms.von-ai.com>",
         to: [email],
-        subject: "We received your message - VON AI",
-        html: `
-          <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-            <h1 style="color: #1a1a1a; font-size: 24px; margin-bottom: 20px;">Thank you for reaching out, ${name}!</h1>
-            <p style="color: #4a4a4a; font-size: 16px; line-height: 1.6;">
-              We've received your message and will get back to you within 24 hours.
-            </p>
-            <p style="color: #4a4a4a; font-size: 16px; line-height: 1.6;">
-              In the meantime, feel free to book a call directly on our <a href="https://von-ai.com/contact" style="color: #2563eb;">contact page</a>.
-            </p>
-            <hr style="border: none; border-top: 1px solid #e5e5e5; margin: 30px 0;" />
-            <p style="color: #888; font-size: 14px;">
-              Best regards,<br/>
-              The VON AI Team
-            </p>
-          </div>
-        `,
+        subject: confirmationSubject,
+        html: confirmationHtml,
       }),
     });
 
