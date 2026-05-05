@@ -87,6 +87,82 @@
       "q5": "How fast can we see results?",
       "a5": "Clarity in 2 weeks. A production pilot in 4-6 weeks after that. Measurement starts from day one."
     },
+    "selfAssessment": {
+      "cta": "Is the Sprint right for you? →",
+      "headline": "Find out in 2 minutes",
+      "subheadline": "5 questions. No email required.",
+      "questions": [
+        {
+          "id": "q1",
+          "text": "How would you describe your current AI situation?",
+          "options": [
+            "We've tried tools but nothing stuck",
+            "We have a pilot that never reached production",
+            "Leadership wants a strategy and we don't know where to start",
+            "We haven't started yet"
+          ]
+        },
+        {
+          "id": "q2",
+          "text": "What's the biggest blocker right now?",
+          "options": [
+            "We don't know which problem to solve first",
+            "Our team doesn't trust or use AI outputs",
+            "We can't justify the ROI internally",
+            "We don't have time to figure it out"
+          ]
+        },
+        {
+          "id": "q3",
+          "text": "How many people are in your company?",
+          "options": [
+            "Under 10",
+            "10–50",
+            "50–200",
+            "200+"
+          ]
+        },
+        {
+          "id": "q4",
+          "text": "What outcome matters most in the next 90 days?",
+          "options": [
+            "Cut time spent on repetitive work",
+            "Improve lead conversion or sales efficiency",
+            "Reduce costs in a specific team or process",
+            "Show the board we have an AI plan"
+          ]
+        },
+        {
+          "id": "q5",
+          "text": "Have you worked with an AI consultant before?",
+          "options": [
+            "No — this would be the first time",
+            "Yes — it didn't deliver what we expected",
+            "Yes — it went well but we need more"
+          ]
+        }
+      ],
+      "results": {
+        "strong_fit": {
+          "label": "Strong fit",
+          "heading": "The Sprint is built for exactly this.",
+          "body": "You have the right problem, the right team size, and a clear outcome in mind. The Sprint gives you a ranked plan and a build-ready spec in 2 weeks. Most clients see their first production pilot within 6 weeks of starting.",
+          "cta": "Book a free 15-min call"
+        },
+        "likely_fit": {
+          "label": "Likely fit",
+          "heading": "This is probably the right next step.",
+          "body": "A few things to clarify, but based on your answers, the Sprint would give you the prioritisation and ROI model you're missing. Let's spend 15 minutes confirming it's the right fit before you commit anything.",
+          "cta": "Book a free call — no commitment"
+        },
+        "exploratory": {
+          "label": "Worth a conversation",
+          "heading": "You might be earlier in the process than the Sprint assumes.",
+          "body": "The Sprint works best when there's a clear workflow problem to solve. You might benefit from a shorter scoping call first. We'll tell you honestly what makes sense for where you are.",
+          "cta": "Talk to us — no pitch, just a sense-check"
+        }
+      }
+    },
     "finalCta": {
       "title": "Stop guessing. Start measuring.",
       "subtitle": "Book a free 15-minute call. We'll tell you if the Sprint is a fit for your situation.",
