@@ -186,41 +186,6 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* Founder Section */}
-      <Section>
-        <div className="mx-auto max-w-4xl">
-          <p className="mb-8 text-center text-sm font-semibold uppercase tracking-wider text-primary">
-            {t("home.founder.label")}
-          </p>
-          <div className="flex flex-col items-center gap-8 md:flex-row md:items-start md:gap-12">
-            <div className="flex-shrink-0">
-              <img
-                src="/Oby.jpg"
-                alt={t("home.founder.imageAlt")}
-                className="h-40 w-40 rounded-2xl object-cover"
-              />
-            </div>
-            <div>
-              <h2 className="text-2xl font-bold text-foreground">{t("home.founder.name")}</h2>
-              <p className="mt-1 text-primary">{t("home.founder.title")}</p>
-              <div className="mt-4 space-y-4">
-                {t("home.founder.body").split("\n\n").map((paragraph, i) => (
-                  <p key={i} className="text-muted-foreground leading-relaxed">
-                    {paragraph}
-                  </p>
-                ))}
-              </div>
-              <p className="mt-6 text-lg font-medium text-foreground">
-                {t("home.founder.cta")}
-              </p>
-              <div className="mt-4">
-                <CTAButton variant="secondary" size="lg" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </Section>
-
       {/* FAQ */}
       <Section>
         <SectionHeader title={t("home.faq.title")} />
