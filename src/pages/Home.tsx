@@ -38,6 +38,18 @@ export default function Home() {
         title="VonAI — Your AI budget is growing. Your results aren't."
         description="Most B2B services firms have tried AI. Few can point to a number that changed. We fix that."
         canonical="/"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: [1, 2, 3, 4, 5].map((num) => ({
+            "@type": "Question",
+            name: t(`home.faq.q${num}`),
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: t(`home.faq.a${num}`),
+            },
+          })),
+        }}
       />
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-background">
