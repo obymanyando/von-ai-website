@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/Card";
 import { ArrowRight, RotateCcw, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
+import { supabase } from "@/integrations/supabase/client";
 
 type ResultKey = "strong_fit" | "likely_fit" | "exploratory";
 
@@ -31,8 +32,23 @@ function computeResult(answers: Record<string, number>): ResultKey {
   return "likely_fit";
 }
 
+function trackQuizEvent(
+  sessionId: string,
+  event: string,
+  extra?: { result?: string; answers?: Record<string, number>; abandoned_at_question?: number }
+) {
+  supabase.from("quiz_events").insert({
+    session_id: sessionId,
+    event,
+    result: extra?.result ?? null,
+    answers: extra?.answers ?? null,
+    abandoned_at_question: extra?.abandoned_at_question ?? null,
+  });
+}
+
 export function SelfAssessment() {
   const { t } = useTranslation();
+  const sessionId = useRef(crypto.randomUUID());
   const [isOpen, setIsOpen] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<Record<string, number>>({});
@@ -50,7 +66,9 @@ export function SelfAssessment() {
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
     } else {
-      setResult(computeResult(newAnswers));
+      const r = computeResult(newAnswers);
+      setResult(r);
+      trackQuizEvent(sessionId.current, "quiz_completed", { result: r, answers: newAnswers });
     }
   };
 
@@ -61,8 +79,13 @@ export function SelfAssessment() {
   };
 
   const handleClose = () => {
+    // Only track abandonment if quiz is in-progress (no result yet)
+    if (result === null && Object.keys(answers).length > 0) {
+      trackQuizEvent(sessionId.current, "quiz_abandoned", { abandoned_at_question: currentQuestion });
+    }
     setIsOpen(false);
     handleReset();
+    sessionId.current = crypto.randomUUID();
   };
 
   if (!isOpen) {
@@ -71,7 +94,10 @@ export function SelfAssessment() {
         <Button
           variant="cta-outline"
           size="lg"
-          onClick={() => setIsOpen(true)}
+          onClick={() => {
+            setIsOpen(true);
+            trackQuizEvent(sessionId.current, "quiz_started");
+          }}
         >
           {t("home.selfAssessment.cta")}
         </Button>
@@ -151,7 +177,10 @@ export function SelfAssessment() {
 
             <div className="flex flex-col gap-3 sm:flex-row">
               <Button variant="cta" size="lg" asChild>
-                <Link to="/contact">
+                <Link
+                  to="/contact"
+                  onClick={() => trackQuizEvent(sessionId.current, "quiz_cta_clicked", { result: result ?? undefined })}
+                >
                   {t(`home.selfAssessment.results.${result}.cta`)}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>

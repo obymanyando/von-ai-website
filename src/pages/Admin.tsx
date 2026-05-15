@@ -21,11 +21,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { 
-  Loader2, 
-  LogOut, 
-  Mail, 
-  RefreshCw, 
+import {
+  Loader2,
+  LogOut,
+  Mail,
+  RefreshCw,
   Trash2,
   Inbox,
   ArrowLeft,
@@ -35,7 +35,8 @@ import {
   Users,
   Shield,
   ShieldCheck,
-  AlertTriangle
+  AlertTriangle,
+  BarChart2
 } from "lucide-react";
 import { format } from "date-fns";
 import { User } from "@supabase/supabase-js";
@@ -85,6 +86,25 @@ interface AbuseStats {
   lastSeen: string;
 }
 
+interface QuizEvent {
+  id: string;
+  session_id: string;
+  event: string;
+  result: string | null;
+  answers: Record<string, number> | null;
+  abandoned_at_question: number | null;
+  created_at: string;
+}
+
+interface QuizFunnelStats {
+  started: number;
+  completed: number;
+  ctaClicked: number;
+  abandoned: number;
+  resultCounts: Record<string, number>;
+  dropOffByQuestion: Record<number, number>;
+}
+
 export default function Admin() {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
@@ -94,6 +114,8 @@ export default function Admin() {
   const [users, setUsers] = useState<UserWithRole[]>([]);
   const [rateLimitEvents, setRateLimitEvents] = useState<RateLimitEvent[]>([]);
   const [abuseStats, setAbuseStats] = useState<AbuseStats[]>([]);
+  const [quizEvents, setQuizEvents] = useState<QuizEvent[]>([]);
+  const [quizFunnel, setQuizFunnel] = useState<QuizFunnelStats | null>(null);
   const [fetching, setFetching] = useState(false);
   const [updatingRole, setUpdatingRole] = useState<string | null>(null);
   const navigate = useNavigate();
@@ -127,6 +149,7 @@ export default function Admin() {
       fetchConversations();
       fetchUsers();
       fetchRateLimitEvents();
+      fetchQuizEvents();
     }
   }, [user]);
 
@@ -228,6 +251,49 @@ export default function Admin() {
       setAbuseStats(stats);
     } catch (error: any) {
       console.error("Error fetching rate limit events:", error.message);
+    }
+  };
+
+  const fetchQuizEvents = async () => {
+    try {
+      const { data, error } = await supabase
+        .from("quiz_events")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+      if (error) throw error;
+
+      const events = (data || []) as QuizEvent[];
+      setQuizEvents(events);
+
+      const stats: QuizFunnelStats = {
+        started: 0,
+        completed: 0,
+        ctaClicked: 0,
+        abandoned: 0,
+        resultCounts: {},
+        dropOffByQuestion: {},
+      };
+
+      for (const e of events) {
+        if (e.event === "quiz_started") stats.started++;
+        if (e.event === "quiz_completed") {
+          stats.completed++;
+          if (e.result) stats.resultCounts[e.result] = (stats.resultCounts[e.result] ?? 0) + 1;
+        }
+        if (e.event === "quiz_cta_clicked") stats.ctaClicked++;
+        if (e.event === "quiz_abandoned") {
+          stats.abandoned++;
+          if (e.abandoned_at_question != null) {
+            stats.dropOffByQuestion[e.abandoned_at_question] =
+              (stats.dropOffByQuestion[e.abandoned_at_question] ?? 0) + 1;
+          }
+        }
+      }
+
+      setQuizFunnel(stats);
+    } catch (error: any) {
+      console.error("Error fetching quiz events:", error.message);
     }
   };
 
@@ -387,6 +453,10 @@ return (
                 {abuseStats.length}
               </Badge>
             )}
+          </TabsTrigger>
+          <TabsTrigger value="quiz" className="gap-2">
+            <BarChart2 className="h-4 w-4" />
+            Quiz Funnel
           </TabsTrigger>
         </TabsList>
 
@@ -770,6 +840,118 @@ return (
                   ))}
                 </TableBody>
               </Table>
+            </div>
+          )}
+        </TabsContent>
+        <TabsContent value="quiz" className="space-y-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <h2 className="text-2xl font-bold text-foreground">Quiz Funnel</h2>
+              <p className="text-sm text-muted-foreground">
+                Self-assessment quiz performance and lead qualification
+              </p>
+            </div>
+            <Button variant="outline" onClick={fetchQuizEvents} disabled={fetching}>
+              <RefreshCw className={`mr-2 h-4 w-4 ${fetching ? "animate-spin" : ""}`} />
+              Refresh
+            </Button>
+          </div>
+
+          {quizFunnel === null || quizFunnel.started === 0 ? (
+            <div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-border py-16">
+              <BarChart2 className="h-12 w-12 text-muted-foreground" />
+              <h3 className="mt-4 text-lg font-medium text-foreground">No quiz data yet</h3>
+              <p className="mt-1 text-sm text-muted-foreground">
+                Events will appear here when visitors take the self-assessment.
+              </p>
+            </div>
+          ) : (
+            <div className="space-y-6">
+              {/* Funnel stats */}
+              <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+                {[
+                  { label: "Started", value: quizFunnel.started },
+                  {
+                    label: "Completed",
+                    value: quizFunnel.completed,
+                    sub: quizFunnel.started > 0
+                      ? `${Math.round((quizFunnel.completed / quizFunnel.started) * 100)}%`
+                      : "—",
+                  },
+                  {
+                    label: "CTA Clicked",
+                    value: quizFunnel.ctaClicked,
+                    sub: quizFunnel.completed > 0
+                      ? `${Math.round((quizFunnel.ctaClicked / quizFunnel.completed) * 100)}% of completed`
+                      : "—",
+                  },
+                  { label: "Abandoned", value: quizFunnel.abandoned },
+                ].map(({ label, value, sub }) => (
+                  <div key={label} className="rounded-lg border border-border bg-card p-4">
+                    <p className="text-sm text-muted-foreground">{label}</p>
+                    <p className="mt-1 text-3xl font-bold text-foreground">{value}</p>
+                    {sub && <p className="mt-1 text-xs text-muted-foreground">{sub}</p>}
+                  </div>
+                ))}
+              </div>
+
+              {/* Result distribution */}
+              {Object.keys(quizFunnel.resultCounts).length > 0 && (
+                <div className="rounded-lg border border-border bg-card p-4">
+                  <h3 className="mb-3 font-medium text-foreground">Result Distribution</h3>
+                  <div className="space-y-2">
+                    {(["strong_fit", "likely_fit", "exploratory"] as const).map((key) => {
+                      const count = quizFunnel.resultCounts[key] ?? 0;
+                      const pct = quizFunnel.completed > 0
+                        ? Math.round((count / quizFunnel.completed) * 100)
+                        : 0;
+                      return (
+                        <div key={key} className="flex items-center gap-3">
+                          <span className="w-28 text-sm text-muted-foreground capitalize">
+                            {key.replace("_", " ")}
+                          </span>
+                          <div className="flex-1 h-2 rounded-full bg-muted overflow-hidden">
+                            <div
+                              className="h-full rounded-full bg-primary"
+                              style={{ width: `${pct}%` }}
+                            />
+                          </div>
+                          <span className="w-14 text-right text-sm text-foreground">
+                            {count} ({pct}%)
+                          </span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {/* Drop-off by question */}
+              {Object.keys(quizFunnel.dropOffByQuestion).length > 0 && (
+                <div className="rounded-lg border border-border bg-card overflow-hidden">
+                  <div className="border-b border-border bg-muted/50 px-4 py-3">
+                    <h3 className="font-medium text-foreground">Abandonment by Question</h3>
+                  </div>
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>Question</TableHead>
+                        <TableHead>Abandoned</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {Object.entries(quizFunnel.dropOffByQuestion)
+                        .sort(([a], [b]) => Number(a) - Number(b))
+                        .map(([q, count]) => (
+                          <TableRow key={q}>
+                            <TableCell>Q{Number(q) + 1}</TableCell>
+                            <TableCell>{count}</TableCell>
+                          </TableRow>
+                        ))}
+                    </TableBody>
+                  </Table>
+                </div>
+              )}
             </div>
           )}
         </TabsContent>
