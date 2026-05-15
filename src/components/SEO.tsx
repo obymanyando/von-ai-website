@@ -6,6 +6,8 @@ interface SEOProps {
   canonical?: string;
   type?: string;
   image?: string;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  noindex?: boolean;
 }
 
 const BASE_URL = "https://von-ai.com";
@@ -17,6 +19,8 @@ export function SEO({
   canonical,
   type = "website",
   image = DEFAULT_IMAGE,
+  jsonLd,
+  noindex,
 }: SEOProps) {
   const fullTitle = title.includes("VonAI") ? title : `${title} | VonAI`;
   const canonicalUrl = canonical ? `${BASE_URL}${canonical}` : undefined;
@@ -45,6 +49,12 @@ export function SEO({
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />
+
+      {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+      {jsonLd && (
+        <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+      )}
     </Helmet>
   );
 }
