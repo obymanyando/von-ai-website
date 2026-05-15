@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2, Lock, ArrowLeft } from "lucide-react";
 import { z } from "zod";
+import { SEO } from "@/components/SEO";
 
 type AuthView = "login" | "signup" | "forgotPassword" | "resetPassword";
 
@@ -247,6 +248,12 @@ export default function Auth() {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
+      <SEO
+        title="Sign In | VonAI"
+        description="Sign in to your VonAI account."
+        canonical="/auth"
+        noindex
+      />
       <div className="w-full max-w-sm space-y-6">
         <div className="text-center">
           <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">

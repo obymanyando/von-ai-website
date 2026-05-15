@@ -1,0 +1,17 @@
+# VonAI
+
+> AI consulting that turns AI experiments into measurable ROI for B2B services firms. We deliver a 90-day plan your team can actually execute.
+
+VonAI helps B2B services firms move past AI pilots and tool-sprawl. Our flagship engagement, the AI ROI Sprint, is a two-week diagnostic that produces a prioritized 90-day implementation plan tied to specific business numbers.
+
+## Pages
+
+- [Home](/): VonAI overview, services, and approach.
+- [AI ROI Sprint](/ai-roi-sprint): Two-week engagement that produces a 90-day AI implementation plan with five concrete deliverables.
+- [30-Day Outcome Pilot](/30-day-outcome-pilot): Fixed-scope 30-day pilot to ship one measurable AI outcome.
+- [Contact](/contact): Book a call or send a message.
+- [Privacy Policy](/privacy): How we collect and protect personal data.
+
+## Optional
+
+- [Brand Guide](/brand-guide): VonAI brand colors, typography, and usage guidelines.

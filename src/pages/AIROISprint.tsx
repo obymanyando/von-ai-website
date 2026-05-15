@@ -32,6 +32,18 @@ export default function AIROISprint() {
         title="AI ROI Sprint — 90-Day AI Implementation Plan"
         description="Stop experimenting. Leave with a 90-day plan your team can actually execute. 2-week engagement with 5 deliverables."
         canonical="/ai-roi-sprint"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: [1, 2, 3, 4, 5, 6].map((num) => ({
+            "@type": "Question",
+            name: t(`aiRoiSprint.faq.q${num}`),
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: t(`aiRoiSprint.faq.a${num}`),
+            },
+          })),
+        }}
       />
       {/* Hero */}
       <section className="border-b border-border bg-background">

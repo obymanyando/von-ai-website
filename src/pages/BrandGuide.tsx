@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Download } from "lucide-react";
 import logoLight from "@/assets/logo-light.png";
 import logoDark from "@/assets/logo-dark.png";
+import { SEO } from "@/components/SEO";
 
 const primaryColors = [
   { name: "Primary", light: "#006699", dark: "#0099E6", hsl: "203 100% 30%", usage: "Main brand color, CTAs, buttons, links" },
@@ -130,6 +131,11 @@ export default function BrandGuide() {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Brand Guidelines | VonAI"
+        description="Official VonAI brand colors, typography, logo usage, and visual identity guidelines."
+        canonical="/brand-guide"
+      />
       {/* Download Button - Fixed */}
       <div className="sticky top-16 z-40 bg-background/95 backdrop-blur border-b border-border py-4">
         <div className="container-padding mx-auto max-w-4xl flex justify-between items-center">
