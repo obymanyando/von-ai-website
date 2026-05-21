@@ -184,6 +184,66 @@ export type Database = {
         }
         Relationships: []
       }
+      marketing_subscribers: {
+        Row: {
+          email: string
+          id: string
+          language: string
+          name: string | null
+          source: string | null
+          subscribed_at: string
+          unsubscribed_at: string | null
+        }
+        Insert: {
+          email: string
+          id?: string
+          language?: string
+          name?: string | null
+          source?: string | null
+          subscribed_at?: string
+          unsubscribed_at?: string | null
+        }
+        Update: {
+          email?: string
+          id?: string
+          language?: string
+          name?: string | null
+          source?: string | null
+          subscribed_at?: string
+          unsubscribed_at?: string | null
+        }
+        Relationships: []
+      }
+      quiz_events: {
+        Row: {
+          abandoned_at_question: number | null
+          answers: Json | null
+          created_at: string
+          event: string
+          id: string
+          result: string | null
+          session_id: string
+        }
+        Insert: {
+          abandoned_at_question?: number | null
+          answers?: Json | null
+          created_at?: string
+          event: string
+          id?: string
+          result?: string | null
+          session_id: string
+        }
+        Update: {
+          abandoned_at_question?: number | null
+          answers?: Json | null
+          created_at?: string
+          event?: string
+          id?: string
+          result?: string | null
+          session_id?: string
+        }
+        Relationships: []
+      }
       rate_limit_events: {
         Row: {
           client_ip: string
@@ -205,6 +265,92 @@ export type Database = {
           endpoint?: string
           event_type?: string
           id?: string
+        }
+        Relationships: []
+      }
+      resource_downloads: {
+        Row: {
+          created_at: string
+          gated: boolean
+          id: string
+          ip_hash: string | null
+          language: string | null
+          lead_id: string | null
+          resource_slug: string
+          user_agent: string | null
+        }
+        Insert: {
+          created_at?: string
+          gated?: boolean
+          id?: string
+          ip_hash?: string | null
+          language?: string | null
+          lead_id?: string | null
+          resource_slug: string
+          user_agent?: string | null
+        }
+        Update: {
+          created_at?: string
+          gated?: boolean
+          id?: string
+          ip_hash?: string | null
+          language?: string | null
+          lead_id?: string | null
+          resource_slug?: string
+          user_agent?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "resource_downloads_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "resource_leads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      resource_leads: {
+        Row: {
+          company: string | null
+          consent_at: string | null
+          consent_given: boolean
+          created_at: string
+          email: string
+          id: string
+          ip_hash: string | null
+          language: string
+          marketing_opt_in: boolean
+          name: string
+          resource_slug: string
+          user_agent: string | null
+        }
+        Insert: {
+          company?: string | null
+          consent_at?: string | null
+          consent_given?: boolean
+          created_at?: string
+          email: string
+          id?: string
+          ip_hash?: string | null
+          language?: string
+          marketing_opt_in?: boolean
+          name: string
+          resource_slug: string
+          user_agent?: string | null
+        }
+        Update: {
+          company?: string | null
+          consent_at?: string | null
+          consent_given?: boolean
+          created_at?: string
+          email?: string
+          id?: string
+          ip_hash?: string | null
+          language?: string
+          marketing_opt_in?: boolean
+          name?: string
+          resource_slug?: string
+          user_agent?: string | null
         }
         Relationships: []
       }

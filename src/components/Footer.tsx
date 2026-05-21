@@ -8,6 +8,7 @@ const CONTACT_EMAIL = "hello@von-ai.com";
 const navigationKeys = [
   { href: "/", key: "home" },
   { href: "/ai-roi-sprint", key: "aiRoiSprint" },
+  { href: "/resources", key: "resources" },
   { href: "/contact", key: "contact" },
 ];
 

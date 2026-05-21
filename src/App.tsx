@@ -13,6 +13,8 @@ import Admin from "./pages/Admin";
 import BrandGuide from "./pages/BrandGuide";
 import Privacy from "./pages/Privacy";
 import ThirtyDayOutcomePilot from "./pages/ThirtyDayOutcomePilot";
+import Resources from "./pages/Resources";
+import ResourceDetail from "./pages/ResourceDetail";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
 import ChatWidget from "./components/ChatWidget";
@@ -37,6 +39,8 @@ const App = () => (
               <Route path="/brand-guide" element={<BrandGuide />} />
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/30-day-outcome-pilot" element={<ThirtyDayOutcomePilot />} />
+            <Route path="/resources" element={<Resources />} />
+            <Route path="/resources/:slug" element={<ResourceDetail />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
