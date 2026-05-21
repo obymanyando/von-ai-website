@@ -13,6 +13,7 @@ const CALENDLY_URL = "https://calendly.com/oby-manyando/onboarding-call";
 const navLinkKeys = [
   { href: "/", key: "home" },
   { href: "/ai-roi-sprint", key: "aiRoiSprint" },
+  { href: "/resources", key: "resources" },
   { href: "/contact", key: "contact" },
 ];
 
