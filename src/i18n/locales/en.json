@@ -333,5 +333,43 @@
     },
     "thinking": "Checking...",
     "error": "Sorry, something went wrong:"
+  },
+  "resources": {
+    "heroTitle": "Practical AI playbooks for B2B services firms",
+    "heroSubtitle": "Checklists, scorecards, and templates you can apply this week. Some are free. Some are gated — drop your details and we'll email you a copy.",
+    "filterAll": "All",
+    "gateFilter": { "all": "All access", "free": "Free", "gated": "Gated" },
+    "types": {
+      "guide": "Guide",
+      "checklist": "Checklist",
+      "template": "Template",
+      "playbook": "Playbook",
+      "scorecard": "Scorecard"
+    },
+    "freeBadge": "Free",
+    "gatedBadge": "Gated",
+    "previewBadge": "Preview edition",
+    "download": "Download PDF",
+    "downloadAgain": "Download again",
+    "getPdf": "Get the PDF",
+    "backToAll": "All resources",
+    "related": "More resources",
+    "empty": "No resources match these filters.",
+    "benefit1": "A clear framework you can apply this week",
+    "benefit2": "Examples drawn from real B2B services engagements",
+    "benefit3": "Practical tools, not theory",
+    "dialogTitle": "Get \"{{title}}\"",
+    "dialogDesc": "We'll email you a copy and start the download right away.",
+    "fieldName": "Full name",
+    "fieldEmail": "Work email",
+    "fieldCompany": "Company (optional)",
+    "consentLabel": "I agree to VonAI storing my details for the purpose of delivering this resource.",
+    "marketingOptInLabel": "Also send me occasional practical AI insights from VonAI. Unsubscribe anytime.",
+    "submit": "Send me the PDF",
+    "successTitle": "Your download has started",
+    "successBody": "We've also emailed you a copy so you can find it later.",
+    "submitError": "Something went wrong",
+    "formInvalid": "Please check the form",
+    "tooFast": "That was too fast — please try again."
   }
 }
