@@ -28,13 +28,15 @@ export function Navbar() {
   }, [isHome]);
   const showBorder = !isHome || scrolled;
 
-  // Mobile sheet: navigate only after it has closed, so the scroll lock is gone
-  // and the anchor scroll in ScrollToTop is not swallowed.
+  // Mobile sheet: navigate straight away rather than after the close animation
+  // (Radix only finishes closing on animationend, which never fires in a
+  // background tab). Programmatic scrolling still works under its scroll lock.
   const [open, setOpen] = useState(false);
-  const pending = useRef<string | null>(null);
+  const navigated = useRef(false);
   const go = (to: string) => {
-    pending.current = to;
+    navigated.current = true;
     setOpen(false);
+    navigate(to);
   };
 
   return (
@@ -86,11 +88,12 @@ export function Navbar() {
             <SheetContent
               side="right"
               className="flex w-full max-w-sm flex-col gap-8 bg-background px-6 pt-6"
+              // After a link, don't pull focus back to the trigger (it would fight
+              // the anchor scroll). Escape/close still returns focus as usual.
               onCloseAutoFocus={(e) => {
-                if (!pending.current) return;
+                if (!navigated.current) return;
+                navigated.current = false;
                 e.preventDefault();
-                navigate(pending.current);
-                pending.current = null;
               }}
             >
               <SheetTitle className="sr-only">{t("nav.menu")}</SheetTitle>
