@@ -1,20 +1,10 @@
-import logoDark from "@/assets/logo-dark.png";
+import wordmark from "@/assets/logo-wordmark.png";
 
 /**
- * The PNG carries generous padding around the wordmark, so it is scaled and
- * offset inside a fixed 104x24 box to show only the wordmark (as in the design).
- * multiply blends the PNG's white edge into the off-white page.
+ * Wordmark trimmed from logo-dark.png (same crop as the design) with a real
+ * alpha channel, so it reads on the translucent nav over any section.
+ * The source PNG has a white background, which showed as a pale box there.
  */
 export function Logo() {
-  return (
-    <span className="relative block h-6 w-[104px] overflow-hidden">
-      <img
-        src={logoDark}
-        alt="VonAI"
-        width={141}
-        height={55}
-        className="absolute left-[-15.6px] top-[-15.5px] w-[141px] max-w-none mix-blend-multiply"
-      />
-    </span>
-  );
+  return <img src={wordmark} alt="VonAI" width={104} height={24} className="block h-6 w-[104px]" />;
 }

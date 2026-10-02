@@ -8,3 +8,6 @@ export const HOME_SECTIONS = [
   { id: "results", labelKey: "nav.results" },
   { id: "faq", labelKey: "nav.faq" },
 ] as const;
+
+/** home.faq.q1..qN / a1..aN in en.json. */
+export const FAQ_COUNT = 8;
