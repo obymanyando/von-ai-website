@@ -28,28 +28,16 @@ const BOT_USER_AGENTS = [
 // Route-specific meta data
 const ROUTE_META: Record<string, { title: string; description: string }> = {
   '/': {
-    title: 'VonAI - AI Consulting & Automation Solutions for Business',
-    description: 'Transform your business with AI-powered solutions. VonAI provides expert consulting, automation, and custom AI implementations to drive efficiency and growth.',
-  },
-  '/services': {
-    title: 'AI Services | VonAI',
-    description: 'Discover our comprehensive AI services including consulting, automation, machine learning solutions, and custom AI development tailored for your business needs.',
-  },
-  '/ai-roi-sprint': {
-    title: 'AI ROI Sprint - 2-Week AI Implementation | VonAI',
-    description: 'Get measurable AI results in just 2 weeks. Our AI ROI Sprint delivers rapid implementation with clear business outcomes and proven ROI.',
-  },
-  '/roi-calculator': {
-    title: 'AI ROI Calculator | VonAI',
-    description: 'Calculate your potential return on investment from AI implementation. See how much time and money AI automation can save your business.',
-  },
-  '/about': {
-    title: 'About VonAI | AI Consulting Experts',
-    description: 'Learn about VonAI\'s mission to democratize AI for businesses. Meet our team of AI experts dedicated to helping you succeed with artificial intelligence.',
+    title: 'VonAI | One AI workflow, live in 30 days',
+    description: 'One AI workflow, live in 30 days and measured against how you work today. For professional services firms in Finland with 10 to 100 people.',
   },
   '/contact': {
-    title: 'Contact VonAI | Get Started with AI',
-    description: 'Ready to transform your business with AI? Contact VonAI today for a free consultation and discover how we can help you achieve your goals.',
+    title: 'Book a free call | VonAI',
+    description: "A free 30-minute call. Tell us which workflow takes the most time, and we'll tell you honestly whether it's a good fit.",
+  },
+  '/resources': {
+    title: 'Insights: practical AI playbooks for service firms | VonAI',
+    description: "Checklists, scorecards and templates professional services firms can use this week. Some are free; for the rest, leave your email and we'll send a copy.",
   },
 };
 
