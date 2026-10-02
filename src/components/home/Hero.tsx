@@ -22,7 +22,7 @@ export function Hero() {
           <Link to="/#process" className="pill pill-soft pill-lg text-ink hover:text-ink">
             {t("home.hero.secondaryCta")}
           </Link>
-          {/* Never _parked.hero.priceLine: no prices on the site. */}
+          {/* Policy line only. The parked price line must never render: no prices on the site. */}
           <span className="text-[15px] text-ink-soft">{t("home.hero.priceLine")}</span>
         </div>
       </div>

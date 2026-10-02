@@ -8,7 +8,9 @@
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit -p tsconfig.app.json",
+    "check:copy": "node scripts/check-copy.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
