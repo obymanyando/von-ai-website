@@ -10,6 +10,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit -p tsconfig.app.json",
+    "postbuild": "node scripts/check-copy.mjs",
     "check:copy": "node scripts/check-copy.mjs"
   },
   "dependencies": {

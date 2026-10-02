@@ -21,26 +21,6 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://von-ai.com/resources/ai-readiness-scorecard</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://von-ai.com/resources/90-day-ai-roi-playbook</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://von-ai.com/resources/vendor-evaluation-template</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://von-ai.com/resources/ai-governance-starter-kit</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
     <loc>https://von-ai.com/brand-guide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>

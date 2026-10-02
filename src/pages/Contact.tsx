@@ -258,7 +258,6 @@ export default function Contact() {
               primaryColor: "1a1a1a",
               textColor: "1a1a1a",
               hideEventTypeDetails: true,
-              hideGdprBanner: true,
             }}
           />
         </div>

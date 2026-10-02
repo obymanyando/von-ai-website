@@ -116,7 +116,7 @@ export default function Resources() {
                   aria-pressed={on}
                   onClick={() => setGate(g)}
                   className={cn(
-                    "min-h-[40px] rounded-full px-3 text-[13px] transition-colors duration-150 md:min-h-0 md:py-1.5",
+                    "min-h-[44px] rounded-full px-3 text-[13px] transition-colors duration-150 md:min-h-0 md:py-1.5",
                     on ? "bg-white text-ink shadow-[0_1px_2px_rgba(0,0,0,.08)]" : "text-ink-soft hover:text-ink",
                   )}
                 >

@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 /**
- * Copy guardrails for the redesign. Run after `npm run build`:
+ * Copy guardrails for the redesign. Runs automatically after `npm run build`
+ * (postbuild), so a build that would ship a price fails. Also runnable alone:
  *   npm run check:copy
  *
  * 1. Every translation key used in src/ exists in en.json. Literal t("a.b")
@@ -41,7 +42,7 @@ const keys = new Set(flatten(en));
 const escape = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 for (const file of walk(join(ROOT, "src"), [".ts", ".tsx"])) {
   const src = readFileSync(file, "utf8");
-  for (const m of src.matchAll(/\bt\(\s*"([A-Za-z0-9_.]+)"/g)) {
+  for (const m of src.matchAll(/\bt\(\s*["']([A-Za-z0-9_.]+)["']/g)) {
     if (!keys.has(m[1])) fail(`missing key "${m[1]}" (${relative(ROOT, file)})`);
   }
   for (const m of src.matchAll(/\bt\(\s*`([^`]+)`/g)) {

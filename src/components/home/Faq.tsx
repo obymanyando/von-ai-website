@@ -15,8 +15,8 @@ export function Faq() {
           <h2 className="h2">{t("home.faq.title")}</h2>
           <p className="text-base text-ink-soft">
             {t("home.faq.somethingElse")}{" "}
-            <a href={`mailto:${CONTACT_EMAIL}`} className="link-underline text-ink">
-              {CONTACT_EMAIL}
+            <a href={`mailto:${CONTACT_EMAIL}`} className="inline-flex min-h-[44px] items-center text-ink md:min-h-0">
+              <span className="link-underline">{CONTACT_EMAIL}</span>
             </a>
           </p>
         </div>

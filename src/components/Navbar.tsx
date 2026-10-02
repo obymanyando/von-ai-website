@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
@@ -13,7 +13,6 @@ const linkActive = "font-medium text-ink";
 export function Navbar() {
   const { t } = useTranslation();
   const { pathname } = useLocation();
-  const navigate = useNavigate();
   const isHome = pathname === "/";
   const onInsights = pathname.startsWith("/resources");
 
@@ -28,15 +27,15 @@ export function Navbar() {
   }, [isHome]);
   const showBorder = !isHome || scrolled;
 
-  // Mobile sheet: navigate straight away rather than after the close animation
-  // (Radix only finishes closing on animationend, which never fires in a
-  // background tab). Programmatic scrolling still works under its scroll lock.
+  // Mobile sheet items are real links: the router navigates on tap, and we just
+  // close the sheet. Navigation must not wait for the close animation (Radix
+  // only finishes closing on animationend, which never fires in a background
+  // tab); programmatic scrolling still works under its scroll lock.
   const [open, setOpen] = useState(false);
   const navigated = useRef(false);
-  const go = (to: string) => {
+  const closeAfterLink = () => {
     navigated.current = true;
     setOpen(false);
-    navigate(to);
   };
 
   return (
@@ -47,7 +46,7 @@ export function Navbar() {
       )}
     >
       <nav aria-label="Main" className="site-container flex h-[72px] items-center justify-between gap-4">
-        <Link to="/" aria-label="VonAI home" className="shrink-0">
+        <Link to="/" aria-label="VonAI home" className="inline-flex min-h-[44px] shrink-0 items-center">
           <Logo />
         </Link>
 
@@ -101,35 +100,33 @@ export function Navbar() {
               <ul className="flex flex-col border-t border-line">
                 {HOME_SECTIONS.map((s) => (
                   <li key={s.id} className="border-b border-line">
-                    <button
-                      type="button"
-                      onClick={() => go(`/#${s.id}`)}
-                      className="flex min-h-[52px] w-full items-center text-left text-lg text-ink"
+                    <Link
+                      to={`/#${s.id}`}
+                      onClick={closeAfterLink}
+                      className="flex min-h-[52px] w-full items-center text-lg text-ink"
                     >
                       {t(s.labelKey)}
-                    </button>
+                    </Link>
                   </li>
                 ))}
                 <li className="border-b border-line">
-                  <button
-                    type="button"
-                    onClick={() => go("/resources")}
-                    className={cn(
-                      "flex min-h-[52px] w-full items-center text-left text-lg text-ink",
-                      onInsights && "font-medium",
-                    )}
+                  <Link
+                    to="/resources"
+                    onClick={closeAfterLink}
+                    aria-current={onInsights ? "page" : undefined}
+                    className={cn("flex min-h-[52px] w-full items-center text-lg text-ink", onInsights && "font-medium")}
                   >
                     {t("nav.insights")}
-                  </button>
+                  </Link>
                 </li>
               </ul>
               <div className="flex flex-col gap-3">
-                <button type="button" onClick={() => go("/contact")} className="pill pill-dark pill-lg w-full">
+                <Link to="/contact" onClick={closeAfterLink} className="pill pill-dark pill-lg w-full">
                   {t("nav.bookCall")}
-                </button>
-                <button type="button" onClick={() => go("/contact")} className="pill pill-soft pill-lg w-full">
+                </Link>
+                <Link to="/contact" onClick={closeAfterLink} className="pill pill-soft pill-lg w-full">
                   {t("nav.contact")}
-                </button>
+                </Link>
               </div>
             </SheetContent>
           </Sheet>

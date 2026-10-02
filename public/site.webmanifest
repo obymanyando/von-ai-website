@@ -1,11 +1,11 @@
 {
   "name": "VonAI",
   "short_name": "VonAI",
-  "description": "From AI experiments to ROI",
+  "description": "One AI workflow, live in 30 days, measured against how you work today.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#1a1a1a",
-  "theme_color": "#1a1a1a",
+  "background_color": "#FBFAF8",
+  "theme_color": "#FBFAF8",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
