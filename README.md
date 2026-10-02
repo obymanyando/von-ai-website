@@ -1,17 +1,17 @@
-# VonAI - AI Consulting & Solutions
+# VonAI website
 
-A modern B2B web application for AI consulting services, featuring interactive ROI tools and an AI-powered assistant.
+The site for VonAI's offer: one AI workflow, live in 30 days, measured against a day-0 baseline. For professional services firms in Finland with 10 to 100 people.
 
 ![VonAI](public/android-chrome-512x512.png)
 
 ## Overview
 
-VonAI is a professional consulting platform that helps businesses understand and implement AI solutions. The platform includes:
+- **Home** - one long page: hero with an example results report, the problem, the offer, how the 30 days work, results, fit, and FAQ
+- **Contact** - Calendly booking and a contact form
+- **Insights** - a library of free and email-gated PDF guides
+- **AI Assistant** - chat assistant (built, currently disabled on the site)
 
-- **AI ROI Calculator** - Interactive tool to estimate potential returns from AI implementation
-- **AI ROI Sprint** - Structured program for rapid AI value assessment
-- **AI Assistant** - Intelligent chatbot for visitor engagement and support
-- **Contact & Scheduling** - Integrated booking and contact forms
+The design and copy come from the handoff in `vonai_redesign/`. The site never shows prices.
 
 ## Tech Stack
 
@@ -24,14 +24,15 @@ VonAI is a professional consulting platform that helps businesses understand and
 - **DNS**: Cloudflare
 - **State Management**: TanStack Query
 - **Routing**: React Router v6
-- **i18n**: i18next (EN/FI)
+- **i18n**: i18next (English only for now; Finnish disabled until translated)
 
 ## Features
 
 ### Pages
-- **Home** - Landing page with value propositions
-- **AI ROI Sprint** - Sprint program details with ROI calculator
-- **Contact** - Contact form with Calendly integration
+- **Home** (`/`) - single page with anchors `#offer`, `#process`, `#results`, `#faq`
+- **Contact** (`/contact`) - Calendly inline embed + contact form (Resend via `send-contact-email`)
+- **Insights** (`/resources`, `/resources/:slug`) - resource library with type/access filters and gated downloads
+- **Privacy** (`/privacy`), **Brand guide** (`/brand-guide`), **Admin** (`/admin`, `/auth`)
 
 ### AI Assistant
 - Real-time streaming responses (SSE)
@@ -56,13 +57,13 @@ VonAI is a professional consulting platform that helps businesses understand and
 ```bash
 git clone https://github.com/obymanyando/von-ai-website.git
 cd von-ai-website
-npm install
+npm ci --legacy-peer-deps   # vite 8 vs @vitejs/plugin-react-swc 3 peer conflict
 npm run dev
 ```
 
 ### Environment Variables
 
-**Frontend** (`.env`):
+**Frontend** (`.env.local`, gitignored):
 ```env
 VITE_SUPABASE_URL=<your-supabase-url>
 VITE_SUPABASE_PUBLISHABLE_KEY=<your-supabase-anon-key>
@@ -117,15 +118,18 @@ npx supabase functions deploy og-meta
 ### Available Scripts
 
 ```bash
-npm run dev      # Start development server (port 8080)
-npm run build    # Build for production
-npm run preview  # Preview production build
-npm run lint     # Run ESLint
+npm run dev         # Start development server (port 8080)
+npm run typecheck   # TypeScript check
+npm run lint        # Run ESLint
+npm run build       # Build for production, then check:copy
+npm run check:copy  # i18n keys resolve, no _parked references, no prices shipped
+npm run preview     # Preview production build
 ```
 
 ### Code Style
 
-- TypeScript strict mode enabled
+- Light theme only; Geist / Geist Mono
+- All visible strings in `src/i18n/locales/en.json`; no prices anywhere (see `CLAUDE.md`)
 - ESLint for code quality
 - Tailwind CSS for styling with semantic design tokens
 - Component-based architecture with shadcn/ui

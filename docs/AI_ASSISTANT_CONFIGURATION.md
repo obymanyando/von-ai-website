@@ -28,7 +28,7 @@ This document provides comprehensive documentation of the AI assistant implement
 ├─────────────────────────────────────────────────────────────────────────────┤
 │                                                                              │
 │  ┌──────────────────┐     ┌──────────────────┐     ┌──────────────────────┐ │
-│  │  ChatWidget.tsx  │────▶│  Edge Function   │────▶│  Lovable AI Gateway  │ │
+│  │  ChatWidget.tsx  │────▶│  Edge Function   │────▶│  Google Gemini API   │ │
 │  │  (React Client)  │◀────│  /functions/chat │◀────│  (gemini-2.5-flash)  │ │
 │  └──────────────────┘     └────────┬─────────┘     └──────────────────────┘ │
 │                                    │                                         │
@@ -53,7 +53,7 @@ This document provides comprehensive documentation of the AI assistant implement
    - Input validation & sanitization
    - Conversation creation/retrieval
    - Message persistence
-4. Request forwarded to Lovable AI Gateway with streaming enabled
+4. Request forwarded to the Google Gemini API (OpenAI-compatible endpoint) with streaming enabled
 5. Response streamed back to client in real-time
 6. Assistant response saved to database on stream completion
 
@@ -65,41 +65,23 @@ This document provides comprehensive documentation of the AI assistant implement
 
 | Property | Value |
 |----------|-------|
-| **Gateway** | Lovable AI Gateway |
-| **Endpoint** | `https://ai.gateway.lovable.dev/v1/chat/completions` |
-| **Model** | `google/gemini-2.5-flash` |
-| **API Key** | `LOVABLE_API_KEY` (auto-provisioned secret) |
+| **Provider** | Google Gemini API (OpenAI-compatible endpoint) |
+| **Endpoint** | `https://generativelanguage.googleapis.com/v1beta/openai/chat/completions` |
+| **Model** | `gemini-2.5-flash` |
+| **API Key** | `GOOGLE_AI_API_KEY` (Supabase function secret) |
 | **Response Format** | Server-Sent Events (SSE) streaming |
 
 ### System Prompt
 
-The AI assistant is configured with a detailed system prompt that defines:
+`VONAI_CONTEXT` in `supabase/functions/chat/index.ts` describes the 30-day workflow offer (one AI workflow, live in 30 days, measured against a day-0 baseline) using the same facts as the site copy in `src/i18n/locales/en.json`:
 
-- **Identity**: VON AI assistant for the company website
-- **Service Knowledge**: Complete information about AI ROI Sprint, Pilot, and Optimization services
-- **Response Style**: Plain text only (no markdown formatting)
-- **Behavioral Guidelines**: Concise, friendly, helpful responses
-- **Call-to-Action**: Directs users to book calls or use contact form
+- **Pricing rule (highest priority)**: the assistant never states a price, range, floor, day rate or monthly amount. Cost questions get a paraphrase of `home.faq.a1` (fixed build price agreed before starting, a monthly fee after go-live, a quote after the free call) and an offer to book the call at `/contact`. Prices live only in the unrendered parked block of `en.json` and must never be copied into the prompt.
+- **Offer knowledge**: audience, the two common workflows and their measures, the 4-step 30-day process, what the client provides, the coaching-firm case, fit criteria and the FAQ answers.
+- **Guardrails**: no invented clients, numbers or services; say so and suggest the free call when unsure.
+- **Response style**: short, plain text only (no markdown).
 
-```typescript
-const VONAI_CONTEXT = `You are the VON AI assistant, a helpful chatbot for VON AI's website...
+When the offer copy in `en.json` changes, update `VONAI_CONTEXT` in the same change.
 
-## About VON AI
-VON AI helps businesses implement AI with measurable ROI...
-
-## Our Services
-### 1. AI ROI Sprint (2 weeks) - Step 1: Plan
-### 2. AI ROI Pilot (4-6 weeks) - Step 2: Ship  
-### 3. Optimization & Adoption (Monthly) - Step 3: Scale
-
-## What We Don't Do
-## Key Differentiators
-## Timeline
-## What We Need From Clients
-## Contact
-
-Keep responses concise, friendly, and helpful. Do NOT use any markdown formatting...`;
-```
 
 ### Request Structure
 
@@ -361,11 +343,12 @@ async function streamChat({ messages, conversationId, onDelta, onDone, onError }
 
 #### Quick Replies
 ```typescript
+// Strings come from chatWidget.quickReplies.* in en.json
 const QUICK_REPLIES = [
-  "What is the AI ROI Sprint?",
-  "How do I get started?",
-  "What does it cost?",
-  "How long does it take?",
+  t("chatWidget.quickReplies.whatIsOffer"),    // "What is the 30-day offer?"
+  t("chatWidget.quickReplies.whichWorkflows"), // "Which workflows do you build?"
+  t("chatWidget.quickReplies.whatCost"),       // "What does it cost?"
+  t("chatWidget.quickReplies.howToStart"),     // "How do I get started?"
 ];
 ```
 
@@ -456,7 +439,7 @@ onError: (error) => {
 | **Length Limits** | 2,000 chars/message, 50 messages/context |
 | **Role Validation** | Whitelist: `user`, `assistant`, `system` only |
 | **Service Role DB Access** | Edge function uses service role for writes |
-| **API Key Protection** | `LOVABLE_API_KEY` stored as secret, never exposed |
+| **API Key Protection** | `GOOGLE_AI_API_KEY` stored as a function secret, never exposed |
 | **No Public Read Access** | Conversations only readable by admins |
 | **Abuse Detection** | Flags IPs with 5+ rate limit hits per hour |
 | **Audit Logging** | Rate limit events persisted for review |
@@ -492,7 +475,7 @@ verify_jwt = false  # Allows anonymous access (rate-limited)
 
 | Variable | Purpose | Source |
 |----------|---------|--------|
-| `LOVABLE_API_KEY` | Lovable AI Gateway authentication | Auto-provisioned secret |
+| `GOOGLE_AI_API_KEY` | Google Gemini API authentication | Supabase function secret |
 | `SUPABASE_URL` | Database connection | Auto-configured |
 | `SUPABASE_SERVICE_ROLE_KEY` | Admin DB access in edge function | Auto-configured |
 | `VITE_SUPABASE_URL` | Client-side API base URL | Auto-configured |
@@ -504,7 +487,7 @@ verify_jwt = false  # Allows anonymous access (rate-limited)
 
 The VON AI Assistant is a production-ready chatbot implementation featuring:
 
-- **Streaming AI responses** via Lovable AI Gateway (Gemini 2.5 Flash)
+- **Streaming AI responses** via the Google Gemini API (gemini-2.5-flash)
 - **Robust rate limiting** to prevent abuse without requiring authentication
 - **Comprehensive input validation** to ensure data integrity
 - **Full conversation persistence** for admin review
