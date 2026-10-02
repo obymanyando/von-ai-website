@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 /**
- * Copy guardrails for the redesign. Runs automatically after `npm run build`
- * (postbuild), so a build that would ship a price fails. Also runnable alone:
+ * Copy guardrails for the redesign. Chained into `build` (not a post* hook,
+ * which some package managers skip), so a build that would ship a price
+ * fails. Also runnable alone:
  *   npm run check:copy
  *
  * 1. Every translation key used in src/ exists in en.json. Literal t("a.b")

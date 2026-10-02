@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components -- email template module for Deno, not a Fast Refresh boundary */
 /// <reference types="npm:@types/react@18.3.1" />
 import * as React from 'npm:react@18.3.1'
 import {
@@ -76,6 +77,9 @@ const ResourceDownloadEmail = ({ name, resourceSlug, language = 'en' }: Props) =
 
 export const template = {
   component: ResourceDownloadEmail,
+  // `any` matches TemplateEntry.subject in registry.ts; narrowing it needs a
+  // Deno type-check of every template, which this change could not run.
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   subject: (data: Record<string, any>) =>
     `Your copy of ${resourceTitle(data?.resourceSlug, data?.language ?? 'en')}`,
   displayName: 'Resource download',

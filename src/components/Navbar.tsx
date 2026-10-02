@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type MouseEvent } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Menu } from "lucide-react";
@@ -33,7 +33,9 @@ export function Navbar() {
   // tab); programmatic scrolling still works under its scroll lock.
   const [open, setOpen] = useState(false);
   const navigated = useRef(false);
-  const closeAfterLink = () => {
+  const closeAfterLink = (e: MouseEvent<HTMLAnchorElement>) => {
+    // Opening in a new tab/window leaves this page as it is.
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
     navigated.current = true;
     setOpen(false);
   };

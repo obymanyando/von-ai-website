@@ -1,9 +1,14 @@
 # Old-offer pages (retired in the 30-day workflow redesign). Real 301s for
 # crawlers; App.tsx also redirects these client-side.
 /ai-roi-sprint / 301
+/ai-roi-sprint/ / 301
 /services / 301
+/services/ / 301
 /roi-calculator / 301
+/roi-calculator/ / 301
 /30-day-outcome-pilot / 301
+/30-day-outcome-pilot/ / 301
 /about / 301
+/about/ / 301
 # Deleted PDF, still linked from emails sent before the redesign.
 /30-day-outcome-pilot-framework.pdf / 301
