@@ -94,10 +94,10 @@ export default function ChatWidget() {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const QUICK_REPLIES = [
-    t("chatWidget.quickReplies.whatIsSprint"),
-    t("chatWidget.quickReplies.howToStart"),
+    t("chatWidget.quickReplies.whatIsOffer"),
+    t("chatWidget.quickReplies.whichWorkflows"),
     t("chatWidget.quickReplies.whatCost"),
-    t("chatWidget.quickReplies.howLong"),
+    t("chatWidget.quickReplies.howToStart"),
   ];
 
   useEffect(() => {
