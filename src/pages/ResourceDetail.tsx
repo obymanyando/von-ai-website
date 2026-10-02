@@ -1,12 +1,9 @@
 import { useState } from "react";
 import { Link, useParams, Navigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { ArrowLeft, Download, Lock, FileText, CheckCircle2 } from "lucide-react";
 import { Layout } from "@/components/Layout";
 import { SEO } from "@/components/SEO";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { ResourceCard } from "@/components/ResourceCard";
+import { ResourceCard, ResourceMeta } from "@/components/ResourceCard";
 import { GatedDownloadDialog } from "@/components/GatedDownloadDialog";
 import { resources, getResourceBySlug, getResourceUrl } from "@/data/resources";
 import { supabase } from "@/integrations/supabase/client";
@@ -54,106 +51,74 @@ export default function ResourceDetail() {
   };
 
   return (
-    <Layout>
+    <Layout closingCta={{ title: t("resources.cta.title"), subtitle: t("resources.cta.subtitle") }}>
       <SEO
-        title={`${title} | VonAI Resources`}
+        title={`${title} | VonAI Insights`}
         description={desc}
         canonical={`/resources/${resource.slug}`}
         type="article"
         jsonLd={jsonLd}
       />
-      <section className="container-padding mx-auto max-w-4xl py-12 md:py-20">
+      <article className="site-container flex max-w-[860px] flex-col gap-5 pb-24 pt-12 md:pt-16">
         <Link
           to="/resources"
-          className="inline-flex items-center text-sm text-muted-foreground hover:text-primary"
+          className="inline-flex min-h-[44px] items-center self-start text-sm text-ink-soft md:min-h-0"
         >
-          <ArrowLeft className="mr-1 h-4 w-4" />
-          {t("resources.backToAll")}
+          <span aria-hidden>←</span>&nbsp;{t("resources.backToAll")}
         </Link>
 
-        <div className="mt-6 flex flex-wrap items-center gap-2">
-          <Badge variant="outline" className="capitalize">
-            {t(`resources.types.${resource.type}`)}
-          </Badge>
-          {resource.gated ? (
-            <Badge variant="secondary" className="gap-1">
-              <Lock className="h-3 w-3" />
-              {t("resources.gatedBadge")}
-            </Badge>
-          ) : (
-            <Badge className="bg-primary/15 text-primary hover:bg-primary/20">
-              {t("resources.freeBadge")}
-            </Badge>
-          )}
+        <div className="flex flex-wrap items-center gap-3">
+          <ResourceMeta resource={resource} className="text-sm" />
           {resource.placeholder && (
-            <Badge variant="outline" className="border-dashed">
+            <span className="rounded-full border border-dashed border-line-dashed px-2.5 py-0.5 font-mono text-[11px] uppercase text-ink-meta">
               {t("resources.previewBadge")}
-            </Badge>
+            </span>
           )}
         </div>
 
-        <h1 className="mt-4 text-4xl font-bold text-foreground md:text-5xl">
-          {title}
-        </h1>
-        <p className="mt-4 text-lg text-muted-foreground">{desc}</p>
-        {longDesc && (
-          <p className="mt-4 text-base text-muted-foreground">{longDesc}</p>
-        )}
+        <h1 className="h1-page">{title}</h1>
+        <p className="lead text-[19px]">{desc}</p>
+        {longDesc && <p className="text-pretty text-base leading-[1.6] text-ink-body">{longDesc}</p>}
 
-        <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+        <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-3">
           {resource.gated ? (
-            <Button variant="cta-hero" size="xl" onClick={() => setDialogOpen(true)}>
-              <Download className="mr-2 h-5 w-5" />
-              {t("resources.getPdf")}
-            </Button>
+            <button type="button" className="pill pill-dark pill-lg" onClick={() => setDialogOpen(true)}>
+              {t("resources.getPdf")} <span aria-hidden>→</span>
+            </button>
           ) : (
-            <Button variant="cta-hero" size="xl" asChild onClick={handleFreeDownload}>
-              <a href={fileUrl} download={resource.fileName}>
-                <Download className="mr-2 h-5 w-5" />
-                {t("resources.download")}
-              </a>
-            </Button>
+            <a href={fileUrl} download={resource.fileName} onClick={handleFreeDownload} className="pill pill-dark pill-lg">
+              {t("resources.download")} <span aria-hidden>↓</span>
+            </a>
           )}
-          <span className="inline-flex items-center text-sm text-muted-foreground">
-            <FileText className="mr-2 h-4 w-4" />
-            PDF
-          </span>
+          <span className="font-mono text-xs uppercase text-ink-meta">PDF</span>
         </div>
 
         {!resource.gated && (
-          <ul className="mt-10 space-y-3 text-sm text-muted-foreground">
-            <li className="flex items-start gap-2">
-              <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-              {t("resources.benefit1")}
-            </li>
-            <li className="flex items-start gap-2">
-              <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-              {t("resources.benefit2")}
-            </li>
-            <li className="flex items-start gap-2">
-              <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-              {t("resources.benefit3")}
-            </li>
+          <ul className="mt-6 flex flex-col border-t border-line">
+            {[1, 2, 3].map((n) => (
+              <li key={n} className="grid grid-cols-[28px_minmax(0,1fr)] gap-2 border-b border-line py-3.5 text-[15px] text-ink-2">
+                <span aria-hidden className="mt-[5px] h-[9px] w-4 -rotate-45 border-b-2 border-l-2 border-brand" />
+                {t(`resources.benefit${n}`)}
+              </li>
+            ))}
           </ul>
         )}
-      </section>
+      </article>
 
       {related.length > 0 && (
-        <section className="container-padding mx-auto max-w-7xl border-t border-border py-16">
-          <h2 className="text-2xl font-bold text-foreground">{t("resources.related")}</h2>
-          <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {related.map((r) => (
-              <ResourceCard key={r.slug} resource={r} />
-            ))}
+        <section className="border-t border-line">
+          <div className="site-container flex flex-col gap-6 py-20">
+            <h2 className="eyebrow">{t("resources.related")}</h2>
+            <div className="grid grid-cols-[repeat(auto-fill,minmax(min(100%,280px),1fr))] gap-4">
+              {related.map((r) => (
+                <ResourceCard key={r.slug} resource={r} />
+              ))}
+            </div>
           </div>
         </section>
       )}
 
-      <GatedDownloadDialog
-        resource={resource}
-        open={dialogOpen}
-        onOpenChange={setDialogOpen}
-      />
+      <GatedDownloadDialog resource={resource} open={dialogOpen} onOpenChange={setDialogOpen} />
     </Layout>
   );
 }

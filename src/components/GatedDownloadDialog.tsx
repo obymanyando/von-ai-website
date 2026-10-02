@@ -112,10 +112,10 @@ export function GatedDownloadDialog({ resource, open, onOpenChange }: Props) {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className="rounded-[18px] sm:max-w-md sm:rounded-[18px]">
         {done ? (
           <div className="text-center space-y-4 py-4">
-            <CheckCircle2 className="mx-auto h-12 w-12 text-primary" />
+            <CheckCircle2 className="mx-auto h-12 w-12 text-brand" />
             <DialogTitle>{t("resources.successTitle")}</DialogTitle>
             <DialogDescription>{t("resources.successBody")}</DialogDescription>
             <Button asChild variant="cta">
@@ -192,7 +192,7 @@ export function GatedDownloadDialog({ resource, open, onOpenChange }: Props) {
                 <span>{t("resources.marketingOptInLabel")}</span>
               </label>
 
-              <Button type="submit" variant="cta" className="w-full" disabled={submitting || !consent}>
+              <Button type="submit" variant="cta" className="w-full rounded-full" disabled={submitting || !consent}>
                 {submitting ? (
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                 ) : (

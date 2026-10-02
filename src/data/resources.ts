@@ -15,6 +15,8 @@ export interface Resource {
   pages?: number;
   publishedAt: string;
   placeholder?: boolean;
+  /** Shown in the featured banner on /resources. The first featured entry wins. */
+  featured?: boolean;
 }
 
 export const resources: Resource[] = [
@@ -35,6 +37,7 @@ export const resources: Resource[] = [
     tags: ["operations", "leadership", "ai-strategy"],
     fileName: "ai-operating-layer-checklist.pdf",
     publishedAt: "2026-05-21",
+    featured: true,
   },
   {
     slug: "ai-readiness-scorecard",
@@ -100,6 +103,14 @@ export const resources: Resource[] = [
 
 export function getResourceBySlug(slug: string): Resource | undefined {
   return resources.find((r) => r.slug === slug);
+}
+
+/** The featured resource, falling back to the most recently published one. */
+export function getFeaturedResource(list: Resource[] = resources): Resource | undefined {
+  return (
+    list.find((r) => r.featured) ??
+    [...list].sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))[0]
+  );
 }
 
 export function getResourceUrl(resource: Resource): string {

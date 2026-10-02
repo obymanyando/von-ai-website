@@ -1,12 +1,26 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Download, Lock, FileText } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import type { Resource } from "@/data/resources";
+import { cn } from "@/lib/utils";
 
 interface Props {
   resource: Resource;
+}
+
+/** "Type · Free" / "Type · Email required" line shared by cards and the detail page. */
+export function ResourceMeta({ resource, className }: Props & { className?: string }) {
+  const { t } = useTranslation();
+  return (
+    <p className={cn("flex items-center gap-2 text-xs", className)}>
+      <span className="text-ink-soft">{t(`resources.types.${resource.type}`)}</span>
+      <span aria-hidden className="text-ink-dim">
+        ·
+      </span>
+      <span className={cn("font-medium", resource.gated ? "text-ink-meta" : "text-brand-text")}>
+        {resource.gated ? t("resources.gatedBadge") : t("resources.freeBadge")}
+      </span>
+    </p>
+  );
 }
 
 export function ResourceCard({ resource }: Props) {
@@ -18,52 +32,26 @@ export function ResourceCard({ resource }: Props) {
   return (
     <Link
       to={`/resources/${resource.slug}`}
-      className="group flex flex-col rounded-xl border border-border bg-card p-6 transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-lg"
+      className="group flex flex-col overflow-hidden rounded-2xl border border-line bg-white text-ink transition-[border-color,transform] duration-200 hover:-translate-y-0.5 hover:border-line-hover hover:text-ink"
     >
-      <div className="flex items-start justify-between gap-3">
-        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
-          <FileText className="h-5 w-5" />
-        </div>
-        <div className="flex flex-wrap items-center gap-2">
-          <Badge variant="outline" className="capitalize">
+      {/* Mock first page of the document; decorative. */}
+      <div aria-hidden className="relative h-[140px] overflow-hidden border-b border-line-inner bg-muted">
+        <div className="absolute inset-x-6 -bottom-2.5 top-6 flex flex-col gap-2 rounded-t-lg border border-line bg-white p-3.5">
+          <span className="font-mono text-[10px] uppercase tracking-[.05em] text-brand-text">
             {t(`resources.types.${resource.type}`)}
-          </Badge>
-          {resource.gated ? (
-            <Badge variant="secondary" className="gap-1">
-              <Lock className="h-3 w-3" />
-              {t("resources.gatedBadge")}
-            </Badge>
-          ) : (
-            <Badge className="bg-primary/15 text-primary hover:bg-primary/20">
-              {t("resources.freeBadge")}
-            </Badge>
-          )}
+          </span>
+          <span className="h-1.5 w-4/5 rounded-full bg-secondary" />
+          <span className="h-1.5 w-3/5 rounded-full bg-secondary" />
         </div>
       </div>
-
-      <h3 className="mt-5 text-xl font-semibold text-foreground transition-colors group-hover:text-primary">
-        {title}
-      </h3>
-      <p className="mt-2 flex-1 text-sm text-muted-foreground">{desc}</p>
-
-      <div className="mt-6 flex items-center gap-2 text-sm font-medium text-primary">
-        <Download className="h-4 w-4" />
-        {resource.gated ? t("resources.getPdf") : t("resources.download")}
+      <div className="flex flex-1 flex-col gap-2.5 p-5">
+        <ResourceMeta resource={resource} />
+        <h3 className="text-pretty text-[17px] font-medium leading-[1.35]">{title}</h3>
+        <p className="text-pretty text-sm leading-[1.5] text-ink-soft">{desc}</p>
+        <span className="mt-auto pt-2 text-sm text-ink group-hover:text-brand-text">
+          {resource.gated ? t("resources.getPdf") : t("resources.download")} <span aria-hidden>→</span>
+        </span>
       </div>
     </Link>
-  );
-}
-
-export function ResourceCardCompact({ resource }: Props) {
-  const { i18n } = useTranslation();
-  const lang = i18n.language.startsWith("fi") ? "fi" : "en";
-  const title = lang === "fi" ? resource.titleFi : resource.titleEn;
-  return (
-    <Button asChild variant="outline" className="justify-start">
-      <Link to={`/resources/${resource.slug}`}>
-        <FileText className="mr-2 h-4 w-4" />
-        {title}
-      </Link>
-    </Button>
   );
 }
