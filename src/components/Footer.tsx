@@ -1,67 +1,68 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import logoLight from "@/assets/logo-light.png";
-import logoDark from "@/assets/logo-dark.png";
+import { Logo } from "@/components/site/Logo";
+import { ClosingCta, type ClosingCtaCopy } from "@/components/site/ClosingCta";
+import { HOME_SECTIONS } from "@/lib/site";
 
-const CONTACT_EMAIL = "hello@von-ai.com";
+export type FooterVariant = "full" | "minimal";
 
-const navigationKeys = [
-  { href: "/", key: "home" },
-  { href: "/ai-roi-sprint", key: "aiRoiSprint" },
-  { href: "/resources", key: "resources" },
-  { href: "/contact", key: "contact" },
-];
+interface FooterProps {
+  /** Dark closing call-to-action card above the footer. Omit for none. */
+  closingCta?: ClosingCtaCopy;
+  /** "minimal" is a single row (used on Contact, where extra exits cost bookings). */
+  variant?: FooterVariant;
+}
 
-export function Footer() {
-  const currentYear = new Date().getFullYear();
+const colLabel = "font-mono text-xs uppercase tracking-[.05em] text-ink-meta";
+const colLink = "inline-flex min-h-[44px] items-center text-ink md:min-h-0";
+
+export function Footer({ closingCta, variant = "full" }: FooterProps) {
   const { t } = useTranslation();
+  const rights = t("footer.rights", { year: new Date().getFullYear() });
+
+  if (variant === "minimal") {
+    return (
+      <footer className="site-container flex flex-wrap justify-between gap-3 border-t border-line pb-12 pt-10 text-[13px] text-ink-meta">
+        <span>{rights}</span>
+        <Link to="/privacy" className="text-ink-meta">
+          {t("footer.privacy")}
+        </Link>
+      </footer>
+    );
+  }
 
   return (
-    <footer className="border-t border-border bg-muted/30">
-      <div className="container-padding mx-auto max-w-7xl py-12 md:py-16">
-        <div className="grid gap-8 md:grid-cols-3">
-          {/* Brand */}
-          <div className="md:col-span-2">
-            <Link to="/" className="inline-block">
-              <img src={logoDark} alt="VonAI" className="h-8 w-auto dark:hidden" />
-              <img src={logoLight} alt="VonAI" className="hidden h-8 w-auto dark:block" />
+    <>
+      {closingCta && <ClosingCta {...closingCta} />}
+      <footer className="site-container grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] gap-10 pb-12 pt-16 text-[15px]">
+        <div className="flex min-w-0 flex-col gap-3.5 sm:col-span-2">
+          <Link to="/" aria-label="VonAI home" className="self-start">
+            <Logo />
+          </Link>
+          <p className="max-w-[360px] leading-[1.55] text-ink-soft">{t("footer.description")}</p>
+        </div>
+        <nav aria-label={t("footer.navigation")} className="flex flex-col gap-2.5">
+          <p className={colLabel}>{t("footer.navigation")}</p>
+          {HOME_SECTIONS.map((s) => (
+            <Link key={s.id} to={`/#${s.id}`} className={colLink}>
+              {t(s.labelKey)}
             </Link>
-            <p className="mt-4 max-w-md text-sm text-muted-foreground">
-              {t("footer.description")}
-            </p>
-            <a
-              href={`mailto:${CONTACT_EMAIL}`}
-              className="mt-4 inline-block text-sm text-primary hover:underline"
-            >
-              {CONTACT_EMAIL}
-            </a>
-          </div>
-
-          {/* Navigation Links */}
-          <div>
-            <h4 className="text-sm font-semibold text-foreground">{t("footer.navigation")}</h4>
-            <ul className="mt-4 space-y-2">
-              {navigationKeys.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    to={link.href}
-                    className="text-sm text-muted-foreground transition-colors hover:text-primary"
-                  >
-                    {t(`nav.${link.key}`)}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        {/* Bottom Bar */}
-        <div className="mt-12 border-t border-border pt-8">
-          <p className="text-center text-sm text-muted-foreground">
-            {t("footer.rights", { year: currentYear })}
-          </p>
-        </div>
-      </div>
-    </footer>
+          ))}
+        </nav>
+        <nav aria-label={t("footer.company")} className="flex flex-col gap-2.5">
+          <p className={colLabel}>{t("footer.company")}</p>
+          <Link to="/resources" className={colLink}>
+            {t("nav.insights")}
+          </Link>
+          <Link to="/contact" className={colLink}>
+            {t("nav.contact")}
+          </Link>
+          <Link to="/privacy" className={colLink}>
+            {t("footer.privacy")}
+          </Link>
+        </nav>
+        <p className="col-span-full border-t border-line pt-5 text-[13px] text-ink-meta">{rights}</p>
+      </footer>
+    </>
   );
 }
