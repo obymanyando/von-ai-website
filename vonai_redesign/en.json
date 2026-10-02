@@ -1,0 +1,223 @@
+{
+  "nav": {
+    "offer": "The offer",
+    "process": "How it works",
+    "results": "Results",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "bookCall": "Book a free call"
+  },
+  "footer": {
+    "description": "VonAI builds practical AI workflows for owner-led professional services firms. Based in Helsinki.",
+    "navigation": "On this page",
+    "company": "Company",
+    "privacy": "Privacy policy",
+    "rights": "© {{year}} VonAI. All rights reserved."
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "For professional services firms in Finland with 10 to 100 people",
+      "title1": "One AI workflow, live in 30 days.",
+      "title2": "Measured against how you work today.",
+      "subtitle": "You choose one job that takes up your team's time: replying to new enquiries, or writing proposals and tenders. We build it with you, put it into daily use and report the results on day 30.",
+      "priceLine": "Fixed price, agreed before we start.",
+      "cta": "Book a free 30-minute call",
+      "secondaryCta": "See how it works"
+    },
+    "problem": {
+      "title": "Where firms like yours tend to get stuck",
+      "pain1": "Most of your people use ChatGPT or Copilot, but the way the firm actually works hasn't changed.",
+      "pain2": "New enquiries wait hours or days for a reply, because the people who could answer are busy with client work.",
+      "pain3": "Proposals and tenders take up evenings, and much of the text is rewritten from the last one.",
+      "pain4": "You'd like to automate something, but nobody has time to work out what, or to build it.",
+      "closing": "For a firm of your size, a good first step is a small one: take one repetitive job off your senior people's desks and measure what changes."
+    },
+    "offer": {
+      "title": "Pick one workflow",
+      "subtitle": "Both are common in professional services firms, and both are easy to measure.",
+      "option1Title": "Enquiry handling",
+      "option1Desc": "Enquiries from your website, email or WhatsApp get a reply within minutes. Contact details go into your CRM and the client can book a meeting directly. Anything unusual is passed to a person.",
+      "option1Metrics": "What we measure: time to first reply, enquiries left unanswered, meetings booked.",
+      "option2Title": "Proposal and tender drafting",
+      "option2Desc": "The system drafts a first version from the tender documents, your past proposals and your templates. Your expert edits and signs off. Nothing goes out without a person reading it.",
+      "option2Metrics": "What we measure: hours per proposal, turnaround time, proposals sent per month.",
+      "otherNote": "Have a different workflow in mind? Bring it to the call. If it repeats every week and the result can be measured, it may fit."
+    },
+    "process": {
+      "title": "How the 30 days work",
+      "step1Title": "Week 1: Map and measure",
+      "step1Desc": "We go through the workflow with the people who do it today and record the baseline: how long it takes, how often it happens and where things slip.",
+      "step2Title": "Weeks 2 and 3: Build and test",
+      "step2Desc": "We build the workflow, in your existing tools where possible. Your team tests it on real cases and we adjust.",
+      "step3Title": "Week 4: Go live",
+      "step3Desc": "The workflow goes into daily use. Your team gets a short walkthrough and written instructions.",
+      "step4Title": "Day 30: Results report",
+      "step4Desc": "A short report comparing day 30 with day 0, using the same measures. You see what changed and what didn't.",
+      "requirementsTitle": "What we need from you",
+      "req1": "One person in your firm who owns the workflow",
+      "req2": "Access to the tools the workflow uses, such as email, CRM and document storage",
+      "req3": "A few hours from the people who do the work today, spread over the four weeks"
+    },
+    "proof": {
+      "title": "Results from earlier work",
+      "case1Label": "Leadership coaching firm, 9 people",
+      "case1Problem": "Enquiries arrived through WhatsApp, email and social media messages. The team was too small to reply quickly, and some leads went cold.",
+      "case1Solution": "We set up one system across WhatsApp, the website and email. It replies to new enquiries, saves contacts in the CRM, updates the deal and offers meeting times.",
+      "case1Result": "Lead conversion rate up 40%"
+    },
+    "fit": {
+      "title": "Is this a good fit?",
+      "goodTitle": "It usually fits if",
+      "good1": "You run or co-own a firm of 10 to 100 people in architecture, engineering, consulting, coaching, law or accounting",
+      "good2": "You have a workflow that happens every week and costs real hours",
+      "good3": "Someone in the firm can own it after go-live",
+      "badTitle": "It's probably not for you if",
+      "bad1": "You're looking for an AI strategy document or a training programme",
+      "bad2": "The process you want to automate doesn't exist in a stable form yet",
+      "bad3": "You'd rather run several pilots at once"
+    },
+    "faq": {
+      "title": "Common questions",
+      "q1": "What does it cost?",
+      "a1": "It depends on the workflow and how many systems it touches. The build is a fixed price agreed before we start, so the number doesn't change halfway. After go-live, a monthly fee covers monitoring, fixes and small improvements. You'll get a quote after the free call.",
+      "q2": "Which tools do you use?",
+      "a2": "Where possible, the ones you already have. We don't resell software. If a new tool is needed, it's set up in your firm's name and you pay for it directly. We'll explain the expected running costs before we start.",
+      "q3": "What about client data and confidentiality?",
+      "a3": "Your data stays in accounts your firm controls. We use AI services that keep data in the EU where possible and don't use it to train their models. We're happy to sign an NDA or a data processing agreement.",
+      "q4": "Will this replace people?",
+      "a4": "No. You decide what the system may do on its own and what a person checks first. In proposal work, an expert always reviews the draft before it goes out.",
+      "q5": "What if the results are weak?",
+      "a5": "Then the day-30 report says so. We look at why and decide together whether to adjust the workflow or stop the monthly fee.",
+      "q6": "Why only one workflow?",
+      "a6": "One workflow that runs and has been measured tells you more than a long plan. Once it's in use, it's much easier to see what the next one should be.",
+      "q7": "What happens on the free call?",
+      "a7": "We talk for 30 minutes. You describe the workflow that takes the most time, and we tell you whether it's a good candidate and what the 30 days would look like. If it isn't a fit, we'll say so.",
+      "q8": "Who owns the workflow?",
+      "a8": "Your firm does. It runs in accounts you own, so if you stop the monthly fee, it keeps working and stays yours."
+    },
+    "finalCta": {
+      "title": "Which job would you take off your team's desk first?",
+      "subtitle": "Book a free 30-minute call. By the end of it, you'll know whether this fits your firm.",
+      "cta": "Book a free call"
+    }
+  },
+  "contact": {
+    "hero": {
+      "title": "Book a free call",
+      "subtitle": "30 minutes. Tell us which workflow takes the most time, and we'll tell you honestly whether it's a good fit."
+    },
+    "bookCall": {
+      "title": "Pick a time",
+      "subtitle": "Choose a slot that suits you. The call is online."
+    },
+    "form": {
+      "title": "Prefer to write?",
+      "subtitle": "Send a short message and we'll reply within one working day.",
+      "name": "Name *",
+      "namePlaceholder": "Your name",
+      "email": "Email *",
+      "emailPlaceholder": "you@company.com",
+      "company": "Company",
+      "companyPlaceholder": "Your company (optional)",
+      "message": "Message *",
+      "messagePlaceholder": "Which workflow takes up most of your team's time?",
+      "submit": "Send message",
+      "sending": "Sending...",
+      "emailDirect": "Or email directly:",
+      "consentLabel": "I agree to the processing of my personal data as described in the",
+      "consentLink": "Privacy Policy",
+      "consentRequired": "Please accept the privacy policy to send a message.",
+      "successTitle": "Message sent",
+      "successDesc": "We'll reply within one working day.",
+      "errorTitle": "Something went wrong",
+      "errorDesc": "Please try again, or email hello@von-ai.com directly."
+    },
+    "whatHelps": {
+      "title": "Useful to mention",
+      "item1": "The workflow you'd like to fix first",
+      "item2": "Roughly how many hours a week it takes",
+      "item3": "What you've already tried, if anything",
+      "bottomText": "Not sure yet? That's fine. We can work it out on the call."
+    }
+  },
+  "auth": {
+    "title": "Admin Access",
+    "signInSubtitle": "Sign in to access the admin dashboard",
+    "signUpSubtitle": "Create an admin account",
+    "email": "Email",
+    "password": "Password",
+    "signIn": "Sign In",
+    "createAccount": "Create Account",
+    "needAccount": "Need an account? Sign up",
+    "haveAccount": "Already have an account? Sign in",
+    "validationError": "Validation error",
+    "authError": "Authentication error",
+    "accountCreated": "Account created",
+    "accountCreatedDesc": "You can now sign in.",
+    "forgotPassword": "Forgot password?",
+    "forgotPasswordTitle": "Reset Password",
+    "forgotPasswordSubtitle": "Enter your email and we'll send you a reset link",
+    "sendResetLink": "Send Reset Link",
+    "resetLinkSent": "Reset link sent",
+    "resetLinkSentDesc": "Check your email for the password reset link",
+    "newPassword": "New Password",
+    "confirmNewPassword": "Confirm New Password",
+    "updatePassword": "Update Password",
+    "passwordUpdated": "Password updated",
+    "passwordUpdatedDesc": "You can now sign in with your new password",
+    "passwordMismatch": "Passwords do not match",
+    "backToLogin": "Back to login"
+  },
+  "notFound": {
+    "title": "404",
+    "message": "Page not found",
+    "returnHome": "Back to the home page"
+  },
+  "chatWidget": {
+    "title": "VonAI Assistant",
+    "subtitle": "Questions about VonAI",
+    "greeting": "Hello. I can answer questions about VonAI and the 30-day workflow offer.",
+    "placeholder": "Ask a question...",
+    "quickReplies": {
+      "whatIsOffer": "What is the 30-day offer?",
+      "whichWorkflows": "Which workflows do you build?",
+      "whatCost": "What does it cost?",
+      "howToStart": "How do I get started?"
+    },
+    "thinking": "Thinking...",
+    "error": "Sorry, something went wrong:"
+  },
+  "_parked": {
+    "_note": "Not rendered. Kept so the copy is ready when switched back on.",
+    "nav": {
+      "pricing": "Price"
+    },
+    "hero": {
+      "priceLine": "€4,500 fixed price. Then €350 a month to keep it running."
+    },
+    "priceFloor": "Projects start from €4,500 + VAT.",
+    "pricing": {
+      "title": "Price",
+      "buildTitle": "Build",
+      "buildPrice": "€4,500",
+      "buildNote": "Fixed price, + VAT",
+      "build1": "One workflow, mapped, built and live within 30 days",
+      "build2": "Baseline measurement on day 0 and a results report on day 30",
+      "build3": "Walkthrough and written instructions for your team",
+      "runTitle": "Run and improve",
+      "runPrice": "€350 a month",
+      "runNote": "Starts after go-live. One month's notice.",
+      "run1": "Monitoring, and fixes if something breaks",
+      "run2": "Small improvements based on how your team uses it",
+      "run3": "A one-page monthly report on the same measures",
+      "ownership": "The workflow runs in accounts your firm owns. If you stop the monthly fee, it keeps working and stays yours.",
+      "capacity": "We take on a small number of clients at a time, so each build gets our full attention."
+    },
+    "about": {
+      "title": "Who you'll work with",
+      "name": "Oby Manyando, founder of VonAI",
+      "body1": "In my day job I lead AI delivery on enterprise projects: taking AI from pilot into daily use and measuring the results.",
+      "body2": "VonAI is where I do the same work for smaller firms. You deal with me from the first call to the day-30 report. I'm based in Helsinki."
+    }
+  }
+}

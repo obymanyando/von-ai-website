@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FBFAF8;font-family:Geist,system-ui,sans-serif;color:#1A1A1A;-webkit-font-smoothing:antialiased}
+a{color:#1A1A1A;text-decoration:none}a:hover{color:oklch(0.5 0.2 258)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+section[id]{scroll-margin-top:72px}
+</style>
+</helmet>
+
+<div data-screen-label="Home" style="min-height:100vh;background:#FBFAF8;overflow-x:clip">
+
+  <nav style="position:sticky;top:0;z-index:20;background:rgba(251,250,248,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid {{ navBorder }}">
+    <div style="max-width:1200px;margin:0 auto;padding:0 24px;min-height:72px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px">
+      <a href="#" style="width:104px;height:24px;overflow:hidden;position:relative;display:block"><img src="assets/logo-dark.png" alt="VonAI" style="position:absolute;left:-15.6px;top:-15.5px;width:141px;mix-blend-mode:multiply"></a>
+      <div style="display:flex;flex-wrap:wrap;gap:28px;font-size:15px;align-items:center">
+        <a href="#offer" style="color:#3A3936">The offer</a>
+        <a href="#process" style="color:#3A3936">How it works</a>
+        <a href="#results" style="color:#3A3936">Results</a>
+        <a href="#faq" style="color:#3A3936">FAQ</a>
+        <a href="VonAI%20Insights.dc.html" style="color:#3A3936">Insights</a>
+      </div>
+      <div style="display:flex;gap:10px;align-items:center">
+        <a href="VonAI%20Contact.dc.html" style="font-size:15px;color:#3A3936;padding:10px 16px;border-radius:999px;background:#EFEDE9" style-hover="background:#E6E3DE">Contact</a>
+        <a href="VonAI%20Contact.dc.html" style="font-size:15px;color:#FBFAF8;padding:10px 18px;border-radius:999px;background:#1A1A1A;font-weight:500" style-hover="background:#333230;color:#FBFAF8">Book a free call</a>
+      </div>
+    </div>
+  </nav>
+
+  <header style="position:relative;overflow:hidden">
+    <div style="max-width:1200px;margin:0 auto;padding:88px 24px 0;display:flex;flex-direction:column;gap:28px;position:relative;z-index:2">
+      <div style="align-self:flex-start;display:flex;align-items:center;gap:10px;border:1px solid #E7E5E1;background:#FFFFFF;border-radius:999px;padding:6px 14px;font-size:14px;color:#3A3936">
+        <span style="width:7px;height:7px;border-radius:50%;background:oklch(0.58 0.2 258);flex:none"></span>
+        <span>For professional services firms in Finland with 10 to 100 people</span>
+      </div>
+      <h1 style="margin:0;font-size:clamp(44px,6.4vw,80px);line-height:1.02;letter-spacing:-.035em;font-weight:500;max-width:980px;text-wrap:balance">One AI workflow, live in 30 days. <span style="color:#8A8781">Measured against how you work today.</span></h1>
+      <p style="margin:0;font-size:clamp(18px,1.6vw,21px);line-height:1.5;color:#55524D;max-width:680px;text-wrap:pretty">You choose one job that takes up your team's time: replying to new enquiries, or writing proposals and tenders. We build it with you, put it into daily use and report the results on day 30.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center">
+        <a href="VonAI%20Contact.dc.html" style="display:flex;gap:10px;align-items:center;background:#1A1A1A;color:#FBFAF8;padding:15px 22px;border-radius:999px;font-size:17px;font-weight:500" style-hover="background:#333230;color:#FBFAF8">Book a free 30-minute call <span>→</span></a>
+        <a href="#process" style="background:#EFEDE9;color:#1A1A1A;padding:15px 22px;border-radius:999px;font-size:17px" style-hover="background:#E6E3DE">See how it works</a>
+        <sc-if value="{{ showPriceLine }}" hint-placeholder-val="{{ true }}">
+          <span style="font-size:15px;color:#6B6964">Fixed price, agreed before we start.</span>
+        </sc-if>
+      </div>
+    </div>
+
+    <div style="position:relative;max-width:1248px;margin:72px auto 0;padding:0 24px">
+      <div style="position:absolute;right:-260px;top:-160px;width:760px;height:760px;border-radius:50%;border:120px solid oklch(0.62 0.19 258);z-index:0"></div>
+      <div style="position:absolute;left:-300px;top:40px;width:520px;height:520px;border-radius:50%;border:90px solid oklch(0.62 0.19 258);z-index:0"></div>
+      <div style="position:relative;z-index:1;background:rgba(255,255,255,.72);border:1px solid rgba(0,0,0,.08);border-bottom:0;border-radius:16px 16px 0 0;padding:10px 10px 0;box-shadow:0 30px 80px -30px rgba(10,20,50,.35);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)">
+        <div style="height:30px;display:flex;align-items:center;gap:7px;padding:0 10px">
+          <span style="width:11px;height:11px;border-radius:50%;background:#E6B3AE"></span><span style="width:11px;height:11px;border-radius:50%;background:#EAD7A6"></span><span style="width:11px;height:11px;border-radius:50%;background:#B8D9B4"></span>
+          <span style="margin-left:auto;font-family:'Geist Mono',monospace;font-size:11px;color:#8A8781;border:1px solid #E7E5E1;border-radius:6px;padding:2px 8px;background:#FFFFFF">EXAMPLE REPORT</span>
+        </div>
+        <div style="background:#FFFFFF;border-radius:10px 10px 0 0;border:1px solid #EDEBE7;border-bottom:0;display:grid;grid-template-columns:minmax(200px,260px) minmax(0,1fr);overflow:hidden;min-height:360px">
+          <div style="border-right:1px solid #EDEBE7;padding:22px 16px;display:flex;flex-direction:column;gap:4px;font-size:14px;color:#55524D">
+            <div style="font-family:'Geist Mono',monospace;font-size:11px;color:#8A8781;letter-spacing:.05em;padding:0 10px 10px">WORKFLOW</div>
+            <sc-for list="{{ reportTabs }}" as="d" hint-placeholder-count="2">
+              <div onClick="{{ d.select }}" style="padding:8px 10px;border-radius:8px;display:flex;gap:10px;cursor:pointer;background:{{ d.bg }};color:{{ d.fg }};font-weight:{{ d.weight }};transition:background .15s" style-hover="background:#F5F3F0"><span style="font-family:'Geist Mono',monospace;opacity:.6">{{ d.n }}</span>{{ d.title }}</div>
+            </sc-for>
+            <div style="margin-top:auto;display:flex;flex-direction:column;gap:8px;padding:16px 10px 0;border-top:1px solid #EDEBE7">
+              <div style="display:flex;justify-content:space-between;font-family:'Geist Mono',monospace;font-size:11px;color:#8A8781"><span>DAY 0</span><span>DAY 30</span></div>
+              <div style="height:4px;border-radius:2px;background:oklch(0.62 0.19 258)"></div>
+              <span style="font-size:13px;color:#6B6964">Live in daily use</span>
+            </div>
+          </div>
+          <div style="padding:26px clamp(20px,3vw,40px) 32px;display:flex;flex-direction:column;gap:16px;min-width:0">
+            <div style="font-size:13px;color:#8A8781">Results report / {{ report.title }}</div>
+            <div style="font-size:26px;font-weight:500;letter-spacing:-.02em;text-wrap:pretty">{{ report.head }}</div>
+            <div style="font-size:15px;color:#55524D;line-height:1.5;max-width:720px;text-wrap:pretty">{{ report.desc }}</div>
+            <div style="border:1px solid #EDEBE7;border-radius:10px;overflow:hidden;font-size:14px">
+              <div style="display:grid;grid-template-columns:2fr 1fr 1fr;background:#F8F7F5;color:#8A8781;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.04em;padding:10px 16px;gap:12px"><span>MEASURE</span><span>DAY 0</span><span>DAY 30</span></div>
+              <sc-for list="{{ report.rows }}" as="r" hint-placeholder-count="3">
+                <div style="display:grid;grid-template-columns:2fr 1fr 1fr;padding:12px 16px;border-top:1px solid #EDEBE7;gap:12px"><span>{{ r.0 }}</span><span style="color:#8A8781">{{ r.1 }}</span><span style="color:oklch(0.5 0.2 258);font-weight:500">{{ r.2 }}</span></div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section style="border-top:1px solid #E7E5E1;position:relative;z-index:2;background:#FBFAF8">
+    <div style="max-width:1200px;margin:0 auto;padding:128px 24px 112px;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:64px">
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <div style="font-family:'Geist Mono',monospace;font-size:13px;color:#8A8781;letter-spacing:.05em">THE PROBLEM</div>
+        <h2 style="margin:0;font-size:clamp(34px,3.6vw,48px);line-height:1.08;letter-spacing:-.03em;font-weight:500;max-width:480px">Where firms like yours tend to get stuck</h2>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:32px">
+        <div style="display:flex;flex-direction:column;border-top:1px solid #E7E5E1">
+          <sc-for list="{{ pains }}" as="p" hint-placeholder-count="4">
+            <div style="display:grid;grid-template-columns:48px minmax(0,1fr);gap:8px;padding:22px 0;border-bottom:1px solid #E7E5E1;font-size:19px;line-height:1.45">
+              <span style="font-family:'Geist Mono',monospace;font-size:13px;color:#A5A19A;padding-top:4px">{{ p.n }}</span>
+              <span style="text-wrap:pretty">{{ p.text }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <p style="margin:0;font-size:19px;line-height:1.5;color:#55524D;padding-left:56px;text-wrap:pretty">For a firm of your size, a good first step is a small one: take one repetitive job off your senior people's desks and measure what changes.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="offer" style="background:#F1EFEB">
+    <div style="max-width:1200px;margin:0 auto;padding:112px 24px;display:flex;flex-direction:column;gap:48px">
+      <div style="display:flex;flex-direction:column;gap:18px;max-width:640px">
+        <div style="font-family:'Geist Mono',monospace;font-size:13px;color:#8A8781;letter-spacing:.05em">THE OFFER</div>
+        <h2 style="margin:0;font-size:clamp(34px,3.6vw,48px);line-height:1.08;letter-spacing:-.03em;font-weight:500">Pick one workflow</h2>
+        <p style="margin:0;font-size:18px;line-height:1.55;color:#55524D;text-wrap:pretty">Both are common in professional services firms, and both are easy to measure.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:20px">
+        <sc-for list="{{ options }}" as="o" hint-placeholder-count="2">
+          <div style="background:#FFFFFF;border:1px solid #E7E5E1;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-3px);box-shadow:0 18px 36px -20px rgba(10,20,50,.3)">
+            <div style="padding:28px;display:flex;flex-direction:column;gap:16px;flex:1">
+              <span style="font-family:'Geist Mono',monospace;font-size:13px;color:oklch(0.5 0.2 258)">{{ o.n }}</span>
+              <span style="font-size:26px;font-weight:500;letter-spacing:-.02em">{{ o.title }}</span>
+              <span style="font-size:16px;color:#55524D;line-height:1.55;text-wrap:pretty">{{ o.desc }}</span>
+            </div>
+            <div style="border-top:1px solid #EDEBE7;background:#F8F7F5;padding:20px 28px 24px;display:flex;flex-direction:column;gap:12px">
+              <span style="font-family:'Geist Mono',monospace;font-size:11px;color:#8A8781;letter-spacing:.05em">WHAT WE MEASURE</span>
+              <div style="display:flex;flex-wrap:wrap;gap:8px">
+                <sc-for list="{{ o.metrics }}" as="m" hint-placeholder-count="3">
+                  <span style="font-size:14px;color:#3A3936;background:#FFFFFF;border:1px solid #DEDBD6;border-radius:999px;padding:5px 12px">{{ m }}</span>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;border:1px dashed #CFCBC4;border-radius:14px;padding:20px 24px">
+        <span style="font-size:16px;line-height:1.5;color:#3A3936;max-width:720px;text-wrap:pretty">Have a different workflow in mind? Bring it to the call. If it repeats every week and the result can be measured, it may fit.</span>
+        <a href="VonAI%20Contact.dc.html" style="font-size:16px;color:#1A1A1A;display:flex;gap:8px;align-items:center;border-bottom:1px solid #1A1A1A;padding-bottom:2px">Book a free call <span>→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="process">
+    <div style="max-width:1200px;margin:0 auto;padding:128px 24px 112px;display:flex;flex-direction:column;gap:56px">
+      <div style="display:flex;flex-direction:column;gap:18px;max-width:640px">
+        <div style="font-family:'Geist Mono',monospace;font-size:13px;color:#8A8781;letter-spacing:.05em">HOW IT WORKS</div>
+        <h2 style="margin:0;font-size:clamp(34px,3.6vw,48px);line-height:1.08;letter-spacing:-.03em;font-weight:500">How the 30 days work</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:40px 12px">
+        <sc-for list="{{ stepPairs }}" as="pair" hint-placeholder-count="2">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:40px 12px">
+        <sc-for list="{{ pair }}" as="s" hint-placeholder-count="2">
+          <div style="display:flex;flex-direction:column;gap:18px">
+            <div style="display:flex;align-items:center;gap:10px">
+              <span style="width:10px;height:10px;border-radius:50%;background:{{ s.dot }};flex:none"></span>
+              <span style="height:2px;flex:1;background:{{ s.line }}"></span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px;padding-right:16px">
+              <span style="font-family:'Geist Mono',monospace;font-size:12px;color:{{ s.labelColor }};letter-spacing:.05em">{{ s.label }}</span>
+              <span style="font-size:20px;font-weight:500;letter-spacing:-.01em">{{ s.title }}</span>
+              <span style="font-size:15px;color:#55524D;line-height:1.55;text-wrap:pretty">{{ s.desc }}</span>
+            </div>
+          </div>
+        </sc-for>
+        </div>
+        </sc-for>
+      </div>
+      <div style="background:#FFFFFF;border:1px solid #E7E5E1;border-radius:16px;padding:28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px 32px">
+        <span style="font-size:20px;font-weight:500;letter-spacing:-.01em">What we need from you</span>
+        <sc-for list="{{ reqs }}" as="r" hint-placeholder-count="3">
+          <div style="display:grid;grid-template-columns:28px minmax(0,1fr);gap:8px;font-size:15px;line-height:1.5;color:#3A3936">
+            <span style="font-family:'Geist Mono',monospace;font-size:12px;color:#A5A19A;padding-top:3px">{{ r.n }}</span>
+            <span style="text-wrap:pretty">{{ r.text }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section id="results" style="border-top:1px solid #E7E5E1">
+    <div style="max-width:1200px;margin:0 auto;padding:112px 24px;display:flex;flex-direction:column;gap:48px">
+      <div style="display:flex;flex-direction:column;gap:18px;max-width:640px">
+        <div style="font-family:'Geist Mono',monospace;font-size:13px;color:#8A8781;letter-spacing:.05em">RESULTS</div>
+        <h2 style="margin:0;font-size:clamp(34px,3.6vw,48px);line-height:1.08;letter-spacing:-.03em;font-weight:500">Results from earlier work</h2>
+      </div>
+      <div style="background:#FFFFFF;border:1px solid #E7E5E1;border-radius:16px;overflow:hidden;display:flex;flex-wrap:wrap">
+        <div style="padding:32px;display:flex;flex-direction:column;gap:22px;flex:2 1 420px;min-width:0">
+          <span style="font-family:'Geist Mono',monospace;font-size:12px;color:#8A8781;letter-spacing:.04em">LEADERSHIP COACHING FIRM, 9 PEOPLE</span>
+          <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:13px;color:#8A8781">The problem</span><span style="font-size:17px;line-height:1.55;color:#3A3936;text-wrap:pretty">Enquiries arrived through WhatsApp, email and social media messages. The team was too small to reply quickly, and some leads went cold.</span></div>
+          <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:13px;color:#8A8781">What we built</span><span style="font-size:17px;line-height:1.55;color:#3A3936;text-wrap:pretty">We set up one system across WhatsApp, the website and email. It replies to new enquiries, saves contacts in the CRM, updates the deal and offers meeting times.</span></div>
+        </div>
+        <div style="background:#F8F7F5;box-shadow:-1px 0 0 #EDEBE7,0 -1px 0 #EDEBE7;padding:32px;display:flex;flex-direction:column;justify-content:flex-end;gap:8px;flex:1 1 260px">
+          <span style="font-size:clamp(56px,6vw,80px);font-weight:500;letter-spacing:-.04em;line-height:1;color:oklch(0.5 0.2 258)">+40%</span>
+          <span style="font-size:17px;color:#3A3936">Lead conversion rate up 40%</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#18191C;color:#EDECEA">
+    <div style="max-width:1200px;margin:0 auto;padding:112px 24px;display:flex;flex-direction:column;gap:48px">
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <div style="font-family:'Geist Mono',monospace;font-size:13px;color:oklch(0.75 0.14 258);letter-spacing:.05em">FIT</div>
+        <h2 style="margin:0;font-size:clamp(34px,3.6vw,48px);line-height:1.08;letter-spacing:-.03em;font-weight:500">Is this a good fit?</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px">
+        <div style="background:#1F2024;border:1px solid #2F3035;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:6px">
+          <span style="font-size:20px;font-weight:500;padding-bottom:12px">It usually fits if</span>
+          <sc-for list="{{ good }}" as="g" hint-placeholder-count="3">
+            <div style="display:grid;grid-template-columns:28px minmax(0,1fr);gap:8px;padding:14px 0;border-top:1px solid #2F3035;font-size:16px;line-height:1.5">
+              <span style="width:16px;height:9px;border-left:2px solid oklch(0.75 0.14 258);border-bottom:2px solid oklch(0.75 0.14 258);transform:rotate(-45deg);margin-top:5px"></span>
+              <span style="text-wrap:pretty">{{ g }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <div style="border:1px solid #2F3035;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:6px">
+          <span style="font-size:20px;font-weight:500;padding-bottom:12px">It's probably not for you if</span>
+          <sc-for list="{{ bad }}" as="b" hint-placeholder-count="3">
+            <div style="display:grid;grid-template-columns:28px minmax(0,1fr);gap:8px;padding:14px 0;border-top:1px solid #2F3035;font-size:16px;line-height:1.5;color:#B7B5B0">
+              <span style="width:14px;height:2px;background:#6E6C68;margin-top:11px"></span>
+              <span style="text-wrap:pretty">{{ b }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div style="max-width:1200px;margin:0 auto;padding:128px 24px 112px;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:64px">
+      <div style="display:flex;flex-direction:column;gap:18px;position:sticky;top:120px;align-self:start">
+        <div style="font-family:'Geist Mono',monospace;font-size:13px;color:#8A8781;letter-spacing:.05em">FAQ</div>
+        <h2 style="margin:0;font-size:clamp(34px,3.6vw,48px);line-height:1.08;letter-spacing:-.03em;font-weight:500">Common questions</h2>
+        <p style="margin:0;font-size:16px;color:#6B6964">Something else? <a href="mailto:hello@von-ai.com" style="color:#1A1A1A;border-bottom:1px solid #1A1A1A">hello@von-ai.com</a></p>
+      </div>
+      <div style="display:flex;flex-direction:column;border-top:1px solid #E7E5E1">
+        <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="8">
+          <div style="border-bottom:1px solid #E7E5E1">
+            <button onClick="{{ f.toggle }}" style="width:100%;font:inherit;background:none;border:0;padding:22px 0;display:flex;justify-content:space-between;align-items:center;gap:16px;cursor:pointer;text-align:left;font-size:18px;color:#1A1A1A">
+              <span>{{ f.q }}</span>
+              <span style="font-size:22px;color:#8A8781;transition:transform .2s;transform:rotate({{ f.rot }})">+</span>
+            </button>
+            <sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}">
+              <p style="margin:0 0 22px;font-size:16px;line-height:1.6;color:#55524D;max-width:600px;text-wrap:pretty">{{ f.a }}</p>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:0 24px 24px">
+    <div style="max-width:1200px;margin:0 auto;background:#1A1A1A;color:#FBFAF8;border-radius:24px;position:relative;overflow:hidden;padding:clamp(56px,7vw,96px) clamp(28px,6vw,80px)">
+      <div style="position:absolute;right:-300px;bottom:-380px;width:620px;height:620px;border-radius:50%;border:100px solid oklch(0.62 0.19 258)"></div>
+      <div style="position:relative;display:flex;flex-direction:column;gap:22px;max-width:640px">
+        <h2 style="margin:0;font-size:clamp(38px,4.4vw,60px);line-height:1.04;letter-spacing:-.035em;font-weight:500;text-wrap:balance">Which job would you take off your team's desk first?</h2>
+        <p style="margin:0;font-size:19px;line-height:1.5;color:#B7B5B0;text-wrap:pretty">Book a free 30-minute call. By the end of it, you'll know whether this fits your firm.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px 20px;margin-top:6px;align-items:center">
+          <a href="VonAI%20Contact.dc.html" style="display:flex;gap:10px;align-items:center;background:#FBFAF8;color:#1A1A1A;padding:15px 22px;border-radius:999px;font-size:17px;font-weight:500" style-hover="background:#FFFFFF;color:#1A1A1A">Book a free call <span>→</span></a>
+          <a href="mailto:hello@von-ai.com" style="color:#B7B5B0;font-size:16px;border-bottom:1px solid #6E6C68;padding-bottom:2px" style-hover="color:#FFFFFF">hello@von-ai.com</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="max-width:1200px;margin:0 auto;padding:64px 24px 48px;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:40px;font-size:15px">
+    <div style="display:flex;flex-direction:column;gap:14px;grid-column:span 2;min-width:0">
+      <div style="width:104px;height:24px;overflow:hidden;position:relative"><img src="assets/logo-dark.png" alt="VonAI" style="position:absolute;left:-15.6px;top:-15.5px;width:141px;mix-blend-mode:multiply"></div>
+      <p style="margin:0;color:#6B6964;line-height:1.55;max-width:360px">VonAI builds practical AI workflows for owner-led professional services firms. Based in Helsinki.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px"><span style="font-family:'Geist Mono',monospace;font-size:12px;color:#8A8781;letter-spacing:.05em">ON THIS PAGE</span><a href="#offer">The offer</a><a href="#process">How it works</a><a href="#results">Results</a><a href="#faq">FAQ</a></div>
+    <div style="display:flex;flex-direction:column;gap:10px"><span style="font-family:'Geist Mono',monospace;font-size:12px;color:#8A8781;letter-spacing:.05em">COMPANY</span><a href="VonAI%20Insights.dc.html">Insights</a><a href="VonAI%20Contact.dc.html">Contact</a><a href="#">Privacy policy</a></div>
+    <div style="grid-column:1/-1;border-top:1px solid #E7E5E1;padding-top:20px;font-size:13px;color:#8A8781">© 2026 VonAI. All rights reserved.</div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;heroWorkflow&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Enquiry handling&quot;,&quot;Proposal drafting&quot;],&quot;default&quot;:&quot;Enquiry handling&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;showPriceLine&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  state = { tab: null, faq: 0, scrolled: false };
+  W = [
+    { n: "01", title: "Enquiry handling", head: "Replies in minutes, not hours", desc: "Website, email and WhatsApp enquiries, compared with the baseline we recorded in week 1.",
+      rows: [["Time to first reply", "5 hrs", "4 min"], ["Enquiries left unanswered", "1 in 6", "0"], ["Meetings booked / month", "9", "14"]] },
+    { n: "02", title: "Proposal drafting", head: "First drafts in an hour, signed off by your expert", desc: "Proposals and tenders, compared with the baseline we recorded in week 1.",
+      rows: [["Hours per proposal", "11", "4"], ["Turnaround time", "6 days", "2 days"], ["Proposals sent / month", "5", "8"]] }
+  ];
+  componentDidMount() {
+    this.onScroll = () => { const s = window.scrollY > 8; if (s !== this.state.scrolled) this.setState({ scrolled: s }); };
+    window.addEventListener("scroll", this.onScroll);
+  }
+  componentWillUnmount() { window.removeEventListener("scroll", this.onScroll); }
+  renderVals() {
+    const s = this.state;
+    const tab = s.tab ?? (this.props.heroWorkflow === "Proposal drafting" ? 1 : 0);
+    const faqs = [
+      ["What does it cost?", "It depends on the workflow and how many systems it touches. The build is a fixed price agreed before we start, so the number doesn't change halfway. After go-live, a monthly fee covers monitoring, fixes and small improvements. You'll get a quote after the free call."],
+      ["Which tools do you use?", "Where possible, the ones you already have. We don't resell software. If a new tool is needed, it's set up in your firm's name and you pay for it directly. We'll explain the expected running costs before we start."],
+      ["What about client data and confidentiality?", "Your data stays in accounts your firm controls. We use AI services that keep data in the EU where possible and don't use it to train their models. We're happy to sign an NDA or a data processing agreement."],
+      ["Will this replace people?", "No. You decide what the system may do on its own and what a person checks first. In proposal work, an expert always reviews the draft before it goes out."],
+      ["What if the results are weak?", "Then the day-30 report says so. We look at why and decide together whether to adjust the workflow or stop the monthly fee."],
+      ["Why only one workflow?", "One workflow that runs and has been measured tells you more than a long plan. Once it's in use, it's much easier to see what the next one should be."],
+      ["What happens on the free call?", "We talk for 30 minutes. You describe the workflow that takes the most time, and we tell you whether it's a good candidate and what the 30 days would look like. If it isn't a fit, we'll say so."],
+      ["Who owns the workflow?", "Your firm does. It runs in accounts you own, so if you stop the monthly fee, it keeps working and stays yours."]
+    ].map(([q, a], i) => ({ q, a, open: s.faq === i, rot: s.faq === i ? "45deg" : "0deg", toggle: () => this.setState({ faq: s.faq === i ? -1 : i }) }));
+    const steps = [
+      ["WEEK 1", "Map and measure", "We go through the workflow with the people who do it today and record the baseline: how long it takes, how often it happens and where things slip."],
+      ["WEEKS 2 AND 3", "Build and test", "We build the workflow, in your existing tools where possible. Your team tests it on real cases and we adjust."],
+      ["WEEK 4", "Go live", "The workflow goes into daily use. Your team gets a short walkthrough and written instructions."],
+      ["DAY 30", "Results report", "A short report comparing day 30 with day 0, using the same measures. You see what changed and what didn't."]
+    ].map(([label, title, desc], i) => { const last = i === 3, blue = "oklch(0.58 0.2 258)";
+      return { label, title, desc, dot: last ? blue : "#1A1A1A", line: last ? "transparent" : "#D9D5CF", labelColor: last ? "oklch(0.5 0.2 258)" : "#8A8781" }; });
+    return {
+      navBorder: s.scrolled ? "#E7E5E1" : "transparent",
+      showPriceLine: this.props.showPriceLine ?? true,
+      reportTabs: this.W.map((w, i) => ({ ...w, select: () => this.setState({ tab: i }),
+        bg: i === tab ? "oklch(0.96 0.03 258)" : "transparent", fg: i === tab ? "oklch(0.45 0.2 258)" : "#55524D", weight: i === tab ? 500 : 400 })),
+      report: this.W[tab],
+      pains: [
+        "Most of your people use ChatGPT or Copilot, but the way the firm actually works hasn't changed.",
+        "New enquiries wait hours or days for a reply, because the people who could answer are busy with client work.",
+        "Proposals and tenders take up evenings, and much of the text is rewritten from the last one.",
+        "You'd like to automate something, but nobody has time to work out what, or to build it."
+      ].map((text, i) => ({ n: "0" + (i + 1), text })),
+      options: [
+        { n: "01", title: "Enquiry handling", desc: "Enquiries from your website, email or WhatsApp get a reply within minutes. Contact details go into your CRM and the client can book a meeting directly. Anything unusual is passed to a person.",
+          metrics: ["Time to first reply", "Enquiries left unanswered", "Meetings booked"] },
+        { n: "02", title: "Proposal and tender drafting", desc: "The system drafts a first version from the tender documents, your past proposals and your templates. Your expert edits and signs off. Nothing goes out without a person reading it.",
+          metrics: ["Hours per proposal", "Turnaround time", "Proposals sent per month"] }
+      ],
+      stepPairs: [steps.slice(0, 2), steps.slice(2)],
+      reqs: [
+        "One person in your firm who owns the workflow",
+        "Access to the tools the workflow uses, such as email, CRM and document storage",
+        "A few hours from the people who do the work today, spread over the four weeks"
+      ].map((text, i) => ({ n: "0" + (i + 1), text })),
+      good: [
+        "You run or co-own a firm of 10 to 100 people in architecture, engineering, consulting, coaching, law or accounting",
+        "You have a workflow that happens every week and costs real hours",
+        "Someone in the firm can own it after go-live"
+      ],
+      bad: [
+        "You're looking for an AI strategy document or a training programme",
+        "The process you want to automate doesn't exist in a stable form yet",
+        "You'd rather run several pilots at once"
+      ],
+      faqs
+    };
+  }
+}
+</script>
+</body>
+</html>

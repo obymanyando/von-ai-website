@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FBFAF8;font-family:Geist,system-ui,sans-serif;color:#1A1A1A;-webkit-font-smoothing:antialiased}
+a{color:#1A1A1A;text-decoration:none}a:hover{color:oklch(0.5 0.2 258)}
+*{box-sizing:border-box}
+</style>
+</helmet>
+<div data-screen-label="Insights" style="min-height:100vh;background:#FBFAF8;overflow-x:clip">
+  <nav style="position:sticky;top:0;z-index:20;background:rgba(251,250,248,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid #E7E5E1">
+    <div style="max-width:1200px;margin:0 auto;padding:0 24px;min-height:72px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px">
+      <a href="VonAI%20Home.dc.html" style="width:104px;height:24px;overflow:hidden;position:relative;display:block"><img src="assets/logo-dark.png" alt="VonAI" style="position:absolute;left:-15.6px;top:-15.5px;width:141px;mix-blend-mode:multiply"></a>
+      <div style="display:flex;flex-wrap:wrap;gap:28px;font-size:15px;align-items:center">
+        <a href="VonAI%20Home.dc.html#offer" style="color:#3A3936">The offer</a>
+        <a href="VonAI%20Home.dc.html#process" style="color:#3A3936">How it works</a>
+        <a href="VonAI%20Home.dc.html#results" style="color:#3A3936">Results</a>
+        <a href="VonAI%20Home.dc.html#faq" style="color:#3A3936">FAQ</a>
+        <a href="VonAI%20Insights.dc.html" style="color:#1A1A1A;font-weight:500">Insights</a>
+      </div>
+      <div style="display:flex;gap:10px;align-items:center">
+        <a href="VonAI%20Contact.dc.html" style="font-size:15px;color:#3A3936;padding:10px 16px;border-radius:999px;background:#EFEDE9" style-hover="background:#E6E3DE">Contact</a>
+        <a href="VonAI%20Contact.dc.html" style="font-size:15px;color:#FBFAF8;padding:10px 18px;border-radius:999px;background:#1A1A1A;font-weight:500" style-hover="background:#333230;color:#FBFAF8">Book a free call</a>
+      </div>
+    </div>
+  </nav>
+
+  <header style="max-width:1200px;margin:0 auto;padding:88px 24px 40px;display:flex;flex-direction:column;gap:20px">
+    <div style="font-family:'Geist Mono',monospace;font-size:13px;color:#8A8781;letter-spacing:.05em">INSIGHTS</div>
+    <h1 style="margin:0;font-size:clamp(40px,5vw,64px);line-height:1.04;letter-spacing:-.035em;font-weight:500;max-width:860px">Practical AI playbooks for service firms.</h1>
+    <p style="margin:0;font-size:19px;line-height:1.5;color:#55524D;max-width:620px;text-wrap:pretty">Checklists, scorecards and templates you can use this week. Some are free. For the rest, leave your email and we'll send you a copy.</p>
+  </header>
+
+  <section style="max-width:1200px;margin:0 auto;padding:0 24px 40px">
+    <a href="#" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));background:#1A1A1A;color:#FBFAF8;border-radius:18px;overflow:hidden;position:relative" style-hover="color:#FBFAF8">
+      <div style="padding:clamp(28px,4vw,48px);display:flex;flex-direction:column;gap:16px;position:relative;z-index:1">
+        <span style="align-self:flex-start;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.05em;background:oklch(0.62 0.19 258);color:#FFFFFF;border-radius:999px;padding:4px 10px">FEATURED SCORECARD</span>
+        <span style="font-size:clamp(26px,2.8vw,36px);line-height:1.12;letter-spacing:-.025em;font-weight:500">Is your AI pilot worth scaling?</span>
+        <span style="font-size:16px;color:#B7B5B0;line-height:1.55;max-width:440px">Twelve questions that tell you in ten minutes whether to scale, fix or stop a pilot.</span>
+        <span style="font-size:15px;margin-top:8px">Get the PDF →</span>
+      </div>
+      <div style="position:relative;min-height:240px;overflow:hidden">
+        <div style="position:absolute;right:-120px;top:-80px;width:460px;height:460px;border-radius:50%;border:90px solid oklch(0.62 0.19 258)"></div>
+        <div style="position:absolute;left:40px;right:40px;top:40px;bottom:-20px;background:#FFFFFF;border-radius:12px 12px 0 0;padding:18px;display:flex;flex-direction:column;gap:10px">
+          <span style="font-family:'Geist Mono',monospace;font-size:11px;color:#8A8781">PILOT SCORECARD · PAGE 1</span>
+          <span style="height:8px;border-radius:4px;background:#EFEDE9;width:70%"></span>
+          <span style="height:8px;border-radius:4px;background:#EFEDE9;width:90%"></span>
+          <span style="height:8px;border-radius:4px;background:oklch(0.9 0.06 258);width:40%"></span>
+          <span style="height:8px;border-radius:4px;background:#EFEDE9;width:80%"></span>
+        </div>
+      </div>
+    </a>
+  </section>
+
+  <section style="max-width:1200px;margin:0 auto;padding:0 24px 112px;display:flex;flex-direction:column;gap:24px">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:center;border-bottom:1px solid #E7E5E1;padding-bottom:16px">
+      <div style="display:flex;flex-wrap:wrap;gap:6px">
+        <sc-for list="{{ types }}" as="t" hint-placeholder-count="6">
+          <button onClick="{{ t.pick }}" style="font:inherit;font-size:14px;border-radius:999px;padding:7px 14px;cursor:pointer;border:1px solid {{ t.border }};background:{{ t.bg }};color:{{ t.fg }}">{{ t.label }}</button>
+        </sc-for>
+      </div>
+      <div style="display:flex;background:#EFEDE9;border-radius:999px;padding:3px">
+        <sc-for list="{{ gates }}" as="g" hint-placeholder-count="3">
+          <button onClick="{{ g.pick }}" style="font:inherit;font-size:13px;border:0;border-radius:999px;padding:6px 12px;cursor:pointer;background:{{ g.bg }};color:{{ g.fg }};box-shadow:{{ g.shadow }}">{{ g.label }}</button>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px">
+      <sc-for list="{{ items }}" as="r" hint-placeholder-count="6">
+        <a href="#" style="background:#FFFFFF;border:1px solid #E7E5E1;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:border-color .2s,transform .2s" style-hover="border-color:#BDB8B0;transform:translateY(-2px);color:#1A1A1A">
+          <div style="height:140px;background:#F1EFEB;position:relative;overflow:hidden;border-bottom:1px solid #EDEBE7">
+            <div style="position:absolute;left:24px;right:24px;top:24px;bottom:-10px;background:#FFFFFF;border:1px solid #E7E5E1;border-radius:8px 8px 0 0;padding:14px;display:flex;flex-direction:column;gap:8px">
+              <span style="font-family:'Geist Mono',monospace;font-size:10px;color:oklch(0.5 0.2 258);letter-spacing:.05em">{{ r.typeUp }}</span>
+              <span style="height:6px;border-radius:3px;background:#EFEDE9;width:80%"></span>
+              <span style="height:6px;border-radius:3px;background:#EFEDE9;width:60%"></span>
+            </div>
+          </div>
+          <div style="padding:20px;display:flex;flex-direction:column;gap:10px;flex:1">
+            <div style="display:flex;gap:8px;align-items:center"><span style="font-size:12px;color:#6B6964">{{ r.type }}</span><span style="font-size:12px;color:#C4C0B9">·</span><span style="font-size:12px;color:{{ r.gateColor }};font-weight:500">{{ r.gateLabel }}</span></div>
+            <span style="font-size:17px;font-weight:500;line-height:1.35;text-wrap:pretty">{{ r.title }}</span>
+            <span style="font-size:14px;color:#6B6964;line-height:1.5;text-wrap:pretty">{{ r.desc }}</span>
+            <span style="margin-top:auto;padding-top:8px;font-size:14px;color:#1A1A1A">{{ r.action }} →</span>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+    <sc-if value="{{ empty }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:48px;text-align:center;color:#6B6964;border:1px dashed #D9D5CF;border-radius:16px">No resources match these filters.</div>
+    </sc-if>
+    <span style="font-family:'Geist Mono',monospace;font-size:12px;color:#A5A19A">Sample titles. Swap in your real resource library.</span>
+  </section>
+
+  <section style="padding:0 24px 24px">
+    <div style="max-width:1200px;margin:0 auto;background:#1A1A1A;color:#FBFAF8;border-radius:24px;position:relative;overflow:hidden;padding:clamp(56px,7vw,96px) clamp(28px,6vw,80px)">
+      <div style="position:absolute;right:-300px;bottom:-380px;width:620px;height:620px;border-radius:50%;border:100px solid oklch(0.62 0.19 258)"></div>
+      <div style="position:relative;display:flex;flex-direction:column;gap:22px;max-width:640px">
+        <h2 style="margin:0;font-size:clamp(38px,4.4vw,60px);line-height:1.04;letter-spacing:-.035em;font-weight:500;text-wrap:balance">Rather talk it through?</h2>
+        <p style="margin:0;font-size:19px;line-height:1.5;color:#B7B5B0;text-wrap:pretty">A guide gets you started. A free 30-minute call tells you which workflow to take on first.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px 20px;margin-top:6px;align-items:center">
+          <a href="VonAI%20Contact.dc.html" style="display:flex;gap:10px;align-items:center;background:#FBFAF8;color:#1A1A1A;padding:15px 22px;border-radius:999px;font-size:17px;font-weight:500" style-hover="background:#FFFFFF;color:#1A1A1A">Book a free call <span>→</span></a>
+          <a href="mailto:hello@von-ai.com" style="color:#B7B5B0;font-size:16px;border-bottom:1px solid #6E6C68;padding-bottom:2px" style-hover="color:#FFFFFF">hello@von-ai.com</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="max-width:1200px;margin:0 auto;padding:64px 24px 48px;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:40px;font-size:15px">
+    <div style="display:flex;flex-direction:column;gap:14px;grid-column:span 2;min-width:0">
+      <div style="width:104px;height:24px;overflow:hidden;position:relative"><img src="assets/logo-dark.png" alt="VonAI" style="position:absolute;left:-15.6px;top:-15.5px;width:141px;mix-blend-mode:multiply"></div>
+      <p style="margin:0;color:#6B6964;line-height:1.55;max-width:360px">VonAI builds practical AI workflows for owner-led professional services firms. Based in Helsinki.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px"><span style="font-family:'Geist Mono',monospace;font-size:12px;color:#8A8781;letter-spacing:.05em">ON THIS PAGE</span><a href="VonAI%20Home.dc.html#offer">The offer</a><a href="VonAI%20Home.dc.html#process">How it works</a><a href="VonAI%20Home.dc.html#results">Results</a><a href="VonAI%20Home.dc.html#faq">FAQ</a></div>
+    <div style="display:flex;flex-direction:column;gap:10px"><span style="font-family:'Geist Mono',monospace;font-size:12px;color:#8A8781;letter-spacing:.05em">COMPANY</span><a href="VonAI%20Insights.dc.html">Insights</a><a href="VonAI%20Contact.dc.html">Contact</a><a href="#">Privacy policy</a></div>
+    <div style="grid-column:1/-1;border-top:1px solid #E7E5E1;padding-top:20px;font-size:13px;color:#8A8781">© 2026 VonAI. All rights reserved.</div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { type: "All", gate: "all" };
+  R = [
+    { type: "Scorecard", gated: true, title: "Is your AI pilot worth scaling?", desc: "Twelve questions to decide whether to scale, fix or stop." },
+    { type: "Checklist", gated: false, title: "The AI policy checklist for firms under 50 people", desc: "What your team is allowed to paste into a chatbot, written down in an afternoon." },
+    { type: "Template", gated: true, title: "The one-page ROI model", desc: "How we put a number on a workflow before building it. Time saved first, revenue second." },
+    { type: "Guide", gated: false, title: "Why your AI pilot died after the demo", desc: "The four failure points we see most, and how to spot them early." },
+    { type: "Playbook", gated: true, title: "Lead response in one week", desc: "Unify WhatsApp, email and web replies without buying a new CRM." },
+    { type: "Checklist", gated: false, title: "Before you hire an AI consultant", desc: "Eight questions that separate people who ship from people who present." }
+  ];
+  renderVals() {
+    const s = this.state;
+    const items = this.R.filter(r => (s.type === "All" || r.type === s.type) && (s.gate === "all" || (s.gate === "gated") === r.gated))
+      .map(r => ({ ...r, typeUp: r.type.toUpperCase(), gateLabel: r.gated ? "Email required" : "Free", gateColor: r.gated ? "#8A8781" : "oklch(0.5 0.2 258)", action: r.gated ? "Get the PDF" : "Download" }));
+    return {
+      types: ["All", "Guide", "Checklist", "Template", "Playbook", "Scorecard"].map(label => {
+        const on = s.type === label;
+        return { label, pick: () => this.setState({ type: label }), bg: on ? "#1A1A1A" : "#FFFFFF", fg: on ? "#FBFAF8" : "#3A3936", border: on ? "#1A1A1A" : "#E7E5E1" };
+      }),
+      gates: [["all", "All"], ["free", "Free"], ["gated", "Email required"]].map(([k, label]) => {
+        const on = s.gate === k;
+        return { label, pick: () => this.setState({ gate: k }), bg: on ? "#FFFFFF" : "transparent", fg: on ? "#1A1A1A" : "#6B6964", shadow: on ? "0 1px 2px rgba(0,0,0,.08)" : "none" };
+      }),
+      items, empty: items.length === 0
+    };
+  }
+}
+</script>
+</body>
+</html>
