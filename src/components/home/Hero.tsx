@@ -28,8 +28,15 @@ export function Hero() {
       </div>
 
       <div className="relative mx-auto mt-14 max-w-[1248px] px-4 sm:px-6 md:mt-[72px]">
-        <div aria-hidden className="ring-deco right-[-260px] top-[-160px] h-[760px] w-[760px] border-[120px]" />
-        <div aria-hidden className="ring-deco left-[-300px] top-10 h-[520px] w-[520px] border-[90px]" />
+        {/* Spec sizes from md up; smaller below so the rings stay clear of the CTA row on phones. */}
+        <div
+          aria-hidden
+          className="ring-deco right-[-200px] top-[-40px] h-[420px] w-[420px] border-[70px] md:right-[-260px] md:top-[-160px] md:h-[760px] md:w-[760px] md:border-[120px]"
+        />
+        <div
+          aria-hidden
+          className="ring-deco left-[-220px] top-[140px] h-[340px] w-[340px] border-[60px] md:left-[-300px] md:top-10 md:h-[520px] md:w-[520px] md:border-[90px]"
+        />
         <ResultsReport />
       </div>
     </header>
