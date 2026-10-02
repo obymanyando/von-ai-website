@@ -60,13 +60,12 @@ const ResourceDownloadEmail = ({ name, resourceSlug, language = 'en' }: Props) =
             <a href={url} style={link}>{url}</a>
           </Text>
           <Text style={text}>
-            When you're ready to turn the ideas in this resource into a
-            measurable outcome, the {SITE_NAME} team can help — we run a 2-week
-            AI ROI Sprint that gets B2B services firms from "interesting" to
-            "shipped".
+            Rather talk it through? A free 30-minute call tells you which
+            workflow to take on first. {SITE_NAME} puts one AI workflow into
+            daily use in 30 days and measures it against how you work today.
           </Text>
-          <Button href={`${SITE_URL}/ai-roi-sprint`} style={buttonOutline}>
-            Learn about the Sprint
+          <Button href={`${SITE_URL}/contact`} style={buttonOutline}>
+            Book a free call
           </Button>
           <Text style={footer}>— The {SITE_NAME} team</Text>
         </Container>

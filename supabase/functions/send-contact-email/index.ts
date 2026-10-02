@@ -115,7 +115,7 @@ const handler = async (req: Request): Promise<Response> => {
         <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
           <h1 style="color: #1a1a1a; font-size: 24px; margin-bottom: 20px;">Thank you for reaching out, ${name}!</h1>
           <p style="color: #4a4a4a; font-size: 16px; line-height: 1.6;">
-            We've received your message and will get back to you within 24 hours.
+            We've received your message and will reply within one working day.
           </p>
           <p style="color: #4a4a4a; font-size: 16px; line-height: 1.6;">
             In the meantime, feel free to book a call directly on our <a href="https://von-ai.com/contact" style="color: #2563eb;">contact page</a>.
@@ -154,10 +154,10 @@ const handler = async (req: Request): Promise<Response> => {
       status: 200,
       headers: { "Content-Type": "application/json", ...corsHeaders },
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Error in send-contact-email function:", error);
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ error: error instanceof Error ? error.message : "Unknown error" }),
       {
         status: 500,
         headers: { "Content-Type": "application/json", ...corsHeaders },
