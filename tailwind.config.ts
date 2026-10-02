@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import animate from "tailwindcss-animate";
 
 export default {
   darkMode: ["class"],
@@ -57,6 +58,49 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // Redesign palette: see the "Redesign palette" block in src/index.css.
+        ink: {
+          DEFAULT: "hsl(var(--foreground) / <alpha-value>)",
+          2: "hsl(var(--ink-2) / <alpha-value>)",
+          body: "hsl(var(--ink-body) / <alpha-value>)",
+          soft: "hsl(var(--ink-soft) / <alpha-value>)",
+          meta: "hsl(var(--ink-meta) / <alpha-value>)",
+          faint: "hsl(var(--ink-faint) / <alpha-value>)",
+          dim: "hsl(var(--ink-dim) / <alpha-value>)",
+          hover: "hsl(var(--ink-hover) / <alpha-value>)",
+        },
+        surface: {
+          DEFAULT: "hsl(var(--card) / <alpha-value>)",
+          sub: "hsl(var(--surface-sub) / <alpha-value>)",
+          hover: "hsl(var(--surface-hover) / <alpha-value>)",
+        },
+        "soft-hover": "hsl(var(--soft-hover) / <alpha-value>)",
+        line: {
+          DEFAULT: "hsl(var(--border) / <alpha-value>)",
+          inner: "hsl(var(--line-inner) / <alpha-value>)",
+          input: "hsl(var(--input) / <alpha-value>)",
+          strong: "hsl(var(--line-strong) / <alpha-value>)",
+          dashed: "hsl(var(--line-dashed) / <alpha-value>)",
+          hover: "hsl(var(--line-hover) / <alpha-value>)",
+        },
+        night: {
+          DEFAULT: "hsl(var(--night) / <alpha-value>)",
+          card: "hsl(var(--night-card) / <alpha-value>)",
+          line: "hsl(var(--night-line) / <alpha-value>)",
+          fg: "hsl(var(--night-fg) / <alpha-value>)",
+          text: "hsl(var(--night-text) / <alpha-value>)",
+          dim: "hsl(var(--night-dim) / <alpha-value>)",
+        },
+        brand: {
+          DEFAULT: "oklch(var(--brand) / <alpha-value>)",
+          text: "oklch(var(--brand-text) / <alpha-value>)",
+          ring: "oklch(var(--brand-ring) / <alpha-value>)",
+          "on-dark": "oklch(var(--brand-on-dark) / <alpha-value>)",
+          tint: "oklch(var(--brand-tint) / <alpha-value>)",
+          "on-tint": "oklch(var(--brand-on-tint) / <alpha-value>)",
+          soft: "oklch(var(--brand-soft) / <alpha-value>)",
+          deep: "oklch(var(--brand-deep) / <alpha-value>)",
+        },
         success: {
           DEFAULT: "hsl(var(--success))",
           foreground: "hsl(var(--success-foreground))",
@@ -67,8 +111,13 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      boxShadow: {
+        window: "0 30px 80px -30px rgba(10,20,50,.35)",
+        lift: "0 18px 36px -20px rgba(10,20,50,.3)",
+      },
       fontFamily: {
-        sans: ["Inter", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "sans-serif"],
+        sans: ["Geist", "system-ui", "-apple-system", "Segoe UI", "sans-serif"],
+        mono: ["Geist Mono", "ui-monospace", "Menlo", "monospace"],
       },
       keyframes: {
         "accordion-down": {
@@ -110,5 +159,5 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [animate],
 } satisfies Config;

@@ -16,36 +16,36 @@
   --elevate-1: rgba(0,0,0, .03);
   --elevate-2: rgba(0,0,0, .08);
 
-  --background: 0 0% 100%;
-  --foreground: 240 5% 10%;
-  --border: 240 4% 88%;
-  --card: 240 3% 98%;
-  --card-foreground: 240 5% 10%;
-  --card-border: 240 4% 93%;
+  --background: 40 27% 97.8%;
+  --foreground: 0 0% 10.2%;
+  --border: 40 11% 89.4%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 10.2%;
+  --card-border: 40 11% 89.4%;
   --sidebar: 240 4% 96%;
   --sidebar-foreground: 240 5% 10%;
   --sidebar-border: 240 4% 90%;
-  --sidebar-primary: 203 100% 30%;
+  --sidebar-primary: 0 0% 10.2%;
   --sidebar-primary-foreground: 0 0% 100%;
   --sidebar-accent: 240 6% 92%;
   --sidebar-accent-foreground: 240 5% 15%;
-  --sidebar-ring: 203 100% 30%;
-  --popover: 240 4% 94%;
-  --popover-foreground: 240 5% 10%;
-  --popover-border: 240 4% 88%;
-  --primary: 203 100% 30%;
-  --primary-foreground: 0 0% 100%;
-  --secondary: 240 5% 90%;
-  --secondary-foreground: 240 5% 15%;
-  --muted: 240 6% 94%;
-  --muted-foreground: 240 4% 35%;
-  --accent: 240 8% 93%;
-  --accent-foreground: 240 5% 15%;
-  --destructive: 0 84% 48%;
+  --sidebar-ring: 215 92% 58%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 10.2%;
+  --popover-border: 40 11% 89.4%;
+  --primary: 0 0% 10.2%;
+  --primary-foreground: 40 27% 97.8%;
+  --secondary: 40 16% 92.5%;
+  --secondary-foreground: 0 0% 10.2%;
+  --muted: 40 18% 93.3%;
+  --muted-foreground: 43 3% 40.6%;
+  --accent: 36 20% 95.1%;
+  --accent-foreground: 0 0% 10.2%;
+  --destructive: 3 71% 41%;
   --destructive-foreground: 0 0% 100%;
-  --input: 240 5% 70%;
-  --ring: 203 100% 30%;
-  --chart-1: 203 100% 30%;
+  --input: 37 11% 85.5%;
+  --ring: 215 92% 58%;
+  --chart-1: 215 92% 58%;
   --chart-2: 239 47% 40%;
   --chart-3: 210 70% 45%;
   --chart-4: 280 65% 50%;
@@ -58,10 +58,42 @@
   --success: 152 69% 31%;
   --success-foreground: 0 0% 100%;
 
-  --font-sans: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Redesign palette (handoff README, "Design tokens"). HSL triplets so Tailwind
+     opacity modifiers work; the accent stays in oklch as specified. */
+  --ink-2: 45 4% 22%;          /* #3A3936 nav links, list text */
+  --ink-body: 38 5% 31.8%;     /* #55524D body / lead */
+  --ink-soft: 43 3% 40.6%;     /* #6B6964 secondary */
+  --ink-meta: 40 4% 52.4%;     /* #8A8781 eyebrows, meta */
+  --ink-faint: 38 6% 62.5%;    /* #A5A19A numbers */
+  --ink-dim: 38 9% 74.7%;      /* #C4C0B9 separators */
+  --ink-hover: 40 3% 19.4%;    /* #333230 dark pill hover */
+  --surface-sub: 40 18% 96.7%; /* #F8F7F5 card footer, table head */
+  --surface-hover: 36 20% 95.1%; /* #F5F3F0 */
+  --soft-hover: 37 14% 88.6%;  /* #E6E3DE secondary pill hover */
+  --line-inner: 40 14% 91.8%;  /* #EDEBE7 */
+  --line-strong: 36 12% 83.1%; /* #D9D5CF */
+  --line-dashed: 38 10% 79%;   /* #CFCBC4 */
+  --line-hover: 37 9% 71.6%;   /* #BDB8B0 */
+  --night: 225 8% 10.2%;       /* #18191C dark section */
+  --night-card: 228 7% 13.1%;  /* #1F2024 */
+  --night-line: 230 6% 19.6%;  /* #2F3035 */
+  --night-fg: 40 8% 92.4%;     /* #EDECEA */
+  --night-text: 43 5% 70.4%;   /* #B7B5B0 */
+  --night-dim: 40 3% 42%;      /* #6E6C68 */
+  --brand: 0.58 0.2 258;       /* base: dots */
+  --brand-text: 0.5 0.2 258;   /* links, figures */
+  --brand-ring: 0.62 0.19 258; /* decorative rings */
+  --brand-on-dark: 0.75 0.14 258;
+  --brand-tint: 0.96 0.03 258;
+  --brand-on-tint: 0.45 0.2 258;
+  --brand-soft: 0.9 0.06 258;
+  --brand-deep: 0.4 0.2 258;
+
+  --font-sans: Geist, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-serif: Georgia, serif;
-  --font-mono: JetBrains Mono, "Fira Code", Menlo, monospace;
-  --radius: .5rem;
+  --font-mono: "Geist Mono", ui-monospace, Menlo, monospace;
+  --radius: .625rem;
   --shadow-2xs: 0px 1px 2px 0px hsl(240 5% 10% / 0.04);
   --shadow-xs: 0px 1px 3px 0px hsl(240 5% 10% / 0.06);
   --shadow-sm: 0px 2px 4px 0px hsl(240 5% 10% / 0.05), 0px 1px 2px -1px hsl(240 5% 10% / 0.04);
@@ -172,12 +204,103 @@
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply font-sans antialiased bg-background text-foreground;
   }
 
+  a {
+    transition: color 0.15s ease;
+  }
+  a:hover {
+    color: oklch(var(--brand-text));
+  }
+
+  /* Anchors must clear the 72px sticky nav. */
+  section[id] {
+    scroll-margin-top: 72px;
+  }
+
   h1, h2, h3, h4 {
     @apply tracking-tight;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *, *::before, *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+    }
+  }
+}
+
+/* Redesign type scale and pills. Kept here so the clamp() values live in one
+   place instead of being repeated as arbitrary Tailwind values per page. */
+@layer components {
+  .site-container {
+    @apply mx-auto w-full max-w-[1200px] px-6;
+  }
+  .eyebrow {
+    @apply font-mono text-[13px] uppercase tracking-[.05em] text-ink-meta;
+  }
+  .mono-label {
+    @apply font-mono text-[11px] uppercase tracking-[.05em] text-ink-meta;
+  }
+  .h1-home {
+    font-size: clamp(44px, 6.4vw, 80px);
+    @apply m-0 font-medium leading-[1.02] tracking-[-.035em];
+    text-wrap: balance;
+  }
+  .h1-page {
+    font-size: clamp(40px, 5vw, 64px);
+    @apply m-0 font-medium leading-[1.04] tracking-[-.035em];
+    text-wrap: balance;
+  }
+  .h2 {
+    font-size: clamp(34px, 3.6vw, 48px);
+    @apply m-0 font-medium leading-[1.08] tracking-[-.03em];
+  }
+  .h2-cta {
+    font-size: clamp(38px, 4.4vw, 60px);
+    @apply m-0 font-medium leading-[1.04] tracking-[-.035em];
+    text-wrap: balance;
+  }
+  .lead {
+    @apply text-ink-body leading-[1.5];
+    text-wrap: pretty;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+  .pill {
+    @apply inline-flex min-h-[44px] items-center justify-center gap-2.5 rounded-full px-4 text-[15px] transition-colors duration-200 md:min-h-0 md:py-2.5;
+  }
+  .pill-dark {
+    @apply bg-ink font-medium text-background hover:bg-ink-hover hover:text-background;
+  }
+  .pill-soft {
+    @apply bg-secondary text-ink-2 hover:bg-soft-hover hover:text-ink-2;
+  }
+  .pill-light {
+    @apply bg-background font-medium text-ink hover:bg-white hover:text-ink;
+  }
+  .pill-lg {
+    @apply px-[22px] py-[15px] text-[17px] md:py-[15px];
+  }
+  .link-underline {
+    @apply border-b border-current pb-0.5;
+  }
+  .ring-deco {
+    @apply pointer-events-none absolute rounded-full border-solid border-brand-ring;
   }
 }
 
@@ -270,11 +393,6 @@
   .container-padding {
     @apply px-4 sm:px-6 lg:px-8;
   }
-}
-
-/* Smooth scroll */
-html {
-  scroll-behavior: smooth;
 }
 
 /* Animation keyframes */

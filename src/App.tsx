@@ -23,7 +23,8 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <HelmetProvider>
-    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+    {/* Light only: no dark theme has been designed for the redesign. */}
+    <ThemeProvider attribute="class" forcedTheme="light">
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
           <Toaster />
