@@ -12,6 +12,7 @@ Built from the design handoff in `vonai_redesign/`.
 - `public/_redirects`: 301s for the retired routes and the deleted pilot PDF.
 
 ### Changed
+- Results report moved from day 30 to day 60: the workflow is live by day 30 and measured over 30 days of daily use. Example report columns now read Before / After 30 days live; hero, process step 4, FAQ, pricing, chat prompt and `llms.txt` match.
 - Design tokens remapped to the handoff palette; Geist type; light theme only.
 - `en.json` replaced by the handoff copy (plus the existing `resources.*` keys).
 - Contact page restyled; same form validation and `send-contact-email` submission; consent error uses the new copy.

@@ -76,7 +76,7 @@ This document provides comprehensive documentation of the AI assistant implement
 `VONAI_CONTEXT` in `supabase/functions/chat/index.ts` describes the 30-day workflow offer (one AI workflow, live in 30 days, measured against a day-0 baseline) using the same facts as the site copy in `src/i18n/locales/en.json`:
 
 - **Pricing rule (highest priority)**: the assistant never states a price, range, floor, day rate or monthly amount. Cost questions get a paraphrase of `home.faq.a1` (fixed build price agreed before starting, a monthly fee after go-live, a quote after the free call) and an offer to book the call at `/contact`. Prices live only in the unrendered parked block of `en.json` and must never be copied into the prompt.
-- **Offer knowledge**: audience, the two common workflows and their measures, the 4-step 30-day process, what the client provides, the coaching-firm case, fit criteria and the FAQ answers.
+- **Offer knowledge**: audience, the two common workflows and their measures, the 4-step process (live by day 30, results report on day 60 after 30 days of daily use), what the client provides, the coaching-firm case, fit criteria and the FAQ answers.
 - **Guardrails**: no invented clients, numbers or services; say so and suggest the free call when unsure.
 - **Response style**: short, plain text only (no markdown).
 

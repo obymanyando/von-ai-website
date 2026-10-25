@@ -6,7 +6,7 @@ The site for VonAI's offer: one AI workflow, live in 30 days, measured against a
 
 ## Overview
 
-- **Home** - one long page: hero with an example results report, the problem, the offer, how the 30 days work, results, fit, and FAQ
+- **Home** - one long page: hero with an example results report, the problem, the offer, how it works from kickoff to results, results, fit, and FAQ
 - **Contact** - Calendly booking and a contact form
 - **Insights** - a library of free and email-gated PDF guides
 - **AI Assistant** - chat assistant (built, currently disabled on the site)
