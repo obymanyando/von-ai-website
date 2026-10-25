@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What This Is
 
-VonAI website (von-ai.com): the landing site for one offer, "one AI workflow, live in 30 days, measured against a day-0 baseline", aimed at professional services firms in Finland with 10 to 100 people. Three public pages (single-page Home, Contact, Insights library), plus an admin dashboard and a (currently disabled) AI chat assistant. The design source is the handoff in `vonai_redesign/` (README, HTML references, `en.json`).
+VonAI website (von-ai.com): the landing site for one offer, "one AI workflow, live in 30 days, measured against a day-0 baseline", aimed at professional services firms in Finland with 10 to 100 people. Two public pages (single-page Home, Contact), an Insights library that is built but hidden (`INSIGHTS_ENABLED = false`), plus an admin dashboard and a (currently disabled) AI chat assistant. The design source is the handoff in `vonai_redesign/` (README, HTML references, `en.json`).
 
 ---
 
@@ -50,14 +50,14 @@ All routes are client-side. Public pages wrap themselves in `<Layout>` (Navbar +
 |---|---|
 | `/` | Home: one long page with anchors `#offer`, `#process`, `#results`, `#faq` |
 | `/contact` | Calendly inline embed + contact form (`send-contact-email`) |
-| `/resources` | Insights library (featured banner, type/access filters) |
-| `/resources/:slug` | Resource detail; gated ones use `GatedDownloadDialog` |
+| `/resources` | Insights library (featured banner, type/access filters). Hidden: redirects to `/` while `INSIGHTS_ENABLED` is false |
+| `/resources/:slug` | Resource detail; gated ones use `GatedDownloadDialog`. Hidden the same way |
 | `/privacy` | Privacy policy |
 | `/auth` | Login / signup |
 | `/admin` | Admin dashboard (role-gated) |
 | `/brand-guide` | Brand guide + PDF export (still documents the old palette) |
 
-`/ai-roi-sprint`, `/services`, `/roi-calculator`, `/30-day-outcome-pilot` and `/about` redirect to `/`: 301s in `public/_redirects` (Workers static assets) plus a client-side fallback (`RETIRED_PATHS` in `App.tsx`). `_redirects` also sends the deleted pilot PDF to `/`. There is no About page by design.
+`/ai-roi-sprint`, `/services`, `/roi-calculator`, `/30-day-outcome-pilot` and `/about` redirect to `/`: 301s in `public/_redirects` (Workers static assets) plus a client-side fallback (`RETIRED_PATHS` in `App.tsx`). `_redirects` also sends the deleted pilot PDF to `/`, and 302s `/resources` and `/resources/` to `/` while Insights is hidden. Never add a `/resources/*` or `/resources/:slug` rule: `_redirects` wins over assets, and the PDFs under `/resources/` must stay reachable from emails already sent. There is no About page by design.
 
 `ScrollToTop` scrolls to the URL hash target when there is one (instant on page change or cold load, smooth for same-page anchors); section links everywhere are router links to `/#id`.
 
@@ -69,10 +69,10 @@ All routes are client-side. Public pages wrap themselves in `<Layout>` (Navbar +
 - `src/components/home/` — the Home sections in page order (`Hero` + `ResultsReport`, `Problem`, `Offer`, `Process`, `Results`, `Fit`, `Faq`)
 - `src/pages/` — one file per route; use `<Layout>` and `<SEO>` at the top
 
-`<Layout closingCta={{ title, subtitle }} footerVariant="full|minimal">`: Home and Insights pass a closing CTA; Contact uses the minimal footer.
+`<Layout closingCta={{ title, subtitle }} footerVariant="full|minimal">`: Home and Insights (when enabled) pass a closing CTA; Contact uses the minimal footer.
 
 Data and helpers:
-- `src/lib/site.ts` — `CONTACT_EMAIL`, `CALENDLY_URL`, `HOME_SECTIONS`, `FAQ_COUNT`
+- `src/lib/site.ts` — `CONTACT_EMAIL`, `CALENDLY_URL`, `INSIGHTS_ENABLED`, `HOME_SECTIONS`, `FAQ_COUNT`. Re-enabling Insights: set the flag to true, restore `/resources` in `sitemap.xml` and `llms.txt`, remove the two `/resources` 302s
 - `src/lib/copy.ts` — derives display strings from en.json values (metric chips, "Week 1: Title" splits)
 - `src/data/resources.ts` — the Insights library; adding a resource is a data-only change. `featured: true` picks the banner (falls back to newest)
 - `src/data/exampleReport.ts` — structure of the hero "Example report"; its strings and illustrative numbers live in `home.report.*`
@@ -107,7 +107,7 @@ Types: `src/integrations/supabase/types.ts` (auto-generated — do not hand-edit
 |---|---|
 | `chat/` | AI chat streaming via SSE; called from `ChatWidget.tsx`. Its `VONAI_CONTEXT` prompt mirrors the offer copy and must never quote prices |
 | `send-contact-email/` | Contact form email handler; called from `Contact.tsx`. Its `pilot-lead` branch has no caller since the pilot page was removed |
-| `og-meta/` | Open Graph meta for `/`, `/contact`, `/resources` (other paths fall back to `/`) |
+| `og-meta/` | Open Graph meta for `/`, `/contact`, `/resources` (other paths fall back to `/`). The `/resources` entry is kept for re-enabling Insights |
 
 All three have `verify_jwt: false` (public endpoints with IP-based rate limiting).
 

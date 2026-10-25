@@ -8,7 +8,7 @@ The site for VonAI's offer: one AI workflow, live in 30 days, measured against a
 
 - **Home** - one long page: hero with an example results report, the problem, the offer, how it works from kickoff to results, results, fit, and FAQ
 - **Contact** - Calendly booking and a contact form
-- **Insights** - a library of free and email-gated PDF guides
+- **Insights** - a library of free and email-gated PDF guides (hidden until real PDFs exist: `INSIGHTS_ENABLED` in `src/lib/site.ts`)
 - **AI Assistant** - chat assistant (built, currently disabled on the site)
 
 The design and copy come from the handoff in `vonai_redesign/`. The site never shows prices.
@@ -31,7 +31,7 @@ The design and copy come from the handoff in `vonai_redesign/`. The site never s
 ### Pages
 - **Home** (`/`) - single page with anchors `#offer`, `#process`, `#results`, `#faq`
 - **Contact** (`/contact`) - Calendly inline embed + contact form (Resend via `send-contact-email`)
-- **Insights** (`/resources`, `/resources/:slug`) - resource library with type/access filters and gated downloads
+- **Insights** (`/resources`, `/resources/:slug`) - resource library with type/access filters and gated downloads; hidden for now, both routes redirect to `/`
 - **Privacy** (`/privacy`), **Brand guide** (`/brand-guide`), **Admin** (`/admin`, `/auth`)
 
 ### AI Assistant
