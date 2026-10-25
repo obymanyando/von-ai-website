@@ -21,7 +21,7 @@
       "eyebrow": "For professional services firms in Finland with 10 to 100 people",
       "title1": "One AI workflow, live in 30 days.",
       "title2": "Measured against how you work today.",
-      "subtitle": "You choose one job that takes up your team's time: replying to new enquiries, or writing proposals and tenders. We build it with you, put it into daily use and report the results on day 30.",
+      "subtitle": "You choose one job that takes up your team's time: replying to new enquiries, or writing proposals and tenders. We build it with you, put it into daily use, then report the results after 30 days of real use.",
       "priceLine": "Fixed price, agreed before we start.",
       "cta": "Book a free 30-minute call",
       "secondaryCta": "See how it works",
@@ -30,9 +30,11 @@
     "report": {
       "badge": "Example report",
       "workflowLabel": "Workflow",
-      "day0": "Day 0",
-      "day30": "Day 30",
-      "liveLabel": "Live in daily use",
+      "day0": "Before",
+      "day30": "After 30 days live",
+      "timelineStart": "Live by day 30",
+      "timelineEnd": "Day 60",
+      "liveLabel": "Measured over 30 days of daily use",
       "breadcrumb": "Results report",
       "measure": "Measure",
       "enquiry": {
@@ -89,15 +91,15 @@
     },
     "process": {
       "eyebrow": "How it works",
-      "title": "How the 30 days work",
+      "title": "From kickoff to results",
       "step1Title": "Week 1: Map and measure",
       "step1Desc": "We go through the workflow with the people who do it today and record the baseline: how long it takes, how often it happens and where things slip.",
       "step2Title": "Weeks 2 and 3: Build and test",
       "step2Desc": "We build the workflow, in your existing tools where possible. Your team tests it on real cases and we adjust.",
       "step3Title": "Week 4: Go live",
       "step3Desc": "The workflow goes into daily use. Your team gets a short walkthrough and written instructions.",
-      "step4Title": "Day 30: Results report",
-      "step4Desc": "A short report comparing day 30 with day 0, using the same measures. You see what changed and what didn't.",
+      "step4Title": "Day 60: Results report",
+      "step4Desc": "After 30 days in daily use, a short report compares the same measures with the week 1 baseline. You see what changed and what didn't.",
       "requirementsTitle": "What we need from you",
       "req1": "One person in your firm who owns the workflow",
       "req2": "Access to the tools the workflow uses, such as email, CRM and document storage",
@@ -138,7 +140,7 @@
       "q4": "Will this replace people?",
       "a4": "No. You decide what the system may do on its own and what a person checks first. In proposal work, an expert always reviews the draft before it goes out.",
       "q5": "What if the results are weak?",
-      "a5": "Then the day-30 report says so. We look at why and decide together whether to adjust the workflow or stop the monthly fee.",
+      "a5": "Then the results report says so. We look at why and decide together whether to adjust the workflow or stop the monthly fee.",
       "q6": "Why only one workflow?",
       "a6": "One workflow that runs and has been measured tells you more than a long plan. Once it's in use, it's much easier to see what the next one should be.",
       "q7": "What happens on the free call?",
@@ -308,7 +310,7 @@
       "buildPrice": "€4,500",
       "buildNote": "Fixed price, + VAT",
       "build1": "One workflow, mapped, built and live within 30 days",
-      "build2": "Baseline measurement on day 0 and a results report on day 30",
+      "build2": "Baseline measurement in week 1 and a results report after 30 days of use",
       "build3": "Walkthrough and written instructions for your team",
       "runTitle": "Run and improve",
       "runPrice": "€350 a month",
@@ -323,7 +325,7 @@
       "title": "Who you'll work with",
       "name": "Oby Manyando, founder of VonAI",
       "body1": "In my day job I lead AI delivery on enterprise projects: taking AI from pilot into daily use and measuring the results.",
-      "body2": "VonAI is where I do the same work for smaller firms. You deal with me from the first call to the day-30 report. I'm based in Helsinki."
+      "body2": "VonAI is where I do the same work for smaller firms. You deal with me from the first call to the results report. I'm based in Helsinki."
     }
   }
 }

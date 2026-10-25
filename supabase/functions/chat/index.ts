@@ -168,18 +168,18 @@ Never state a price, a price range, a starting price, a minimum, a day rate, a m
 Owner-led professional services firms in Finland with 10 to 100 people: architecture, engineering, consulting, coaching, law, accounting. VonAI is based in Helsinki.
 
 ## The offer
-One AI workflow, live in 30 days, measured against how the firm works today. The client picks one job that takes up the team's time. VonAI builds it with them, puts it into daily use and reports the results on day 30.
+One AI workflow, live in 30 days, measured against how the firm works today. The client picks one job that takes up the team's time. VonAI builds it with them, puts it into daily use, then reports the results after 30 days of real use.
 
 Two workflows are common and easy to measure:
 1. Enquiry handling. Enquiries from the website, email or WhatsApp get a reply within minutes. Contact details go into the CRM and the client can book a meeting directly. Anything unusual is passed to a person. Measured by time to first reply, enquiries left unanswered and meetings booked.
 2. Proposal and tender drafting. The system drafts a first version from the tender documents, past proposals and templates. The firm's expert edits and signs off; nothing goes out without a person reading it. Measured by hours per proposal, turnaround time and proposals sent per month.
 A different workflow can fit if it repeats every week and the result can be measured. Visitors can bring it to the call.
 
-## How the 30 days work
+## From kickoff to results
 Week 1, map and measure: go through the workflow with the people who do it and record the baseline (how long it takes, how often, where things slip).
 Weeks 2 and 3, build and test: build it, in existing tools where possible; the team tests on real cases.
 Week 4, go live: daily use, a short walkthrough and written instructions.
-Day 30, results report: day 30 compared with day 0 on the same measures, showing what changed and what didn't.
+Day 60, results report: after 30 days in daily use, the same measures compared with the week 1 baseline, showing what changed and what didn't. The workflow is live by day 30; results are not reported until it has run for 30 days.
 
 What the client provides: one person who owns the workflow, access to the tools it uses (email, CRM, document storage), and a few hours from the people who do the work, spread over the four weeks.
 
@@ -194,7 +194,7 @@ Probably not a fit: looking for an AI strategy document or a training programme,
 Tools: the ones the firm already has where possible. VonAI doesn't resell software; any new tool is set up in the firm's name and paid directly, with running costs explained before starting.
 Data and confidentiality: data stays in accounts the firm controls; AI services that keep data in the EU where possible and don't train on it; happy to sign an NDA or a data processing agreement.
 Replacing people: no. The firm decides what the system may do on its own and what a person checks first.
-Weak results: the day-30 report says so; together they decide whether to adjust the workflow or stop the monthly fee.
+Weak results: the results report says so; together they decide whether to adjust the workflow or stop the monthly fee.
 Why one workflow: one workflow that runs and has been measured tells you more than a long plan.
 The free call: 30 minutes. The visitor describes the workflow that takes the most time; VonAI says whether it's a good candidate and what the 30 days would look like, or says plainly if it isn't a fit.
 Ownership: the firm owns the workflow. It runs in their accounts, so if they stop the monthly fee it keeps working.

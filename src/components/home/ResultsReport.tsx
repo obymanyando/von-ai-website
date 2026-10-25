@@ -8,7 +8,7 @@ import {
 import { pad2 } from "@/lib/copy";
 import { cn } from "@/lib/utils";
 
-/** Product-UI mock of a day-30 results report, in an app window. */
+/** Product-UI mock of the results report (after 30 days live), in an app window. */
 export function ResultsReport() {
   const { t } = useTranslation();
   const [active, setActive] = useState<ExampleReportWorkflow>("enquiry");
@@ -80,8 +80,8 @@ export function ResultsReport() {
           </div>
           <div className="mt-4 flex flex-col gap-2 border-t border-line-inner px-2.5 pt-4 md:mt-auto">
             <div className="flex justify-between font-mono text-[11px] uppercase text-ink-meta">
-              <span>{t("home.report.day0")}</span>
-              <span>{t("home.report.day30")}</span>
+              <span>{t("home.report.timelineStart")}</span>
+              <span>{t("home.report.timelineEnd")}</span>
             </div>
             <div className="h-1 rounded-sm bg-brand-ring" />
             <span className="text-[13px] text-ink-soft">{t("home.report.liveLabel")}</span>

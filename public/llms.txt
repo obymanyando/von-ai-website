@@ -2,7 +2,7 @@
 
 > VonAI builds practical AI workflows for owner-led professional services firms in Finland with 10 to 100 people. One AI workflow, live in 30 days, measured against how the firm works today. Based in Helsinki.
 
-The offer: the client picks one workflow that takes up the team's time. VonAI maps it and records a day-0 baseline in week 1, builds and tests it in weeks 2 and 3 (in the firm's existing tools where possible), puts it into daily use in week 4, and delivers a results report on day 30 using the same measures.
+The offer: the client picks one workflow that takes up the team's time. VonAI maps it and records a day-0 baseline in week 1, builds and tests it in weeks 2 and 3 (in the firm's existing tools where possible), puts it into daily use in week 4, and delivers a results report after 30 days of daily use (day 60) using the same measures.
 
 Typical workflows:
 - Enquiry handling: replies to website, email and WhatsApp enquiries within minutes, saves contacts to the CRM and offers meeting times. Measured by time to first reply, enquiries left unanswered and meetings booked.
@@ -12,7 +12,7 @@ Pricing: the build is a fixed price agreed before work starts, and a monthly fee
 
 ## Pages
 
-- [Home](/): The offer, how the 30 days work, results from earlier work, fit, and FAQ.
+- [Home](/): The offer, how it works from kickoff to results, results from earlier work, fit, and FAQ.
 - [Contact](/contact): Book a free 30-minute call or send a message.
 - [Insights](/resources): Checklists, scorecards and templates for professional services firms.
 - [Privacy Policy](/privacy): How we collect and protect personal data.
