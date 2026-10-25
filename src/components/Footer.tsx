@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Logo } from "@/components/site/Logo";
 import { ClosingCta, type ClosingCtaCopy } from "@/components/site/ClosingCta";
-import { HOME_SECTIONS } from "@/lib/site";
+import { HOME_SECTIONS, INSIGHTS_ENABLED } from "@/lib/site";
 
 export type FooterVariant = "full" | "minimal";
 
@@ -51,9 +51,11 @@ export function Footer({ closingCta, variant = "full" }: FooterProps) {
         </nav>
         <nav aria-label={t("footer.company")} className="flex flex-col gap-2.5">
           <p className={colLabel}>{t("footer.company")}</p>
-          <Link to="/resources" className={colLink}>
-            {t("nav.insights")}
-          </Link>
+          {INSIGHTS_ENABLED && (
+            <Link to="/resources" className={colLink}>
+              {t("nav.insights")}
+            </Link>
+          )}
           <Link to="/contact" className={colLink}>
             {t("nav.contact")}
           </Link>

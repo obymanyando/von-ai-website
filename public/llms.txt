@@ -14,7 +14,6 @@ Pricing: the build is a fixed price agreed before work starts, and a monthly fee
 
 - [Home](/): The offer, how it works from kickoff to results, results from earlier work, fit, and FAQ.
 - [Contact](/contact): Book a free 30-minute call or send a message.
-- [Insights](/resources): Checklists, scorecards and templates for professional services firms.
 - [Privacy Policy](/privacy): How we collect and protect personal data.
 
 ## Optional

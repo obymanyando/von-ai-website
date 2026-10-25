@@ -37,7 +37,8 @@ function resourceTitle(slug?: string, lang: 'en' | 'fi' = 'en'): string {
 }
 
 function resourceUrl(slug?: string): string {
-  if (!slug || !FILES[slug]) return `${SITE_URL}/resources`
+  // The Insights index is hidden (it redirects to Home), so unknown slugs go to Home directly.
+  if (!slug || !FILES[slug]) return SITE_URL
   return `${SITE_URL}/resources/${FILES[slug]}`
 }
 

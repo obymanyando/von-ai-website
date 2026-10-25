@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Logo } from "@/components/site/Logo";
-import { HOME_SECTIONS } from "@/lib/site";
+import { HOME_SECTIONS, INSIGHTS_ENABLED } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 const linkBase = "text-[15px] text-ink-2 hover:text-brand-text";
@@ -58,13 +58,15 @@ export function Navbar() {
               {t(s.labelKey)}
             </Link>
           ))}
-          <Link
-            to="/resources"
-            aria-current={onInsights ? "page" : undefined}
-            className={cn(linkBase, onInsights && linkActive)}
-          >
-            {t("nav.insights")}
-          </Link>
+          {INSIGHTS_ENABLED && (
+            <Link
+              to="/resources"
+              aria-current={onInsights ? "page" : undefined}
+              className={cn(linkBase, onInsights && linkActive)}
+            >
+              {t("nav.insights")}
+            </Link>
+          )}
         </div>
 
         <div className="flex items-center gap-2.5">
@@ -111,16 +113,18 @@ export function Navbar() {
                     </Link>
                   </li>
                 ))}
-                <li className="border-b border-line">
-                  <Link
-                    to="/resources"
-                    onClick={closeAfterLink}
-                    aria-current={onInsights ? "page" : undefined}
-                    className={cn("flex min-h-[52px] w-full items-center text-lg text-ink", onInsights && "font-medium")}
-                  >
-                    {t("nav.insights")}
-                  </Link>
-                </li>
+                {INSIGHTS_ENABLED && (
+                  <li className="border-b border-line">
+                    <Link
+                      to="/resources"
+                      onClick={closeAfterLink}
+                      aria-current={onInsights ? "page" : undefined}
+                      className={cn("flex min-h-[52px] w-full items-center text-lg text-ink", onInsights && "font-medium")}
+                    >
+                      {t("nav.insights")}
+                    </Link>
+                  </li>
+                )}
               </ul>
               <div className="flex flex-col gap-3">
                 <Link to="/contact" onClick={closeAfterLink} className="pill pill-dark pill-lg w-full">

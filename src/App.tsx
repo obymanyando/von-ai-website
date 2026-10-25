@@ -16,6 +16,7 @@ import ResourceDetail from "./pages/ResourceDetail";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
 import ChatWidget from "./components/ChatWidget";
+import { INSIGHTS_ENABLED } from "./lib/site";
 
 const queryClient = new QueryClient();
 
@@ -38,8 +39,11 @@ const App = () => (
               <Route path="/admin" element={<Admin />} />
               <Route path="/brand-guide" element={<BrandGuide />} />
               <Route path="/privacy" element={<Privacy />} />
-              <Route path="/resources" element={<Resources />} />
-              <Route path="/resources/:slug" element={<ResourceDetail />} />
+              <Route path="/resources" element={INSIGHTS_ENABLED ? <Resources /> : <Navigate to="/" replace />} />
+              <Route
+                path="/resources/:slug"
+                element={INSIGHTS_ENABLED ? <ResourceDetail /> : <Navigate to="/" replace />}
+              />
               {/* Old-offer pages: keep inbound links useful by sending them to the new Home. */}
               {RETIRED_PATHS.map((path) => (
                 <Route key={path} path={path} element={<Navigate to="/" replace />} />

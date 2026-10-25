@@ -10,5 +10,9 @@
 /30-day-outcome-pilot/ / 301
 /about / 301
 /about/ / 301
+# Insights library hidden until real PDFs exist (INSIGHTS_ENABLED in src/lib/site.ts).
+# Only the index: /resources/*.pdf files must stay reachable from emails already sent.
+/resources / 302
+/resources/ / 302
 # Deleted PDF, still linked from emails sent before the redesign.
 /30-day-outcome-pilot-framework.pdf / 301
