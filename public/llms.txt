@@ -8,7 +8,7 @@ Typical workflows:
 - Enquiry handling: replies to website, email and WhatsApp enquiries within minutes, saves contacts to the CRM and offers meeting times. Measured by time to first reply, enquiries left unanswered and meetings booked.
 - Proposal and tender drafting: drafts a first version from tender documents, past proposals and templates for an expert to edit and sign off. Measured by hours per proposal, turnaround time and proposals sent per month.
 
-Pricing: the build is a fixed price agreed before work starts, and a monthly fee that starts after the day-60 results report covers monitoring, fixes and small improvements. The amount depends on the workflow and is quoted after a free 30-minute call. The workflow runs in accounts the client owns.
+Pricing: the build is a fixed price agreed before work starts, and a monthly fee that starts after the day-60 results report covers monitoring, fixes and small improvements. Monitoring and fixes until the report are included in the build price. The amount depends on the workflow and is quoted after a free 30-minute call. The workflow runs in accounts the client owns.
 
 ## Pages
 
