@@ -22,9 +22,11 @@ npm run lint               # ESLint (pre-existing findings in src/components/ui,
 npm run build              # Production build (Vite) chained with check:copy
 npm run check:copy         # i18n keys resolve, _parked unreferenced, no prices shipped (needs dist/)
 npm run preview            # Preview production build locally
+npm run test:workers       # Node test runner on workers/**/*.test.ts (needs Node 22.18+)
+npm run typecheck:workers  # tsc on workers/supabase-keepalive
 ```
 
-No test runner is configured. `check:copy` is the automated copy gate; it runs after every build and fails the build on a violation.
+The app has no test runner; only `workers/` has tests (`npm run test:workers`). `check:copy` is the automated copy gate; it runs after every build and fails the build on a violation.
 
 ---
 
@@ -97,7 +99,7 @@ Shared component classes in `index.css` (`@layer components`): `site-container`,
 Client: `src/integrations/supabase/client.ts`
 Types: `src/integrations/supabase/types.ts` (auto-generated — do not hand-edit)
 
-**Tables:** `chat_conversations`, `chat_messages`, `contact_submissions`, `rate_limit_events`, `user_roles`
+**Tables:** `chat_conversations`, `chat_messages`, `contact_submissions`, `rate_limit_events`, `user_roles`. `testimonials` (public read, not in migrations) is what `workers/supabase-keepalive` reads every 3 days to stop the free-tier project pausing; see its README.
 **RPC:** `has_role(user_id, role)`, `get_users_with_roles()`
 **RLS:** enabled on all tables; admin role required for sensitive reads
 
