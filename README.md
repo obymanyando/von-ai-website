@@ -1,6 +1,6 @@
 # VonAI website
 
-The site for VonAI's offer: one AI workflow, live in 30 days, measured against a day-0 baseline. For professional services firms in Finland with 10 to 100 people.
+The site for VonAI's offer: one AI workflow, live in 30 days, measured against a day-0 baseline. For professional services firms with 10 to 100 people.
 
 ![VonAI](public/android-chrome-512x512.png)
 

@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What This Is
 
-VonAI website (von-ai.com): the landing site for one offer, "one AI workflow, live in 30 days, measured against a day-0 baseline", aimed at professional services firms in Finland with 10 to 100 people. Two public pages (single-page Home, Contact), an Insights library that is built but hidden (`INSIGHTS_ENABLED = false`), plus an admin dashboard and a (currently disabled) AI chat assistant. The design source is the handoff in `vonai_redesign/` (README, HTML references, `en.json`).
+VonAI website (von-ai.com): the landing site for one offer, "one AI workflow, live in 30 days, measured against a day-0 baseline", aimed at professional services firms with 10 to 100 people. Two public pages (single-page Home, Contact), an Insights library that is built but hidden (`INSIGHTS_ENABLED = false`), plus an admin dashboard and a (currently disabled) AI chat assistant. The design source is the handoff in `vonai_redesign/` (README, HTML references, `en.json`).
 
 ---
 
