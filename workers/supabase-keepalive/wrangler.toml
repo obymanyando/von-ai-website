@@ -1,0 +1,20 @@
+name = "supabase-keepalive"
+main = "src/index.ts"
+compatibility_date = "2025-09-01"
+
+# Cron-only: no public URL to call or abuse.
+workers_dev = false
+preview_urls = false
+
+# Every 3 days at 06:00 UTC. Supabase pauses after ~7 idle days, so one
+# failed run still leaves a retry before the window closes. Day-of-month
+# resets each month, so the longest gap is 3 days.
+[triggers]
+crons = ["0 6 */3 * *"]
+
+[vars]
+SUPABASE_URL = "https://rqoxgcwicjuphfcwbxka.supabase.co"
+# SUPABASE_PUBLISHABLE_KEY is a secret: npx wrangler secret put SUPABASE_PUBLISHABLE_KEY
+
+[observability]
+enabled = true

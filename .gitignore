@@ -42,3 +42,7 @@ supabase/.temp/
 
 # Claude Code
 .claude/
+
+# Wrangler local secrets and dev state
+.dev.vars
+.wrangler/
