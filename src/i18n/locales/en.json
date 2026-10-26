@@ -132,7 +132,7 @@
       "eyebrow": "FAQ",
       "title": "Common questions",
       "q1": "What does it cost?",
-      "a1": "It depends on the workflow and how many systems it touches. The build is a fixed price agreed before we start, so the number doesn't change halfway. After go-live, a monthly fee covers monitoring, fixes and small improvements. You'll get a quote after the free call.",
+      "a1": "It depends on the workflow and how many systems it touches. The build is a fixed price agreed before we start, so the number doesn't change halfway. A monthly fee for monitoring, fixes and small improvements starts only after the day-60 results report. You'll get a quote after the free call.",
       "q2": "Which tools do you use?",
       "a2": "Where possible, the ones you already have. We don't resell software. If a new tool is needed, it's set up in your firm's name and you pay for it directly. We'll explain the expected running costs before we start.",
       "q3": "What about client data and confidentiality?",
@@ -140,7 +140,7 @@
       "q4": "Will this replace people?",
       "a4": "No. You decide what the system may do on its own and what a person checks first. In proposal work, an expert always reviews the draft before it goes out.",
       "q5": "What if the results are weak?",
-      "a5": "Then the results report says so. We look at why and decide together whether to adjust the workflow or stop the monthly fee.",
+      "a5": "Then the results report says so. We look at why and decide together whether to adjust the workflow or stop there. The monthly fee hasn't started yet, so there's no running fee for something that isn't working.",
       "q6": "Why only one workflow?",
       "a6": "One workflow that runs and has been measured tells you more than a long plan. Once it's in use, it's much easier to see what the next one should be.",
       "q7": "What happens on the free call?",
@@ -301,7 +301,7 @@
       "pricing": "Price"
     },
     "hero": {
-      "priceLine": "€4,500 fixed price. Then €350 a month to keep it running."
+      "priceLine": "€4,500 fixed price. Then €350 a month to keep it running, starting after the day-60 results report."
     },
     "priceFloor": "Projects start from €4,500 + VAT.",
     "pricing": {
@@ -314,7 +314,7 @@
       "build3": "Walkthrough and written instructions for your team",
       "runTitle": "Run and improve",
       "runPrice": "€350 a month",
-      "runNote": "Starts after go-live. One month's notice.",
+      "runNote": "Starts after the day-60 results report. One month's notice.",
       "run1": "Monitoring, and fixes if something breaks",
       "run2": "Small improvements based on how your team uses it",
       "run3": "A one-page monthly report on the same measures",
