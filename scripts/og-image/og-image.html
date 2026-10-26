@@ -1,0 +1,21 @@
+<!doctype html><html><head><meta charset="utf-8">
+<!-- Source for public/og-image.png. Copy is hero.title1/title2/eyebrow from en.json; update both when the tagline changes. Render: Chrome --headless=new --hide-scrollbars --window-size=1200,630 --virtual-time-budget=5000 --screenshot=public/og-image.png file://$PWD/scripts/og-image/og-image.html (run from the repo root). Needs network: Geist loads from Google Fonts, and without it Chrome silently falls back to a system font. -->
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1200px;height:630px;overflow:hidden}
+body{background:hsl(40 27% 97.8%);color:hsl(0 0% 10.2%);font-family:Geist,sans-serif;
+ padding:72px 80px;display:flex;flex-direction:column;justify-content:space-between;position:relative}
+.top{display:flex;justify-content:space-between;align-items:center}
+.top img{height:44px}
+.eyebrow{font-family:"Geist Mono",monospace;font-size:20px;color:hsl(43 3% 40.6%);letter-spacing:.02em}
+h1{font-size:60px;white-space:nowrap;font-weight:600;letter-spacing:-.035em;line-height:1.04}
+h1 span{display:block;color:hsl(43 3% 40.6%);font-weight:500}
+.foot{display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid hsl(40 11% 89.4%);padding-top:28px;font-size:22px;color:hsl(43 3% 40.6%)}
+.foot b{color:hsl(0 0% 10.2%);font-weight:500}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:hsl(215 92% 58%);margin-right:12px;vertical-align:2px}
+</style></head><body>
+<div class="top"><img src="../../src/assets/logo-wordmark.png"><div class="eyebrow">von-ai.com</div></div>
+<h1>One AI workflow, live in 30 days.<span>Measured against how you work today.</span></h1>
+<div class="foot"><div><span class="dot"></span>For professional services firms in Finland with 10 to 100 people</div><b>Fixed price</b></div>
+</body></html>
