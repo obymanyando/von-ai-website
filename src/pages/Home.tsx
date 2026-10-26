@@ -11,7 +11,7 @@ import { Faq } from "@/components/home/Faq";
 import { CONTACT_EMAIL, FAQ_COUNT } from "@/lib/site";
 
 const DESCRIPTION =
-  "One AI workflow, live in 30 days and measured against how you work today. For professional services firms in Finland with 10 to 100 people.";
+  "One AI workflow, live in 30 days and measured against how you work today. For professional services firms with 10 to 100 people.";
 
 export default function Home() {
   const { t } = useTranslation();
@@ -26,7 +26,6 @@ export default function Home() {
       url: "https://von-ai.com/",
       email: CONTACT_EMAIL,
       description: DESCRIPTION,
-      areaServed: { "@type": "Country", name: "Finland" },
       address: { "@type": "PostalAddress", addressLocality: "Helsinki", addressCountry: "FI" },
     },
     {

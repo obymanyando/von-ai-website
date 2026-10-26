@@ -29,7 +29,7 @@ const BOT_USER_AGENTS = [
 const ROUTE_META: Record<string, { title: string; description: string }> = {
   '/': {
     title: 'VonAI | One AI workflow, live in 30 days',
-    description: 'One AI workflow, live in 30 days and measured against how you work today. For professional services firms in Finland with 10 to 100 people.',
+    description: 'One AI workflow, live in 30 days and measured against how you work today. For professional services firms with 10 to 100 people.',
   },
   '/contact': {
     title: 'Book a free call | VonAI',

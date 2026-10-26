@@ -1,6 +1,6 @@
 # VonAI
 
-> VonAI builds practical AI workflows for owner-led professional services firms in Finland with 10 to 100 people. One AI workflow, live in 30 days, measured against how the firm works today. Based in Helsinki.
+> VonAI builds practical AI workflows for owner-led professional services firms with 10 to 100 people. One AI workflow, live in 30 days, measured against how the firm works today. Based in Helsinki.
 
 The offer: the client picks one workflow that takes up the team's time. VonAI maps it and records a day-0 baseline in week 1, builds and tests it in weeks 2 and 3 (in the firm's existing tools where possible), puts it into daily use in week 4, and delivers a results report after 30 days of daily use (day 60) using the same measures.
 
