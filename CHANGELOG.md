@@ -14,6 +14,7 @@ Built from the design handoff in `vonai_redesign/`.
 ### Changed
 - Insights hidden until real PDFs exist: `INSIGHTS_ENABLED = false` in `src/lib/site.ts` removes the nav and footer links and redirects `/resources` and `/resources/:slug` to `/` (302 in `_redirects` for the index; the PDFs stay reachable). Dropped from `sitemap.xml`, `llms.txt` and the chat prompt.
 - Results report moved from day 30 to day 60: the workflow is live by day 30 and measured over 30 days of daily use. Example report columns now read Before / After 30 days live; hero, process step 4, FAQ, pricing, chat prompt and `llms.txt` match.
+- Monthly fee now starts after the day-60 results report, not at go-live, so the client sees results before paying to run it. FAQ a1 and a5, parked pricing note, chat prompt, `llms.txt` and assistant doc match.
 - Design tokens remapped to the handoff palette; Geist type; light theme only.
 - `en.json` replaced by the handoff copy (plus the existing `resources.*` keys).
 - Contact page restyled; same form validation and `send-contact-email` submission; consent error uses the new copy.
