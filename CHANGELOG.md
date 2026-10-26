@@ -35,4 +35,4 @@ Built from the design handoff in `vonai_redesign/`.
 ### Pending before launch
 - Real Insights resources (launching without them: Insights is hidden). Re-enable by setting `INSIGHTS_ENABLED` to true and restoring `/resources` in `sitemap.xml`, `llms.txt` and `_redirects`.
 - Deploy the `chat`, `og-meta`, `send-contact-email`, `send-transactional-email` and `preview-transactional-email` edge functions together with the site (the last two bundle the resource-download email template).
-- Replace `public/og-image.png` (still shows the old "From AI experiments to ROI" line).
+- ~~Replace `public/og-image.png` (still shows the old "From AI experiments to ROI" line).~~ Done: new 1200x630 PNG with the current hero tagline; source in `scripts/og-image/og-image.html`.
