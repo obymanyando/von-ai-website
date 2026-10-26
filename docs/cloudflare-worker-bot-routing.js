@@ -11,9 +11,9 @@
  * 4. Add a Worker Route: yourdomain.com/* → this worker
  * 
  * REQUIREMENTS:
- * - Custom domain connected to Lovable (not *.lovable.app)
+ * - Mirror of the live `bot-route` Worker on von-ai.com/*, edited in the Cloudflare dashboard
  * - Cloudflare managing DNS for your domain
- * - The og-meta edge function deployed in your Lovable project
+ * - The og-meta edge function deployed in Supabase project rqoxgcwicjuphfcwbxka
  */
 
 // Bot user agents to detect
@@ -33,9 +33,9 @@ const BOT_USER_AGENTS = [
 ];
 
 // Your Supabase edge function URL
-const OG_META_FUNCTION_URL = 'https://dumubiidyhdszrmaezpv.supabase.co/functions/v1/og-meta';
+const OG_META_FUNCTION_URL = 'https://rqoxgcwicjuphfcwbxka.supabase.co/functions/v1/og-meta';
 
-// Your actual origin (Lovable hosting)
+// The site origin (Worker von-ai-app)
 const ORIGIN_URL = 'https://von-ai.com'; // Change this to your actual domain
 
 /**

@@ -69,7 +69,7 @@ VITE_SUPABASE_URL=<your-supabase-url>
 VITE_SUPABASE_PUBLISHABLE_KEY=<your-supabase-anon-key>
 ```
 
-**Supabase Edge Functions** (set via `npx supabase secrets set`):
+**Supabase Edge Functions** (set via `npx supabase secrets set --project-ref rqoxgcwicjuphfcwbxka KEY=value`):
 ```env
 GOOGLE_AI_API_KEY=<your-google-ai-api-key>
 RESEND_API_KEY=<your-resend-api-key>
@@ -99,19 +99,25 @@ RESEND_API_KEY=<your-resend-api-key>
 ## Deployment
 
 ### Frontend (Cloudflare Workers)
-Pushes to `main` auto-deploy via Cloudflare's GitHub integration.
-- Build command: `npm run build`
+Manual deploy. Pushing to `main` does not deploy anything (verified 2026-10-27: main was pushed on 2026-05-21 and production stayed on the 2026-05-15 version).
+```bash
+npm ci --legacy-peer-deps && npm run build && npx wrangler deploy
+```
+- Build command: `npm run build` (wrangler does not build; run it first)
 - Output: `dist/` (served as static assets via `wrangler.toml`)
 - SPA routing handled by `not_found_handling = "single-page-application"`
 
 ### Edge Functions (Supabase)
 ```bash
 npx supabase login
-npx supabase link --project-ref <project-ref>
-npx supabase functions deploy chat
-npx supabase functions deploy send-contact-email
-npx supabase functions deploy og-meta
+npx supabase functions deploy chat --project-ref rqoxgcwicjuphfcwbxka
+npx supabase functions deploy send-contact-email --project-ref rqoxgcwicjuphfcwbxka
+npx supabase functions deploy og-meta --project-ref rqoxgcwicjuphfcwbxka
 ```
+`rqoxgcwicjuphfcwbxka` ("VonAI") is the project the site calls. `send-transactional-email`, `preview-transactional-email` and the other email functions belong to Lovable's email system and only serve the hidden Insights downloads; they are not deployed from here.
+
+### Link previews (Cloudflare Worker `bot-route`)
+A separate Worker on `von-ai.com/*` sends link-preview bots (LinkedIn, Facebook, X, WhatsApp, Slack and others) to the `og-meta` function. Its source is mirrored in `docs/cloudflare-worker-bot-routing.js`; it is edited in the Cloudflare dashboard, not deployed from this repo.
 
 ## Development
 

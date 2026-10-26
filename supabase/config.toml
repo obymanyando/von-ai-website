@@ -1,4 +1,5 @@
-project_id = "dumubiidyhdszrmaezpv"
+# Local-stack identifier only; deploys target --project-ref rqoxgcwicjuphfcwbxka.
+project_id = "rqoxgcwicjuphfcwbxka"
 
 [functions.send-contact-email]
 verify_jwt = false

@@ -127,7 +127,7 @@ SUPABASE_SERVICE_ROLE_KEY
 SESSION_SECRET
 ```
 
-`.env` and `.env.local` are gitignored; put the two `VITE_` values in `.env.local` for local dev. Edge function changes need `npx supabase functions deploy <name>`; they are not deployed by the site build.
+`.env` and `.env.local` are gitignored; put the two `VITE_` values in `.env.local` for local dev. Edge function changes need `npx supabase functions deploy <name> --project-ref rqoxgcwicjuphfcwbxka`; they are not deployed by the site build.
 
 ---
 

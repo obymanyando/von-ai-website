@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased: redesign for the 30-day workflow offer (branch `von-ai-redesign`)
+## 2026-10-27: redesign for the 30-day workflow offer (launched)
 
 Built from the design handoff in `vonai_redesign/`.
 
@@ -33,7 +33,11 @@ Built from the design handoff in `vonai_redesign/`.
 ### Fixed
 - Parked prices and the old Finnish price no longer ship inside the JS bundle.
 
-### Pending before launch
+### Launch (2026-10-27)
+- Site deployed as Worker version `a646d828`; `chat`, `send-contact-email` and `og-meta` deployed to project `rqoxgcwicjuphfcwbxka` (versions 4, 8, 3). That project had been paused, which had broken the live contact form and chat; restored before deploy.
+- `bot-route` Worker repointed from Lovable's `og-meta` to `rqoxgcwicjuphfcwbxka`, so link previews show the new title and image.
+
+### Open after launch
 - Real Insights resources (launching without them: Insights is hidden). Re-enable by setting `INSIGHTS_ENABLED` to true and restoring `/resources` in `sitemap.xml`, `llms.txt` and `_redirects`.
-- Deploy the `chat`, `og-meta`, `send-contact-email`, `send-transactional-email` and `preview-transactional-email` edge functions together with the site (the last two bundle the resource-download email template).
+- ~~Deploy the `chat`, `og-meta`, `send-contact-email`, `send-transactional-email` and `preview-transactional-email` edge functions together with the site (the last two bundle the resource-download email template).~~ Done for the first three. The two transactional-email functions belong to Lovable's email system, serve only the hidden Insights downloads, and cannot be deployed from this account; revisit when Insights comes back.
 - ~~Replace `public/og-image.png` (still shows the old "From AI experiments to ROI" line).~~ Done: new 1200x630 PNG with the current hero tagline; source in `scripts/og-image/og-image.html`.
