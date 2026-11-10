@@ -38,6 +38,9 @@ jobs:
   checks:
     name: Typecheck, lint, test, build
     runs-on: ubuntu-latest
+    # A clean run takes about a minute. Without this, a test that leaves the event loop
+    # open hangs for GitHub's 360-minute default.
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v5
         with:
