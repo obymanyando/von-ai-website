@@ -1,0 +1,96 @@
+# The backstop behind .githooks/pre-commit.
+#
+# The hook can be skipped with --no-verify and does nothing on a fresh clone until someone
+# runs `git config core.hooksPath .githooks`. CI catches what the hook missed, but it only
+# blocks a merge if branch protection on `main` requires this check, and today it does not
+# (no protection, no rulesets). A direct push to main, or `[skip ci]` in the message, gets
+# past it. Until protection is on, treat a red run as a stop-the-deploy signal by hand.
+#
+# This workflow never deploys. Deploys of the site (wrangler) and the edge functions
+# (supabase functions deploy) are manual and done by Oby. That is why there are no secrets
+# here and the token is read-only: keep it that way.
+#
+# Lint blocks on CHANGED .ts/.tsx files only, same as the hook: main carries 20 legacy lint
+# errors. The full-repo lint runs as a report so the debt stays visible. Make the full
+# lint blocking, and drop the changed-files step, the day it reaches zero errors.
+
+name: CI
+
+on:
+  # Scoped to main: `push: ['**']` runs every PR commit twice (push + pull_request).
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+# PR runs share a group so a new push cancels the stale run (each PR run lints the whole
+# base...head diff, so nothing is lost). Push runs are keyed by sha: sharing `refs/heads/main`
+# would cancel push A when push B lands, and B lints only A...B, so A's files would never
+# be linted.
+concurrency:
+  group: ci-${{ github.event_name == 'pull_request' && github.ref || github.sha }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    name: Typecheck, lint, test, build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          # Full history so the changed-files lint can diff against the base.
+          fetch-depth: 0
+
+      # 22.18+: test:workers runs .ts directly via Node's type stripping. Held below 23 to
+      # match namprocure and vonai-outbound, where npm 11 (Node 24+) gating install scripts
+      # was the concern. Not reproduced here: local Node 26 / npm 11 builds fine. Lift the
+      # cap once a run on a newer Node is green.
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '>=22.18 <23'
+          cache: npm
+
+      # --legacy-peer-deps: vite 8 vs @vitejs/plugin-react-swc 3 peer conflict.
+      - run: npm ci --legacy-peer-deps
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Typecheck workers
+        run: npm run typecheck:workers
+
+      - name: Lint changed files
+        env:
+          BASE_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
+          HEAD_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+        run: |
+          set -eu
+          list=$(mktemp)
+          # Three-dot: only what this change introduced, not what landed on main meanwhile.
+          # A push whose `before` is all zeros or was garbage collected has no base: say so
+          # loudly rather than pass silently or fail on legacy debt.
+          if ! git diff --name-only --diff-filter=ACMR -z "$BASE_SHA...$HEAD_SHA" > "$list.all" 2>/dev/null; then
+            echo "::warning::No usable base ($BASE_SHA); changed-files lint skipped. The full lint report below still ran."
+            exit 0
+          fi
+          grep -zE '\.(ts|tsx)$' "$list.all" > "$list" || true
+          if [ -s "$list" ]; then
+            echo "Linting:"; tr '\0' '\n' < "$list"
+            xargs -0 npx eslint --no-warn-ignored < "$list"
+          else
+            echo "No changed ts/tsx files."
+          fi
+
+      - name: Worker tests
+        run: npm run test:workers
+
+      # `build` chains check:copy: i18n keys resolve, `_parked` unreferenced, no prices.
+      - name: Build + copy check
+        run: npm run build
+
+      - name: Full lint (reporting only until the legacy errors reach zero)
+        continue-on-error: true
+        run: npm run lint

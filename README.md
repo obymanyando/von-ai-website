@@ -49,7 +49,7 @@ The design and copy come from the handoff in `vonai_redesign/`. The site never s
 ## Getting Started
 
 ### Prerequisites
-- Node.js 18+
+- Node.js 22.18+ (`npm run test:workers` and the pre-commit hook need it)
 - npm
 
 ### Installation
@@ -58,8 +58,11 @@ The design and copy come from the handoff in `vonai_redesign/`. The site never s
 git clone https://github.com/obymanyando/von-ai-website.git
 cd von-ai-website
 npm ci --legacy-peer-deps   # vite 8 vs @vitejs/plugin-react-swc 3 peer conflict
+git config core.hooksPath .githooks   # activate the pre-commit gate (once per clone)
 npm run dev
 ```
+
+The pre-commit hook runs typecheck, workers typecheck, ESLint on staged `.ts`/`.tsx` files, worker tests and the build with `check:copy`, and blocks the commit if any fail. CI (`.github/workflows/ci.yml`) runs the same checks on PRs and pushes to `main`. It never deploys.
 
 ### Environment Variables
 
@@ -130,6 +133,8 @@ npm run lint        # Run ESLint
 npm run build       # Build for production, then check:copy
 npm run check:copy  # i18n keys resolve, no _parked references, no prices shipped
 npm run preview     # Preview production build
+npm run test:workers       # Worker tests (Node 22.18+)
+npm run typecheck:workers  # TypeScript check for workers/supabase-keepalive
 ```
 
 ### Code Style

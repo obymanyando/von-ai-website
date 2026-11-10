@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-11-10: commit gate
+
+### Added
+- `.githooks/pre-commit`: blocks a commit unless typecheck, workers typecheck, ESLint on staged `.ts`/`.tsx`, worker tests and `build` + `check:copy` pass. Activate with `git config core.hooksPath .githooks`.
+- `.github/workflows/ci.yml`: the same checks on PRs and pushes to `main`, Node 22.18+, changed-files lint blocking, full lint as a report. Never deploys.
+
 ## 2026-10-27: redesign for the 30-day workflow offer (launched)
 
 Built from the design handoff in `vonai_redesign/`.
