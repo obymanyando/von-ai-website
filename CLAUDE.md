@@ -18,7 +18,7 @@ Run from the repo root:
 npm ci --legacy-peer-deps  # Install (vite 8 vs @vitejs/plugin-react-swc 3 peer conflict)
 npm run dev                # Dev server at localhost:8080
 npm run typecheck          # tsc --noEmit on the app
-npm run lint               # ESLint (pre-existing findings in src/components/ui, Admin, Auth, BrandGuide)
+npm run lint               # ESLint (20 pre-existing errors: Admin, Auth, BrandGuide, src/components/ui, supabase/functions email code)
 npm run build              # Production build (Vite) chained with check:copy
 npm run check:copy         # i18n keys resolve, _parked unreferenced, no prices shipped (needs dist/)
 npm run preview            # Preview production build locally
@@ -27,6 +27,18 @@ npm run typecheck:workers  # tsc on workers/supabase-keepalive
 ```
 
 The app has no test runner; only `workers/` has tests (`npm run test:workers`). `check:copy` is the automated copy gate; it runs after every build and fails the build on a violation.
+
+### Commit gate
+
+Activate the hook once per clone (hooks are machine-local; this covers every worktree of the clone):
+
+```bash
+git config core.hooksPath .githooks
+```
+
+`.githooks/pre-commit` blocks the commit unless all of these pass: Node is 22.18+, `typecheck`, `typecheck:workers`, ESLint on the staged `.ts`/`.tsx` files only, `test:workers`, and `build` (which chains `check:copy`). Lint is staged-only because of the legacy errors above: touching one of those files means fixing its errors. Warnings do not block. `--no-verify` skips the hook.
+
+`.github/workflows/ci.yml` runs the same checks on every PR to `main` and every push to `main`, on Node 22.18+ (below 23), with lint on the PR's changed `.ts`/`.tsx` files blocking and the full-repo lint as a non-blocking report. CI never deploys and holds no secrets; deploys stay manual. `main` has no branch protection, so a red run does not block a merge or a direct push: check it before deploying.
 
 ---
 

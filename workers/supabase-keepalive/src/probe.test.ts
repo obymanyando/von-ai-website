@@ -55,7 +55,7 @@ test("throws without calling out when config is missing", async () => {
 });
 
 // A hung request must not block the run: each attempt aborts on its own timer.
-test("aborts a hung request and retries", { timeout: 2_000 }, async () => {
+test("aborts a hung request and retries", { timeout: 2_000 }, async (t) => {
   let calls = 0;
   const hang = (_url: string, init?: RequestInit) => {
     calls++;
@@ -63,6 +63,15 @@ test("aborts a hung request and retries", { timeout: 2_000 }, async () => {
       init?.signal?.addEventListener("abort", () => reject(init.signal?.reason));
     });
   };
+  // AbortSignal.timeout() uses an unref'd timer in Node, and neither this fake fetch nor
+  // the per-test timeout holds the loop open. On Node 22 the loop drains before the abort
+  // fires and the runner cancels the test ("Promise resolution is still pending but the
+  // event loop has already resolved"); Node 26 happened to pass. A real fetch would hold
+  // a socket, so hold the loop open in its place. Cleared in t.after, not a finally:
+  // after a 2s timeout the body is abandoned and a finally would never run, so the
+  // interval would keep the run (CI, the pre-commit hook) alive forever.
+  const keepAlive = setInterval(() => {}, 1_000);
+  t.after(() => clearInterval(keepAlive));
   await assert.rejects(probe(env, hang, 0, 20), /timeout|abort/i);
   assert.equal(calls, 2);
 });

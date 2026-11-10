@@ -1,0 +1,88 @@
+#!/bin/sh
+# Refuse a commit that does not typecheck, lint clean, pass its tests, and build with a
+# clean copy check.
+#
+# Why: this is the live business site and deploys are manual (`npm run build` then
+# `wrangler deploy` from whatever is checked out). Nothing sits between a broken commit
+# and a broken deploy. The copy check matters most: it is the only thing that stops a
+# price from the parked `_parked` block, or an unresolved i18n key, shipping to von-ai.com.
+# It needs dist/, so the hook runs the full build (about 2s), which chains check:copy.
+#
+# Lint is scoped to STAGED .ts/.tsx FILES ONLY, deliberately. `main` carries 20 pre-existing
+# lint errors (Admin, Auth, BrandGuide, two shadcn files in src/components/ui, and the
+# transactional-email code in supabase/functions). A full-repo lint would refuse every
+# commit from day one and be disabled within a week. Touching one of those files means
+# fixing its errors, or `--no-verify` with a reason. Warnings do not block: most of the 9
+# are react-refresh warnings in generated shadcn files that must not be hand-edited.
+# Only .ts/.tsx: eslint.config.js has no config for anything else, so passing a .js file
+# just produces a "no matching configuration" warning.
+#
+# Filenames stay NUL-separated from `git diff -z` to `xargs -0`. Bare `xargs` word-splits
+# on spaces, turns one file into several non-existent paths, and lets lint pass on a file
+# it never read (this bit the namprocure hook). Do not reintroduce it.
+#
+# These run against the WORKING TREE, not the staged content. Deliberate: the stash dance
+# that fixes it can lose uncommitted work. The cost: a staged import of a file you forgot
+# to `git add` passes here and breaks main. CI catches that one.
+#
+# Escape hatch: `git commit --no-verify`. Use it when you mean it, not to get past a
+# failure you have not read. CI runs the same checks, but nothing forces a red CI run to
+# block a merge or a deploy until branch protection on `main` requires it.
+
+set -e
+
+repo_root=$(git rev-parse --show-toplevel)
+cd "$repo_root"
+
+# test:workers runs .ts directly via Node's type stripping, which needs 22.18+. Without
+# this check an older Node fails with a syntax error that reads like a broken test.
+if ! node -e 'const [a,b]=process.versions.node.split(".").map(Number);process.exit(a>22||(a===22&&b>=18)?0:1)'; then
+  echo "pre-commit: BLOCKED - Node $(node -v) is too old; test:workers needs 22.18+" >&2
+  exit 1
+fi
+
+echo "pre-commit: typecheck"
+if ! npm run --silent typecheck; then
+  echo "pre-commit: BLOCKED - typecheck failed" >&2
+  exit 1
+fi
+
+echo "pre-commit: typecheck workers"
+if ! npm run --silent typecheck:workers; then
+  echo "pre-commit: BLOCKED - workers typecheck failed" >&2
+  exit 1
+fi
+
+staged_list=$(mktemp)
+trap 'rm -f "$staged_list"' EXIT
+# `|| true`: grep matching nothing is the ordinary "no ts/tsx staged" case, not an error.
+git diff --cached --name-only --diff-filter=ACMR -z \
+  | grep -zE '\.(ts|tsx)$' > "$staged_list" || true
+
+# `[ -s ]` rather than `xargs -r`: -r is GNU-only and this must run on macOS.
+# --no-warn-ignored: a staged file under an ignored path (dist/, vonai_redesign/) is not
+# a lint failure.
+if [ -s "$staged_list" ]; then
+  echo "pre-commit: lint (staged files only)"
+  if ! xargs -0 npx eslint --no-warn-ignored < "$staged_list"; then
+    echo "pre-commit: BLOCKED - lint errors in staged files" >&2
+    exit 1
+  fi
+else
+  echo "pre-commit: lint skipped, no staged ts/tsx"
+fi
+
+echo "pre-commit: worker tests"
+if ! npm run --silent test:workers; then
+  echo "pre-commit: BLOCKED - worker tests failed" >&2
+  exit 1
+fi
+
+echo "pre-commit: build + check:copy"
+if ! npm run --silent build; then
+  echo "pre-commit: BLOCKED - build or copy check failed" >&2
+  exit 1
+fi
+
+echo "pre-commit: passed"
+exit 0
