@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-11-25: contact email reply-to
+
+### Fixed
+- `send-contact-email`: the lead confirmation email had no Reply-To and is sent from `hello@comms.von-ai.com`, which has no MX record, so replies would bounce. Replies now go to `hello@von-ai.com`. Deployed as v9.
+
+### Changed
+- `send-contact-email`: "VON AI" is now "VonAI" in sender names, subjects and sign-off.
+- Mail for `von-ai.com` moved from Cloudflare Email Routing to Google Workspace (DNS only, no repo change).
+
 ## 2026-11-10: commit gate
 
 ### Added
