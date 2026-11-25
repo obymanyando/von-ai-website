@@ -63,7 +63,7 @@ const handler = async (req: Request): Promise<Response> => {
         Authorization: `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: "VON AI Contact <hello@comms.von-ai.com>",
+        from: "VonAI Contact <hello@comms.von-ai.com>",
         to: ["hello@von-ai.com"],
         subject: `New Contact Form Submission from ${name}`,
         html: `
@@ -88,8 +88,8 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Send confirmation email to the user
     const confirmationSubject = emailType === "pilot-lead"
-      ? "Your 30-Day Outcome Pilot framework - VON AI"
-      : "We received your message - VON AI";
+      ? "Your 30-Day Outcome Pilot framework - VonAI"
+      : "We received your message - VonAI";
 
     const confirmationHtml = emailType === "pilot-lead"
       ? `
@@ -123,7 +123,7 @@ const handler = async (req: Request): Promise<Response> => {
           <hr style="border: none; border-top: 1px solid #e5e5e5; margin: 30px 0;" />
           <p style="color: #888; font-size: 14px;">
             Best regards,<br/>
-            The VON AI Team
+            The VonAI Team
           </p>
         </div>
       `;
@@ -135,10 +135,11 @@ const handler = async (req: Request): Promise<Response> => {
         Authorization: `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: "VON AI <hello@comms.von-ai.com>",
+        from: "VonAI <hello@comms.von-ai.com>",
         to: [email],
         subject: confirmationSubject,
         html: confirmationHtml,
+        reply_to: "hello@von-ai.com",
       }),
     });
 
